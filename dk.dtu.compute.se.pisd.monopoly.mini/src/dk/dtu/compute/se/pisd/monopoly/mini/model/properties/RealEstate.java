@@ -11,7 +11,45 @@ import dk.dtu.compute.se.pisd.monopoly.mini.model.Property;
  *
  */
 public class RealEstate extends Property{
-	
-	// TODO to be implemented
+
+	private int houses;
+	private int baseRent;
+	private int houseRent;
+    private int housePrice;
+
+    public int getHouses() {
+        return houses;
+    }
+
+    public void setHouses(int houses) {
+        this.houses = houses;
+        notifyChange();
+    }
+
+    public int getBaseRent() {
+        return baseRent;
+    }
+
+    public void setBaseRent(int baseRent) {
+        this.baseRent = baseRent;
+    }
+
+    public int getHouseRent() {
+        return houseRent;
+    }
+
+    public void setHouseRent(int houseRent) {
+        this.houseRent = houseRent;
+    }
+
+    public int getHousePrice() {
+        return housePrice;
+    }
+
+    public void setHousePrice(int housePrice) {
+        this.housePrice = housePrice;
+    }
+
+
 
 }
