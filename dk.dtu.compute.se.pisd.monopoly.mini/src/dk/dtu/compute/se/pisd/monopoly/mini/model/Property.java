@@ -89,10 +89,16 @@ public class Property extends Space {
 			//      individual conditions into account. Note that the
 			//      groups of properties (which are not part of the model
 			//      yet also need to be taken into account).
+
+
 			controller.payment(player, rent, owner);
+			this.rent = computeRent();
 		}
 	}
-	public int computeRent(RealEstate realEstate, Property property, int newRent){
+	public int computeRent(){
+		RealEstate realEstate = new RealEstate();
+		Property property = new Property();
+		int newRent;
 		if (realEstate.getHouses()>=1){
 			newRent = property.rent*realEstate.getHouses()*3;
 			return newRent;
