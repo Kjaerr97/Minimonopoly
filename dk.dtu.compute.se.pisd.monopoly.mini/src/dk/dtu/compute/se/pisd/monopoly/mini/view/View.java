@@ -4,11 +4,13 @@ import dk.dtu.compute.se.pisd.designpatterns.Observer;
 import dk.dtu.compute.se.pisd.designpatterns.Subject;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.Game;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.Player;
+import dk.dtu.compute.se.pisd.monopoly.mini.model.Property;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.Space;
 import gui_fields.GUI_Car;
 import gui_fields.GUI_Car.Pattern;
 import gui_fields.GUI_Car.Type;
 import gui_fields.GUI_Field;
+import gui_fields.GUI_Ownable;
 import gui_fields.GUI_Player;
 import gui_main.GUI;
 
@@ -85,13 +87,24 @@ public class View implements Observer {
 			if (subject instanceof Player) {
 				updatePlayer((Player) subject);
 			}
+			else if (subject instanceof Property){
+				updateProperty((Property) subject);
+			}
 			
 			// TODO update other subjects in the GUI
 			//      in particular properties (sold, houses, ...)
 			
 		}
 	}
-	
+	private void updateProperty(Property property){
+
+		GUI_Field guiProperty = this.space2GuiField.get(property);
+		if (guiProperty instanceof GUI_Ownable){
+			((GUI_Ownable) guiProperty).setBorder(property.getOwner().getColor());
+
+		}
+
+	}
 	/**
 	 * This method updates a player's state in the GUI. Right now, this
 	 * concerns the players position and balance only. But, this should

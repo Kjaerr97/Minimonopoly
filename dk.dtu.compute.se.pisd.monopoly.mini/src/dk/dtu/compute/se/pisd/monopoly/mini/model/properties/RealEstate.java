@@ -50,6 +50,15 @@ public class RealEstate extends Property{
         this.housePrice = housePrice;
     }
 
+    public int computeRent(){
+
+        if (houses>0){
+            return baseRent*houses*3; // hertil skal vi finde en fast metode
+
+        }else{
+            return baseRent;
+        }
+    }
 
 
 }

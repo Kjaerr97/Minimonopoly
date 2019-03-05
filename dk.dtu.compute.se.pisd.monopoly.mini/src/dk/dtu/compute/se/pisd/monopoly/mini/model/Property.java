@@ -91,19 +91,7 @@ public class Property extends Space {
 			//      yet also need to be taken into account).
 
 
-			controller.payment(player, rent, owner);
-			this.rent = computeRent();
-		}
-	}
-	public int computeRent(){
-		RealEstate realEstate = new RealEstate();
-		Property property = new Property();
-		int newRent;
-		if (realEstate.getHouses()>=1){
-			newRent = property.rent*realEstate.getHouses()*3;
-			return newRent;
-		}else{
-			return property.rent;
+
 		}
 	}
 
