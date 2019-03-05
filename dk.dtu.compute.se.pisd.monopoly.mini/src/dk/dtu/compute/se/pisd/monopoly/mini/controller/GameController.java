@@ -381,75 +381,71 @@ public class GameController {
 	 * This method implements the activity of auctioning a property.
 	 *
      * @param property the property which is for auction
+     * @GruppeF made this method (class assignment 2)
      */
 	public Player auction(Property property) {
-	    // Creates new ArrayList called bidders.
+		// Creates new ArrayList called bidders.
 
-	    List <Player> bidders = new ArrayList<Player>();
+		List<Player> bidders = new ArrayList<Player>();
 
-	    for (Player player: game.getPlayers()) {
-            if (!player.isBroke()) {
-                bidders.add(player);
-            }
+		for (Player player : game.getPlayers()) {
+			if (!player.isBroke()) {
+				bidders.add(player);
+			}
 
-        }
+		}
 
 		gui.showMessage("Now, there would be an auction of " + property.getName() + ".");
 
-	    //Defines 2 bids, that make uo the condition that minBid = 1 kr.
-        int currentBid = 0;
+		Player bidder = null;
+		int currentBid = 0;
+		while (bidders.size() > 1) {
+			int minBid = currentBid + 1;
 
+			bidder = bidders.get(0);
+			String selection = gui.getUserSelection(
+					"Would you " + bidder.getName() + " like to place a bid? Minimum bid:" + minBid + " kr.",
+					"yes",
+					"no");
+			if (selection.equals("no")) {
+				bidders.remove(0);
+			} else {       // de får lov at byde
 
+				Player player = bidders.remove(0);
+				int newBid = gui.getUserInteger("Place bid here. Must be " + minBid + " or above",
+						currentBid + 1,
+						player.getBalance() + 0);
+				if (newBid >= minBid) {
+					currentBid = newBid;
 
-        Player bidder = null;
+					bidders.add(player);
 
-        while (bidders.size()>1) {
-            int minBid = currentBid + 1;
-
-            String selection = gui.getUserSelection(
-                        "Would anyone like to place a bid? Minimum bid:" + minBid +" kr.",
-                        "yes",
-                        "no");
-                if (selection.equals("no")) {
-                    bidders.remove(0)
-                }  else {       // de får lov at byde
-
-                    Player player = bidders.remove(0);
-                    int newBid = gui.getUserInteger("Place bid here. Must be " + currentBid + 1 + " or above",
-							currentBid + 1,
-                            player.getBalance()+0);
-                    if (newBid >= minBid){
-                    	currentBid = newBid;
-
-                    	bidders.add(player);
-
-                    	gui.showMessage(player.getName() +  " has the new highest bid of " + currentBid);
-					} else {
-                    	gui.showMessage("Your bid wasn't enough");
-					}
-
-
-                                    
-
-                }
-            }
-            try { if (bidders.size() == 1) {
-                paymentToBank(bidder, currentBid);
-                bidder.addOwnedProperty(property);
-                property.setOwner(bidder);
-
-            }
-                else {
-                    gui.showMessage("The property isn't sold by auction");
-                }
-
-            } catch(PlayerBrokeException e){
-					gui.showMessage("PLayer is broke " + e.getMessage());
+					gui.showMessage(player.getName() + " has the new highest bid of " + currentBid);
+				} else {
+					gui.showMessage("Your bid wasn't enough");
 				}
 
 
-			return bidder; //Tjek op på dette.
+			}
+		}
+		try {
+			if (bidders.size() == 1) {
+				Player winner = bidders.get(0);
+				paymentToBank(winner, currentBid);
+				winner.addOwnedProperty(property);
+				property.setOwner(winner);
 
+			} else {
+				gui.showMessage("The property isn't sold by auction");
+			}
+
+		} catch (PlayerBrokeException e) {
+			gui.showMessage("PLayer is broke " + e.getMessage());
+		}
+
+
+		return bidder; //Tjek op på dette.
+	}
 
 	/**
 	 * Action handling the situation when one player is broke to another
