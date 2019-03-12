@@ -40,6 +40,7 @@ public class RealEstate extends Property{
 
     public void setHouseRent(int houseRent) {
         this.houseRent = houseRent;
+        notifyChange();
     }
 
     public int getHousePrice() {
@@ -48,6 +49,7 @@ public class RealEstate extends Property{
 
     public void setHousePrice(int housePrice) {
         this.housePrice = housePrice;
+        notifyChange();
     }
 
     public int computeRent(){

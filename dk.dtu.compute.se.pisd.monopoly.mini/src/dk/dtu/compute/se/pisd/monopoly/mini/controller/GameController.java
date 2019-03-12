@@ -2,6 +2,7 @@ package dk.dtu.compute.se.pisd.monopoly.mini.controller;
 
 import dk.dtu.compute.se.pisd.monopoly.mini.model.*;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.exceptions.PlayerBrokeException;
+import dk.dtu.compute.se.pisd.monopoly.mini.model.properties.RealEstate;
 import dk.dtu.compute.se.pisd.monopoly.mini.view.View;
 import gui_main.GUI;
 
@@ -311,6 +312,10 @@ public class GameController {
     		}
     		player.addOwnedProperty(property);
     		property.setOwner(player);
+    		//TODO: Test, this should be fixed
+    		if (property instanceof RealEstate) {
+				((RealEstate)property).setHouses(1);
+			}
     		return;
         }
         

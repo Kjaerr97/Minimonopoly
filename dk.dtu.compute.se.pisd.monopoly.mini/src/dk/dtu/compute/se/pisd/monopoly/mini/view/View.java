@@ -6,12 +6,10 @@ import dk.dtu.compute.se.pisd.monopoly.mini.model.Game;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.Player;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.Property;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.Space;
-import gui_fields.GUI_Car;
+import dk.dtu.compute.se.pisd.monopoly.mini.model.properties.RealEstate;
+import gui_fields.*;
 import gui_fields.GUI_Car.Pattern;
 import gui_fields.GUI_Car.Type;
-import gui_fields.GUI_Field;
-import gui_fields.GUI_Ownable;
-import gui_fields.GUI_Player;
 import gui_main.GUI;
 
 import java.awt.*;
@@ -59,12 +57,16 @@ public class View implements Observer {
 			// the GUI fields should actually be created according to the game's
 			// fields
 			space2GuiField.put(space, guiFields[i++]);
-			
+			if (space instanceof Property){
+				space.attach(this);
+
+				updateProperty((Property) space);
+			}
 			// TODO we should also register with the properties as observer; but
 			// the current version does not update anything for the spaces, so we do not
 			// register the view as an observer for now
 		}
-		
+
 		// create the players in the GUI
 		for (Player player: game.getPlayers()) {
 			GUI_Car car = new GUI_Car(player.getColor(), Color.black, Type.CAR, Pattern.FILL);
@@ -90,6 +92,7 @@ public class View implements Observer {
 			else if (subject instanceof Property){
 				updateProperty((Property) subject);
 			}
+
 			
 			// TODO update other subjects in the GUI
 			//      in particular properties (sold, houses, ...)
@@ -100,7 +103,16 @@ public class View implements Observer {
 
 		GUI_Field guiProperty = this.space2GuiField.get(property);
 		if (guiProperty instanceof GUI_Ownable){
-			((GUI_Ownable) guiProperty).setBorder(property.getOwner().getColor());
+			Player owner = property.getOwner();
+			if (owner != null){
+				((GUI_Ownable) guiProperty).setBorder(owner.getColor());
+			} else {
+				((GUI_Ownable) guiProperty).setBorder(null);
+			}
+
+		if (guiProperty instanceof GUI_Street&& property instanceof RealEstate){
+			((GUI_Street) guiProperty).setHouses(((RealEstate) property).getHouses());
+		}
 
 		}
 
