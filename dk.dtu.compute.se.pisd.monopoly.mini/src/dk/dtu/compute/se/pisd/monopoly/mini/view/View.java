@@ -102,6 +102,7 @@ public class View implements Observer {
 	private void updateProperty(Property property){
 
 		GUI_Field guiProperty = this.space2GuiField.get(property);
+		//Er GUI_Ownable det samme som owner? Eller hvad er det. ER det bare et felt som man kan eje?
 		if (guiProperty instanceof GUI_Ownable){
 			Player owner = property.getOwner();
 			if (owner != null){
