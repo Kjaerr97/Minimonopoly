@@ -9,7 +9,9 @@ public class GameEndedException extends Exception {
 
 
 /*
+Kig op
 
+Hvad skal denne exception bidrage med? I Play metoden er der allerede taget højde for scenariet med tilhørende prints.
 
 
 
