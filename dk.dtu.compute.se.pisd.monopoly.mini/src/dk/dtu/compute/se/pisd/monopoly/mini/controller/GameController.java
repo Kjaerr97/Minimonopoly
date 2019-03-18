@@ -1,6 +1,7 @@
 package dk.dtu.compute.se.pisd.monopoly.mini.controller;
 
 import dk.dtu.compute.se.pisd.monopoly.mini.model.*;
+import dk.dtu.compute.se.pisd.monopoly.mini.model.exceptions.GameEndedException;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.exceptions.PlayerBrokeException;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.properties.RealEstate;
 import dk.dtu.compute.se.pisd.monopoly.mini.view.View;
@@ -73,7 +74,7 @@ public class GameController {
 	 * current player of the game; this makes it possible to resume a
 	 * game at any point.
 	 */
-	public void play() {
+	public void play() throws GameEndedException {
 		List<Player> players =  game.getPlayers();
 		Player c = game.getCurrentPlayer();
 		
@@ -95,46 +96,49 @@ public class GameController {
 					// We could react to the player having gone broke
 				}
 			}
-			
+
 			// Check whether we have a winner
 			Player winner = null;
 			int countActive = 0;
-			for (Player p: players) {
+			for (Player p : players) {
 				if (!p.isBroke()) {
 					countActive++;
 					winner = p;
 				}
 			}
-			if (countActive == 1) {
-				gui.showMessage(
-						"Player " + winner.getName() +
-						" has won with " + winner.getBalance() +"$.");
-				break;
-			} else if (countActive < 1) {
-				// This can actually happen in very rare conditions and only
-				// if the last player makes a stupid mistake (like buying something
-				// in an auction in the same round when the last but one player went
-				// bankrupt)
-				gui.showMessage(
-						"All players are broke.");
-				break;
-				
-			}
 
-			// TODO offer all players the options to trade etc.
+				if (countActive == 1) {
+					gui.showMessage(
+							"Player " + winner.getName() +
+									" has won with " + winner.getBalance() + "$.");
+					throw new GameEndedException();
 
-			current = (current + 1) % players.size();
-			game.setCurrentPlayer(players.get(current));
-			if (current == 0) {
-				String selection = gui.getUserSelection(
-						"A round is finished. Do you want to continue the game?",
-						"yes",
-						"no");
-				if (selection.equals("no")) {
-					terminated = true;
+				} else if (countActive < 1) {
+					// This can actually happen in very rare conditions and only
+					// if the last player makes a stupid mistake (like buying something
+					// in an auction in the same round when the last but one player went
+					// bankrupt)
+					gui.showMessage(
+							"All players are broke.");
+					break;
+
+				}
+
+				// TODO offer all players the options to trade etc.
+
+				current = (current + 1) % players.size();
+				game.setCurrentPlayer(players.get(current));
+				if (current == 0) {
+					String selection = gui.getUserSelection(
+							"A round is finished. Do you want to continue the game?",
+							"yes",
+							"no");
+					if (selection.equals("no")) {
+						terminated = true;
+					}
 				}
 			}
-		}
+
 		
 		dispose();
 	}
@@ -341,8 +345,13 @@ public class GameController {
 			if (payer.getBalance() < amount) {
 				playerBrokeTo(payer,receiver);
 				throw new PlayerBrokeException(payer);
-			}
+
+
+				}
+
 		}
+
+
 		gui.showMessage("Player " + payer.getName() + " pays " +  amount + "$ to player " + receiver.getName() + ".");
 		payer.payMoney(amount);
 		receiver.receiveMoney(amount);

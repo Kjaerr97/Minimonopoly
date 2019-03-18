@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Minimonopoly.iml" filepath="$PROJECT_DIR$/.idea/Minimonopoly.iml" />
-      <module fileurl="file://$PROJECT_DIR$/dk.dtu.compute.se.pisd.monopoly.mini/dk.dtu.compute.se.pisd.matador2.iml" filepath="$PROJECT_DIR$/dk.dtu.compute.se.pisd.monopoly.mini/dk.dtu.compute.se.pisd.matador2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dk.dtu.compute.se.pisd.monopoly.mini/dk.dtu.compute.se.pisd.monopoly.mini.iml" filepath="$PROJECT_DIR$/dk.dtu.compute.se.pisd.monopoly.mini/dk.dtu.compute.se.pisd.monopoly.mini.iml" />
     </modules>
   </component>
 </project>
