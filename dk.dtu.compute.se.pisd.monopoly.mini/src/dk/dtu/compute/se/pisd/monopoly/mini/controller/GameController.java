@@ -339,13 +339,16 @@ public class GameController {
 	 * @param receiver the beneficiary of the payment
 	 * @throws PlayerBrokeException when the payer goes broke by this payment
 	 */
-	public void payment(Player payer, int amount, Player receiver) throws PlayerBrokeException {
+	public void payment(Player payer, int amount, Player receiver) throws PlayerBrokeException, GameEndedException {
 		if (payer.getBalance() < amount) {
 			obtainCash(payer, amount);
 			if (payer.getBalance() < amount) {
 				playerBrokeTo(payer,receiver);
 				throw new PlayerBrokeException(payer);
+				}
+				if (amount >= 1000000000){
 
+					throw new GameEndedException();
 
 				}
 
