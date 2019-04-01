@@ -24,9 +24,15 @@ public class PlayerPanel extends JFrame {
         this.setContentPane(infoPanel);
         this.validate();
         this.setVisible(true);
+
     }
-    
-    public void update(){
+
+    public void update(Player player) {
+//Nedenstående er ikke rigtigt. Skal ikke være her
+        JLabel nameLable = new JLabel(player.getName());
+        Jlabel balanceLable = new JLabel(player.getBalance());
+        infoPanel.add(nameLable);
+
 
     }
 
