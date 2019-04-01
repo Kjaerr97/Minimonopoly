@@ -30,9 +30,9 @@ public class PlayerPanel extends JFrame {
     public void update(Player player) {
 //Nedenstående er ikke rigtigt. Skal ikke være her
         JLabel nameLable = new JLabel(player.getName());
-        Jlabel balanceLable = new JLabel(player.getBalance());
-        infoPanel.add(nameLable);
-
+        JLabel balanceLable = new JLabel(String.valueOf(player.getBalance()));
+        infoPanel.add(nameLable,balanceLable);
+        infoPanel.setBackground(player.getColor());
 
     }
 
