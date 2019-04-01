@@ -12,6 +12,7 @@ public class PlayerPanel extends JFrame {
 
     public PlayerPanel (Game game, Player player){
      super(player.getName());
+     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
      //Selve framet bliver konstrueret.
      this.player = player;
      this.game = game;
