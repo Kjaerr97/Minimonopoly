@@ -217,7 +217,7 @@ public class GameController {
 			gui.showMessage("Player " + player.getName() + " receives 2000$ for passing Go!");
 			this.paymentFromBank(player, 2000);
 		}		
-		gui.showMessage("Player " + player.getName() + " arrives at " + space.getIndex() + ": " +  space.getName() + ".");
+		gui.showMessage(  player.getName() + " arrives at " + space.getIndex() + ": " +  space.getName() + ".");
 		
 		// Execute the action associated with the respective space. Note
 		// that this is delegated to the field, which implements this action
