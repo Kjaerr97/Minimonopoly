@@ -66,7 +66,7 @@ public class  GameController {
 	 * based on the underlying game's spaces (fields).
 	 */
 	public void initializeGUI() {		
-		this. view = new View(game, gui);
+		this.view = new View(game, gui);
 	}
 	
 	/**

@@ -74,11 +74,11 @@ public class View implements Observer {
 			player2GuiPlayer.put(player, guiPlayer);
 			gui.addPlayer(guiPlayer);
 			// player2position.put(player, 0);
-			
+
 			// register this view with the player as an observer, in order to update the
 			// player's state in the GUI
 			player.attach(this);
-			
+
 			updatePlayer(player);
 		}
 	}

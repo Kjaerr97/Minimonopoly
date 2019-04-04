@@ -11,7 +11,6 @@ public class PlayerPanel extends JFrame {
     JPanel infoPanel;
 
     public PlayerPanel (Game game, Player player){
-     super(player.getName());
      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
      //Selve framet bliver konstrueret.
      this.player = player;
@@ -25,9 +24,14 @@ public class PlayerPanel extends JFrame {
         this.setContentPane(infoPanel);
         this.validate();
         this.setVisible(true);
+        //Spillerens tilstand og navn
+        JLabel nameLable = new JLabel(player.getName());
+        JLabel balanceLable = new JLabel(String.valueOf(player.getBalance()));
+        infoPanel.add(nameLable,balanceLable);
+        infoPanel.setBackground(player.getColor());
 
     }
-
+/*
     public void update(Player player) {
 //Nedenstående er ikke rigtigt. Skal ikke være her
         JLabel nameLable = new JLabel(player.getName());
@@ -35,6 +39,6 @@ public class PlayerPanel extends JFrame {
         infoPanel.add(nameLable,balanceLable);
         infoPanel.setBackground(player.getColor());
 
-    }
+    }*/
 
 }
