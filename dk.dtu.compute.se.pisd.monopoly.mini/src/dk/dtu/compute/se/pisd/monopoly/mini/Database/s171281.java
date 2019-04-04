@@ -54,4 +54,9 @@ public class s171281 {
         }
     }
 
+    // TODO Vi mangler at tilkoble et game et game_id
+    // TODO Vi mangler at tilkoble et player_id til en player
+    // TODO ER DAO NØDVENDIG?
+    // 
+
     }
