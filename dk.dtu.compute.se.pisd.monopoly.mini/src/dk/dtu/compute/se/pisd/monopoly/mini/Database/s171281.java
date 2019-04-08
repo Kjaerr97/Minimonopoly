@@ -57,6 +57,6 @@ public class s171281 {
     // TODO Vi mangler at tilkoble et player_id til en player
     // TODO ER DAO NØDVENDIG?
     // TODO  DALException ?
-    //
+    // TODO SKAL BALANCE GEMMES?
 
     }
