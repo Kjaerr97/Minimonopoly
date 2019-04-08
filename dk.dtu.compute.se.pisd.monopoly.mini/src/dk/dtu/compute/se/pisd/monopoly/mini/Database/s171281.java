@@ -10,8 +10,7 @@ import java.util.List;
 
 public class s171281 {
 
-
-    public class UserDAOImpls185034 extends GameDAO {
+    public class UserDAOImpls171281 extends GameDAO {
         private Connection createConnection() throws SQLException {
             return DriverManager.getConnection("jdbc:mysql://ec2-52-30-211-3.eu-west-1.compute.amazonaws.com/s171281",
                     "s171281", "6ixUAhvpEnhjDB6CxunnF");
@@ -57,7 +56,7 @@ public class s171281 {
     // TODO Vi mangler at tilkoble et game et game_id
     // TODO Vi mangler at tilkoble et player_id til en player
     // TODO ER DAO NØDVENDIG?
-    // TODO  DALException ? 
+    // TODO  DALException ?
     //
 
     }
