@@ -10,7 +10,7 @@ public interface IGameDAO {
 
     void saveGame (Game game);
 
-    Game load (Game game, int gameID);
+    void loadGame (Game game, int gameID);
 
     void updateGame (Game game, int gameID);
 

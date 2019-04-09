@@ -17,14 +17,13 @@ public class s171281 implements IGameDAO {
     }
 
     @Override
-    public Game load(Game game, int gameID) {
+    public void loadGame(Game game, int gameID) {
         try (Connection connection = createConnection()) {
             connection.setAutoCommit(false);
 //Henter resultset fra databsen
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT Players.playerID, Players.currentPosition, " +
                                                             "Players.inPrison, Players.isBroke, gameID FROM Game WEHERE gameID=" + gameID);
-
 
 
             List<Player> listOfPlayer = new ArrayList<>();
@@ -52,7 +51,6 @@ public class s171281 implements IGameDAO {
         } catch (SQLException e){
             e.printStackTrace();
         }
-            return null;
         }
 
     @Override
