@@ -24,6 +24,9 @@ public class s171281 implements IGameDAO {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT Players.playerID, Players.currentPosition, " +
                                                             "Players.inPrison, Players.isBroke, gameID FROM Game WEHERE gameID=" + gameID);
+
+
+
             List<Player> listOfPlayer = new ArrayList<>();
             while(resultSet.next()){
 
@@ -80,11 +83,12 @@ public class s171281 implements IGameDAO {
         try (Connection connection = createConnection()) {
             connection.setAutoCommit(false);
 //indsætter i vores Game tabel
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO Game VALUES (?,?)");
-
-            statement.setInt(1, gameID);
-            statement.setInt(2, game.getPlayers().size());
-            statement.executeUpdate();
+            PreparedStatement createGame = connection.prepareStatement(
+                    "INSERT INTO Game (gameName, currentplayer) VALUES(?,?);", Statement.RETURN_GENERATED_KEYS);
+            
+            createGame.setString(1, "");
+            createGame.setInt(2, game.getPlayers().size());
+            createGame.executeUpdate();
 
 //Indsætter i vores player tabel
             PreparedStatement statement2 = connection.prepareStatement("INSERT INTO Player VALUES (?,?,?,?,?,?)");
