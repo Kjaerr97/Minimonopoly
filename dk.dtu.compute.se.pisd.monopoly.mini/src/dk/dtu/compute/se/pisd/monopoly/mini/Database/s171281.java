@@ -3,6 +3,7 @@ package dk.dtu.compute.se.pisd.monopoly.mini.Database;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.Game;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.Player;
 
+import java.awt.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,7 @@ public class s171281 implements IGameDAO {
     public Game load(Game game, Game gameID) {
         try (Connection connection = createConnection()) {
             connection.setAutoCommit(false);
-
+//Henter resultset fra databsen
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT Players.playerID, Players.currentPosition, " +
                                                             "Players.inPrison, Players.isBroke, gameID FROM Game WEHERE gameID=" + gameID);
@@ -29,11 +30,10 @@ public class s171281 implements IGameDAO {
                 player.setBroke(resultSet.getBoolean("isBroke"));
                 player.setBalance(resultSet.getInt("balance"));
                 player.setCurrentPosition(game.getSpaces().get(resultSet.getInt("currentPosition")));
-                player.setColor(player.getColor().getRGB(resultSet.getInt("colour")));
-                
-
+                player.setColor(new Color(resultSet.getInt("colour")));
 
             }
+            game.setPlayers(listOfPlayer);
 
 
 
