@@ -74,7 +74,7 @@ public class s171281 implements IGameDAO {
             PreparedStatement statement = connection.prepareStatement("INSERT INTO Game VALUES (?,?)");
 
             statement.setInt(1, get.gameID);
-            statement.setInt(2, game.getPlayers());
+            statement.setInt(2, game.getPlayers().size());
             statement.executeUpdate();
 
 //Indsætter i vores player tabel
