@@ -17,7 +17,7 @@ public class s171281 implements IGameDAO {
     }
 
     @Override
-    public Game load(Game game, Game gameID) {
+    public Game load(Game game, int gameID) {
         try (Connection connection = createConnection()) {
             connection.setAutoCommit(false);
 //Henter resultset fra databsen
@@ -53,13 +53,13 @@ public class s171281 implements IGameDAO {
         }
 
     @Override
-    public void updateGame(Game game) {
-            deleteGame(game);
+    public void updateGame(Game game, int gameID) {
+            deleteGame(game, gameID);
             saveGame(game);
         }
-        
+
         @Override
-    public void deleteGame(Game game) {
+    public void deleteGame(Game game, int gameID) {
         try (Connection connection = createConnection()) {
             connection.setAutoCommit(false);
 
