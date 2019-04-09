@@ -54,10 +54,11 @@ public class s171281 implements IGameDAO {
 
     @Override
     public void updateGame(Game game) {
-
-    }
-
-    @Override
+            deleteGame(game);
+            saveGame(game);
+        }
+        
+        @Override
     public void deleteGame(Game game) {
         try (Connection connection = createConnection()) {
             connection.setAutoCommit(false);
