@@ -35,6 +35,16 @@ public class Player extends Subject {
 	
 	private List<Card> ownedCards = new ArrayList<Card>();
 
+	public int getPlayerID() {
+		return playerID;
+	}
+
+	public void setPlayerID(int playerID) {
+		this.playerID = playerID;
+	}
+
+	private int playerID;
+
 	/**
 	 * Returns the name of the player.
 	 * 
