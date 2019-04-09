@@ -86,8 +86,8 @@ public class s171281 implements IGameDAO {
             PreparedStatement createGame = connection.prepareStatement(
                     "INSERT INTO Game (gameName, currentplayer) VALUES(?,?);", Statement.RETURN_GENERATED_KEYS);
 
-            createGame.setString(1, "");
-            createGame.setInt(2, game.getPlayers().indexOf(game.getCurrentPlayer()));
+
+            createGame.setInt(1, game.getPlayers().indexOf(game.getCurrentPlayer()));
             createGame.executeUpdate();
 
 //Indsætter i vores player tabel
@@ -105,7 +105,6 @@ public class s171281 implements IGameDAO {
                 statement2.setInt(6, player.getColor().getRGB());
 
                 statement2.executeUpdate();
-
 
             }
             connection.commit();
