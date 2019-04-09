@@ -24,6 +24,9 @@ public class s171281 implements IGameDAO {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT Players.playerID, Players.currentPosition, " +
                                                             "Players.inPrison, Players.isBroke, gameID FROM Game WEHERE gameID=" + gameID);
+
+
+
             List<Player> listOfPlayer = new ArrayList<>();
             while(resultSet.next()){
 
@@ -33,7 +36,7 @@ public class s171281 implements IGameDAO {
                 player.setBalance(resultSet.getInt("balance"));
                 player.setCurrentPosition(game.getSpaces().get(resultSet.getInt("currentPosition")));
                 player.setColor(new Color(resultSet.getInt("colour")));
-                player.setID(resultSet.getInt("playerID"));
+                player.setPlayerID((resultSet.getInt("playerID")));
                 player.setInPrison(resultSet.getBoolean("inPrison"));
 
                 //tilføjer playeren til vores array
@@ -80,11 +83,34 @@ public class s171281 implements IGameDAO {
         try (Connection connection = createConnection()) {
             connection.setAutoCommit(false);
 //indsætter i vores Game tabel
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO Game VALUES (?,?)");
+            PreparedStatement createGame = connection.prepareStatement(
+                    "INSERT INTO Game (gameName, currentplayer) VALUES(?,?);", Statement.RETURN_GENERATED_KEYS);
 
-            statement.setInt(1, gameID);
-            statement.setInt(2, game.getPlayers().size());
-            statement.executeUpdate();
+            createGame.setInt(1, game.getPlayers().indexOf(game.getCurrentPlayer()));
+
+
+
+
+
+
+            /*
+            Vi opretter createGame ovenfor, hvor generated keys bliver returneret.
+            I metoden nedenfor sætter vi gamekey til at være den generede key, herefter tildeler vi gamekey til gameID
+            gameID bliver i setGameID() sat til at være int-værdien som returneres fra gamekey.getInt().
+             */
+            createGame.executeUpdate();
+            ResultSet gamekey = createGame.getGeneratedKeys();
+            int gameID = 0;
+            if (gamekey.next()){
+                gameID = gamekey.getInt(1);
+                game.setGameID(gameID);
+
+
+
+
+            }
+
+
 
 //Indsætter i vores player tabel
             PreparedStatement statement2 = connection.prepareStatement("INSERT INTO Player VALUES (?,?,?,?,?,?)");
@@ -102,8 +128,8 @@ public class s171281 implements IGameDAO {
 
                 statement2.executeUpdate();
 
-                connection.commit();
             }
+            connection.commit();
         } catch (SQLException e){
             e.printStackTrace();
         }

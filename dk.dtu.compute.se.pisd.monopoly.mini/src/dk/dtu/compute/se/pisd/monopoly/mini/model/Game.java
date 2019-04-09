@@ -25,6 +25,18 @@ public class Game extends Subject {
 	
 	private Player current;
 
+	private int gameID;
+
+
+
+
+	public int getGameID() {
+		return gameID;
+	}
+
+	public void setGameID(int gameID) {
+		this.gameID = gameID;
+	}
 	/**
 	 * Returns a list of all the games spaces.
 	 * 
