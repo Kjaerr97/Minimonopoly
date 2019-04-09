@@ -17,15 +17,13 @@ public class s171281 implements IGameDAO {
     }
 
     @Override
-    public Game load(Game game, int gameID) {
+    public void loadGame(Game game, int gameID) {
         try (Connection connection = createConnection()) {
             connection.setAutoCommit(false);
 //Henter resultset fra databsen
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT Players.playerID, Players.currentPosition, " +
-                                                            "Players.inPrison, Players.isBroke, gameID FROM Game WEHERE gameID=" + gameID);
-
-
+            ResultSet resultSet = statement.executeQuery("SELECT Player.playerID, Player.currentPosition, " +
+                                                            "Player.inPrison, Player.isBroke, player.balance, player.colour gameID FROM Game WEHERE gameID=" + gameID);
 
             List<Player> listOfPlayer = new ArrayList<>();
             while(resultSet.next()){
@@ -52,7 +50,7 @@ public class s171281 implements IGameDAO {
         } catch (SQLException e){
             e.printStackTrace();
         }
-            return null;
+
         }
 
     @Override
@@ -88,11 +86,6 @@ public class s171281 implements IGameDAO {
 
             createGame.setInt(1, game.getPlayers().indexOf(game.getCurrentPlayer()));
 
-
-
-
-
-
             /*
             Vi opretter createGame ovenfor, hvor generated keys bliver returneret.
             I metoden nedenfor sætter vi gamekey til at være den generede key, herefter tildeler vi gamekey til gameID
@@ -105,11 +98,7 @@ public class s171281 implements IGameDAO {
                 gameID = gamekey.getInt(1);
                 game.setGameID(gameID);
 
-
-
-
             }
-
 
 
 //Indsætter i vores player tabel
@@ -133,7 +122,6 @@ public class s171281 implements IGameDAO {
         } catch (SQLException e){
             e.printStackTrace();
         }
-
 
     }
 }

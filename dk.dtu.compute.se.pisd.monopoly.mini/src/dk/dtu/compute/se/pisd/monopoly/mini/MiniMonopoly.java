@@ -171,6 +171,10 @@ public class MiniMonopoly {
 	 * @param args not used
 	 */
 	public static void main(String[] args) {
+
+
+
+
 		Game game = createGame();
 		game.shuffleCardDeck();
 
