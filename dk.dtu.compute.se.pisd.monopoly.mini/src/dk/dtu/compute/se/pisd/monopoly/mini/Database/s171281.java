@@ -3,6 +3,7 @@ package dk.dtu.compute.se.pisd.monopoly.mini.Database;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.Game;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.Player;
 
+import java.awt.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,24 +17,31 @@ public class s171281 implements IGameDAO {
     }
 
     @Override
-    public Game load(Game game, Game gameID) {
+    public Game load(Game game, int gameID) {
         try (Connection connection = createConnection()) {
             connection.setAutoCommit(false);
-
+//Henter resultset fra databsen
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT Players.playerID, Players.currentPosition, " +
                                                             "Players.inPrison, Players.isBroke, gameID FROM Game WEHERE gameID=" + gameID);
             List<Player> listOfPlayer = new ArrayList<>();
             while(resultSet.next()){
+
+                //Laver en pllayer udfra resultset
                 Player player = new Player();
                 player.setBroke(resultSet.getBoolean("isBroke"));
                 player.setBalance(resultSet.getInt("balance"));
                 player.setCurrentPosition(game.getSpaces().get(resultSet.getInt("currentPosition")));
-                player.setColor(player.getColor().getRGB(resultSet.getInt("colour")));
-                
+                player.setColor(new Color(resultSet.getInt("colour")));
+                player.setID(resultSet.getInt("playerID"));
+                player.setInPrison(resultSet.getBoolean("inPrison"));
 
+                //tilføjer playeren til vores array
+                listOfPlayer.add(resultSet.getInt("playerID"), player);
 
             }
+            //Sætter vores array til gamets nuværende player array.
+            game.setPlayers(listOfPlayer);
 
 
 
@@ -45,12 +53,13 @@ public class s171281 implements IGameDAO {
         }
 
     @Override
-    public void updateGame(Game game) {
+    public void updateGame(Game game, int gameID) {
+            deleteGame(game, gameID);
+            saveGame(game);
+        }
 
-    }
-
-    @Override
-    public void deleteGame(Game game) {
+        @Override
+    public void deleteGame(Game game, int gameID) {
         try (Connection connection = createConnection()) {
             connection.setAutoCommit(false);
 
@@ -73,8 +82,8 @@ public class s171281 implements IGameDAO {
 //indsætter i vores Game tabel
             PreparedStatement statement = connection.prepareStatement("INSERT INTO Game VALUES (?,?)");
 
-            statement.setInt(1, get.gameID);
-            statement.setInt(2, game.getPlayers());
+            statement.setInt(1, gameID);
+            statement.setInt(2, game.getPlayers().size());
             statement.executeUpdate();
 
 //Indsætter i vores player tabel
@@ -90,6 +99,7 @@ public class s171281 implements IGameDAO {
                 statement2.setBoolean(4, player.isBroke());
                 statement2.setBoolean(5, player.isInPrison());
                 statement2.setInt(6, player.getColor().getRGB());
+
                 statement2.executeUpdate();
 
                 connection.commit();
