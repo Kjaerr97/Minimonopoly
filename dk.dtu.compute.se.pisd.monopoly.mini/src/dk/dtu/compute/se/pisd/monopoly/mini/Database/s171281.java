@@ -16,7 +16,12 @@ public class s171281 implements IGameDAO {
 
     }
 
+    /**
+     *   @author Andreas s185034, Markus s174879, Asger s180911 og Sascha s171281
+     */
+
     @Override
+
     public void loadGame(Game game, int gameID) {
         try (Connection connection = createConnection()) {
             connection.setAutoCommit(false);
@@ -28,7 +33,7 @@ public class s171281 implements IGameDAO {
             List<Player> listOfPlayer = new ArrayList<>();
             while(resultSet.next()){
 
-                //Laver en pllayer udfra resultset
+                //Laver en player udfra resultset
                 Player player = new Player();
                 player.setBroke(resultSet.getBoolean("isBroke"));
                 player.setBalance(resultSet.getInt("balance"));
@@ -53,11 +58,19 @@ public class s171281 implements IGameDAO {
 
         }
 
+    /**
+     *   @author Andreas s185034, Markus s174879, Asger s180911 og Sascha s171281
+     */
+
     @Override
     public void updateGame(Game game, int gameID) {
             deleteGame(game, gameID);
             saveGame(game);
         }
+
+    /**
+     *   @author Andreas s185034, Markus s174879, Asger s180911 og Sascha s171281
+     */
 
         @Override
     public void deleteGame(Game game, int gameID) {
@@ -73,6 +86,9 @@ public class s171281 implements IGameDAO {
         }
     }
 
+    /**
+     *   @author Andreas s185034, Markus s174879, Asger s180911 og Sascha s171281
+     */
 
     @Override
     public void saveGame(Game game) {
@@ -86,6 +102,11 @@ public class s171281 implements IGameDAO {
 
             createGame.setInt(1, game.getPlayers().indexOf(game.getCurrentPlayer()));
 
+
+
+
+
+
             /*
             Vi opretter createGame ovenfor, hvor generated keys bliver returneret.
             I metoden nedenfor sætter vi gamekey til at være den generede key, herefter tildeler vi gamekey til gameID
@@ -98,7 +119,11 @@ public class s171281 implements IGameDAO {
                 gameID = gamekey.getInt(1);
                 game.setGameID(gameID);
 
+
+
+
             }
+
 
 
 //Indsætter i vores player tabel
@@ -122,6 +147,7 @@ public class s171281 implements IGameDAO {
         } catch (SQLException e){
             e.printStackTrace();
         }
+
 
     }
 }

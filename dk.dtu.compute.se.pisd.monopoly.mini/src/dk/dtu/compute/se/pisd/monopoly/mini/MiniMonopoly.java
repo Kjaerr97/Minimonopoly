@@ -1,5 +1,6 @@
 package dk.dtu.compute.se.pisd.monopoly.mini;
 
+import dk.dtu.compute.se.pisd.monopoly.mini.Database.s171281;
 import dk.dtu.compute.se.pisd.monopoly.mini.controller.GameController;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.*;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.cards.CardMove;
@@ -9,7 +10,6 @@ import dk.dtu.compute.se.pisd.monopoly.mini.model.exceptions.GameEndedException;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.properties.RealEstate;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.properties.Utility;
 import gui_main.GUI;
-
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -22,8 +22,6 @@ import java.util.List;
  *
  */
 public class MiniMonopoly {
-
-
 	
 	/**
 	 * Creates the initial static situation of a Monopoly game. Note
@@ -176,22 +174,34 @@ public class MiniMonopoly {
 	 */
 	public static void main(String[] args) {
 
-		Game game = createGame();
-		game.shuffleCardDeck();
+		String selection = gui.getUserSelection("Do you wish to load a game?", "Yes", "No");
+		if (selection.equals("yes")) {
+			int usergameID = gui.getUserInteger("Enter gameID");
 
+			Game game = createGame();
+			game.shuffleCardDeck();
+			createPlayers(game);
+			GameController controller = new GameController(game);
+			//Laver et objekt af vores database
+			s171281 gameDAO = new s171281();
+			gameDAO.loadGame(game, usergameID);
 
-		createPlayers(game);
+		} else {
 
-		GameController controller = new GameController(game);
-		controller.initializeGUI();
+			Game game = createGame();
+			game.shuffleCardDeck();
+			createPlayers(game);
+			GameController controller = new GameController(game);
+			controller.initializeGUI();
 
-		try {
-			controller.play();
-		} catch (GameEndedException e) {
-			e.printStackTrace();
+			try {
+				controller.play();
+			} catch (GameEndedException e) {
+				e.printStackTrace();
+			}
 		}
-	}
 
+	}
 }
 
 
