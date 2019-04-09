@@ -4,6 +4,8 @@ import dk.dtu.compute.se.pisd.monopoly.mini.model.Game;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.Player;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class s171281 implements IGameDAO {
 
@@ -21,6 +23,17 @@ public class s171281 implements IGameDAO {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT Players.playerID, Players.currentPosition, " +
                                                             "Players.inPrison, Players.isBroke, gameID FROM Game WEHERE gameID=" + gameID);
+            List<Player> listOfPlayer = new ArrayList<>();
+            while(resultSet.next()){
+                Player player = new Player();
+                player.setBroke(resultSet.getBoolean("isBroke"));
+                player.setBalance(resultSet.getInt("balance"));
+                player.setCurrentPosition(game.getSpaces().get(resultSet.getInt("currentPosition")));
+                player.setColor(player.getColor().getRGB(resultSet.getInt("colour")));
+                
+
+
+            }
 
 
 
