@@ -11,25 +11,29 @@ import java.util.List;
 public class s171281 implements IGameDAO {
 
     private Connection createConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:mysql://ec2-52-30-211-3.eu-west-1.compute.amazonaws.com/s171281",
-                "s171281", "6ixUAhvpEnhjDB6CxunnF");
+        return DriverManager.getConnection("database url",
+                "username", "password"); // indsæt egne værdier her
 
     }
 
+    /**
+     *   @author Andreas s185034, Markus s174879, Asger s180911 og Sascha s171281
+     */
+
     @Override
+
     public void loadGame(Game game, int gameID) {
         try (Connection connection = createConnection()) {
             connection.setAutoCommit(false);
 //Henter resultset fra databsen
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT Players.playerID, Players.currentPosition, " +
-                                                            "Players.inPrison, Players.isBroke, gameID FROM Game WEHERE gameID=" + gameID);
-
+            ResultSet resultSet = statement.executeQuery("SELECT Player.playerID, Player.currentPosition, " +
+                                                            "Player.inPrison, Player.isBroke, player.balance, player.colour gameID FROM Game WEHERE gameID=" + gameID);
 
             List<Player> listOfPlayer = new ArrayList<>();
             while(resultSet.next()){
 
-                //Laver en pllayer udfra resultset
+                //Laver en player udfra resultset
                 Player player = new Player();
                 player.setBroke(resultSet.getBoolean("isBroke"));
                 player.setBalance(resultSet.getInt("balance"));
@@ -51,13 +55,22 @@ public class s171281 implements IGameDAO {
         } catch (SQLException e){
             e.printStackTrace();
         }
+
         }
+
+    /**
+     *   @author Andreas s185034, Markus s174879, Asger s180911 og Sascha s171281
+     */
 
     @Override
     public void updateGame(Game game, int gameID) {
             deleteGame(game, gameID);
             saveGame(game);
         }
+
+    /**
+     *   @author Andreas s185034, Markus s174879, Asger s180911 og Sascha s171281
+     */
 
         @Override
     public void deleteGame(Game game, int gameID) {
@@ -73,6 +86,9 @@ public class s171281 implements IGameDAO {
         }
     }
 
+    /**
+     *   @author Andreas s185034, Markus s174879, Asger s180911 og Sascha s171281
+     */
 
     @Override
     public void saveGame(Game game) {
