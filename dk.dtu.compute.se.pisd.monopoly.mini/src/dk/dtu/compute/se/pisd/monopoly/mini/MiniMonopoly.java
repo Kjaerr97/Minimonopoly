@@ -1,5 +1,6 @@
 package dk.dtu.compute.se.pisd.monopoly.mini;
 
+import dk.dtu.compute.se.pisd.monopoly.mini.Database.s171281;
 import dk.dtu.compute.se.pisd.monopoly.mini.controller.GameController;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.*;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.cards.CardMove;
@@ -8,9 +9,8 @@ import dk.dtu.compute.se.pisd.monopoly.mini.model.cards.PayTax;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.exceptions.GameEndedException;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.properties.RealEstate;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.properties.Utility;
-//import dk.dtu.compute.se.pisd.monopoly.mini.view.PlayerPanel;
+import gui_main.GUI;
 
-import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,7 @@ import java.util.List;
  *
  */
 public class MiniMonopoly {
-
+	
 	/**
 	 * Creates the initial static situation of a Monopoly game. Note
 	 * that the players are not created here, and the chance cards
@@ -173,21 +173,35 @@ public class MiniMonopoly {
 	 * @param args not used
 	 */
 	public static void main(String[] args) {
-		Game game = createGame();
-		game.shuffleCardDeck();
 
-		createPlayers(game);
+		String selection = gui.getUserSelection("Do you wish to load a game?", "Yes", "No");
+		if (selection.equals("yes")) {
+			int usergameID = gui.getUserInteger("Enter gameID");
 
-		GameController controller = new GameController(game);
-		controller.initializeGUI();
+			Game game = createGame();
+			game.shuffleCardDeck();
+			createPlayers(game);
+			GameController controller = new GameController(game);
+			//Laver et objekt af vores database
+			s171281 gameDAO = new s171281();
+			gameDAO.loadGame(game, usergameID);
 
-		try {
-			controller.play();
-		} catch (GameEndedException e) {
-			e.printStackTrace();
+		} else {
+
+			Game game = createGame();
+			game.shuffleCardDeck();
+			createPlayers(game);
+			GameController controller = new GameController(game);
+			controller.initializeGUI();
+
+			try {
+				controller.play();
+			} catch (GameEndedException e) {
+				e.printStackTrace();
+			}
 		}
-	}
 
+	}
 }
 
 
