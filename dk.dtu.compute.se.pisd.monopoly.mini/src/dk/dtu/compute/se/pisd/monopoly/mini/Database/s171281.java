@@ -7,7 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+/*
 public class s171281 {
 
 
@@ -21,11 +21,14 @@ public class s171281 {
         public void createGame(GameDAO game) throws DALException {
             try (Connection c = createConnection()) {
 
-                PreparedStatement stm = c.prepareStatement("INSERT INTO game VALUES (?, ?)");
+                PreparedStatement stm = c.prepareStatement("INSERT INTO game VALUES (?, ?, ?)");
 
-                stm.setInt(1, getGame_id());
+                stm.setInt(1, getPlayername());
 
-                stm.setInt(2, getPlayer_id()); //TODO skal lige overvejes
+                stm.setInt(2, getcurrent()); /TODO skal lige overvejes
+
+                 stm.setInt(3, getplayers());/ TODO updatere mysql med de forskellige ting game tabellen skal indeholde
+
 
                 stm.executeUpdate();
 
@@ -61,3 +64,4 @@ public class s171281 {
     //
 
     }
+*/

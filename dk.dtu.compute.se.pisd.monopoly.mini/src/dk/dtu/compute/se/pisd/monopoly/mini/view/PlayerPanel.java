@@ -4,7 +4,7 @@ import dk.dtu.compute.se.pisd.monopoly.mini.model.Game;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.Player;
 
 import javax.swing.*;
-
+/*
 public class PlayerPanel extends JFrame {
     Game game;
     Player player;
@@ -31,14 +31,17 @@ public class PlayerPanel extends JFrame {
         infoPanel.setBackground(player.getColor());
 
     }
-/*
-    public void update(Player player) {
-//Nedenstående er ikke rigtigt. Skal ikke være her
+
+    public void update(PlayerPanel playerpanel) {
+        this.removeAll();
+
         JLabel nameLable = new JLabel(player.getName());
         JLabel balanceLable = new JLabel(String.valueOf(player.getBalance()));
         infoPanel.add(nameLable,balanceLable);
         infoPanel.setBackground(player.getColor());
 
-    }*/
+        this.revalidate();
+        this.repaint();
+    }
 
-}
+}*/

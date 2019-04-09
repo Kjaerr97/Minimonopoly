@@ -36,7 +36,9 @@ public class View implements Observer {
 	private Map<Player,GUI_Player> player2GuiPlayer = new HashMap<Player,GUI_Player>();
 	private Map<Player,Integer> player2position = new HashMap<Player,Integer>();
 	private Map<Space,GUI_Field> space2GuiField = new HashMap<Space,GUI_Field>();
-	
+
+	//private Map<Player,PlayerPanel> player2PlayerPanel = new HashMap<Player,PlayerPanel>();
+
 	private boolean disposed = false;
 	
 	/**
@@ -46,9 +48,16 @@ public class View implements Observer {
 	 * @param game the game
 	 * @param gui the GUI
 	 */
-	public View(Game game, GUI gui) {
+	public View(Game game, GUI gui/*PlayerPanel playerpanel*/) {
 		this.game = game;
 		this.gui = gui;
+//		this.playerpanel = playerpanel;
+
+/*		for (Player player : game.getPlayers()){
+			PlayerPanel playerPanel = new PlayerPanel(game, player);
+			player2PlayerPanel.put(player, playerPanel);
+		}
+*/
 		GUI_Field[] guiFields = gui.getFields();
 		
 		int i = 0;
@@ -74,6 +83,8 @@ public class View implements Observer {
 			player2GuiPlayer.put(player, guiPlayer);
 			gui.addPlayer(guiPlayer);
 			// player2position.put(player, 0);
+
+//			PlayerPanel playerPanel = new PlayerPanel(game, player);
 
 			// register this view with the player as an observer, in order to update the
 			// player's state in the GUI

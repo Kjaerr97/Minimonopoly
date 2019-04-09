@@ -9,7 +9,8 @@ import java.util.List;
 public class GameDAO extends Game {
 
     private String playerName;
-    private int player_id;
+    private String player_id;
+    private Player current;
     private int game_id;
     private List<Player> players = new ArrayList<Player>();
 
@@ -21,11 +22,31 @@ public class GameDAO extends Game {
         this.playerName = playerName;
     }
 
-    public int getPlayer_id() {
+   /*
+    public String getPlayer_id() {
+
+        this.playerName = player_id;
         return player_id;
     }
+    */
 
-    public void setPlayer_id(int player_id) {
+
+    public Player getCurrent() {
+        return current;
+    }
+
+    public void setCurrent(String current){
+       this.current = getCurrentPlayer();
+   }
+
+    public void gameState (Player players, Game game){
+        this.players = getPlayers();
+        this.getCurrentPlayer();
+        this.playerName = player_id;
+
+    }
+
+    public void setPlayer_id(String player_id) {
         this.player_id = player_id;
     }
 
