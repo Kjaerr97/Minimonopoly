@@ -20,7 +20,7 @@ public class s171281 implements IGameDAO {
 
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT Players.playerID, Players.currentPosition, " +
-                                                            "Players.inPrison, Players.isBroke gameID FROM Game WEHERE gameID=" + gameID);
+                                                            "Players.inPrison, Players.isBroke, gameID FROM Game WEHERE gameID=" + gameID);
 
 
 
