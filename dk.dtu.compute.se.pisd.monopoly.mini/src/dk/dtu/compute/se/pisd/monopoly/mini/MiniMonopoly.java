@@ -173,13 +173,11 @@ public class MiniMonopoly {
 	 */
 	public static void main(String[] args) {
 
-
-
-
 		Game game = createGame();
 		game.shuffleCardDeck();
 
 		createPlayers(game);
+
 
 		GameController controller = new GameController(game);
 		controller.initializeGUI();
