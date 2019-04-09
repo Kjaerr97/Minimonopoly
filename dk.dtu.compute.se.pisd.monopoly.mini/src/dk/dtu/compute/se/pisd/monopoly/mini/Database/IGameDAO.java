@@ -16,8 +16,4 @@ public interface IGameDAO {
 
     void deleteGame (Game game, int gameID);
 
-    void setGameID(Game )
-
-
-
 }

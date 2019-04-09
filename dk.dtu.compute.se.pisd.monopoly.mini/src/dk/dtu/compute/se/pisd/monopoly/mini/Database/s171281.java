@@ -36,7 +36,7 @@ public class s171281 implements IGameDAO {
                 player.setBalance(resultSet.getInt("balance"));
                 player.setCurrentPosition(game.getSpaces().get(resultSet.getInt("currentPosition")));
                 player.setColor(new Color(resultSet.getInt("colour")));
-                player.setID(resultSet.getInt("playerID"));
+                player.setPlayerID((resultSet.getInt("playerID")));
                 player.setInPrison(resultSet.getBoolean("inPrison"));
 
                 //tilføjer playeren til vores array
