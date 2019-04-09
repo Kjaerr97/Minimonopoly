@@ -76,14 +76,13 @@ public class s171281 implements IGameDAO {
     @Override
     public void saveGame(Game game) {
 
-
         try (Connection connection = createConnection()) {
             connection.setAutoCommit(false);
 //indsætter i vores Game tabel
             PreparedStatement statement = connection.prepareStatement("INSERT INTO Game VALUES (?,?)");
 
-            statement.setInt(1, gameID);
-            statement.setInt(2, game.getPlayers().size());
+            statement.setInt(1, game.g);
+            statement.setInt(2, game.getPlayers().indexOf(game.getCurrentPlayer()));
             statement.executeUpdate();
 
 //Indsætter i vores player tabel
@@ -102,8 +101,9 @@ public class s171281 implements IGameDAO {
 
                 statement2.executeUpdate();
 
-                connection.commit();
+
             }
+            connection.commit();
         } catch (SQLException e){
             e.printStackTrace();
         }
