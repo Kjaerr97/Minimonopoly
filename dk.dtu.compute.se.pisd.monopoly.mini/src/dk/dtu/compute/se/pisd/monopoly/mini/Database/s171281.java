@@ -26,13 +26,21 @@ public class s171281 implements IGameDAO {
                                                             "Players.inPrison, Players.isBroke, gameID FROM Game WEHERE gameID=" + gameID);
             List<Player> listOfPlayer = new ArrayList<>();
             while(resultSet.next()){
+
+                //Laver en pllayer udfra resultset
                 Player player = new Player();
                 player.setBroke(resultSet.getBoolean("isBroke"));
                 player.setBalance(resultSet.getInt("balance"));
                 player.setCurrentPosition(game.getSpaces().get(resultSet.getInt("currentPosition")));
                 player.setColor(new Color(resultSet.getInt("colour")));
+                player.setID(resultSet.getInt("playerID"));
+                player.setInPrison(resultSet.getBoolean("inPrison"));
+
+                //tilføjer playeren til vores array
+                listOfPlayer.add(resultSet.getInt("playerID"), player);
 
             }
+            //Sætter vores array til gamets nuværende player array.
             game.setPlayers(listOfPlayer);
 
 
@@ -73,7 +81,7 @@ public class s171281 implements IGameDAO {
 //indsætter i vores Game tabel
             PreparedStatement statement = connection.prepareStatement("INSERT INTO Game VALUES (?,?)");
 
-            statement.setInt(1, get.gameID);
+            statement.setInt(1, gameID);
             statement.setInt(2, game.getPlayers().size());
             statement.executeUpdate();
 
@@ -90,6 +98,7 @@ public class s171281 implements IGameDAO {
                 statement2.setBoolean(4, player.isBroke());
                 statement2.setBoolean(5, player.isInPrison());
                 statement2.setInt(6, player.getColor().getRGB());
+
                 statement2.executeUpdate();
 
                 connection.commit();
