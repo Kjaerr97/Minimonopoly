@@ -8,7 +8,8 @@ import dk.dtu.compute.se.pisd.monopoly.mini.model.cards.PayTax;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.exceptions.GameEndedException;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.properties.RealEstate;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.properties.Utility;
-import jdk.jfr.internal.Repository;
+import gui_main.GUI;
+
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -21,6 +22,8 @@ import java.util.List;
  *
  */
 public class MiniMonopoly {
+
+
 	
 	/**
 	 * Creates the initial static situation of a Monopoly game. Note
@@ -173,11 +176,9 @@ public class MiniMonopoly {
 	 */
 	public static void main(String[] args) {
 
-
-
-
 		Game game = createGame();
 		game.shuffleCardDeck();
+
 
 		createPlayers(game);
 
