@@ -174,7 +174,7 @@ public class MiniMonopoly {
 	 */
 	public static void main(String[] args) {
 
-		String selection = gui.getUserSelection("Do you wish to load a game?", "Yes", "No");
+		/*String selection = gui.getUserSelection("Do you wish to load a game?", "Yes", "No");
 		if (selection.equals("yes")) {
 			int usergameID = gui.getUserInteger("Enter gameID");
 
@@ -186,7 +186,7 @@ public class MiniMonopoly {
 			s171281 gameDAO = new s171281();
 			gameDAO.loadGame(game, usergameID);
 
-		} else {
+		} else {*/
 
 			Game game = createGame();
 			game.shuffleCardDeck();
@@ -202,7 +202,7 @@ public class MiniMonopoly {
 		}
 
 	}
-}
+//}
 
 
 

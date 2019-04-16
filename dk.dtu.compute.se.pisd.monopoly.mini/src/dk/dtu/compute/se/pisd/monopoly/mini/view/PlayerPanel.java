@@ -4,17 +4,23 @@ import dk.dtu.compute.se.pisd.monopoly.mini.model.Game;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.Player;
 
 import javax.swing.*;
-/*
+
+/**
+ * @author Markus s174879, Asger s180911
+ */
+
 public class PlayerPanel extends JFrame {
-    Game game;
-    Player player;
-    JPanel infoPanel;
+    private Game game;
+    private Player player;
+    private JPanel infoPanel;
 
     public PlayerPanel (Game game, Player player){
-     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
      //Selve framet bliver konstrueret.
-     this.player = player;
      this.game = game;
+     this.player = player;
+     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+     infoPanel = new JPanel();
      this.setSize(800,150);
      this.setLocation(800,game.getPlayers().indexOf(player) * 200);
      this.setTitle(player.getName());
@@ -24,24 +30,26 @@ public class PlayerPanel extends JFrame {
         this.setContentPane(infoPanel);
         this.validate();
         this.setVisible(true);
-        //Spillerens tilstand og navn
-        JLabel nameLable = new JLabel(player.getName());
-        JLabel balanceLable = new JLabel(String.valueOf(player.getBalance()));
-        infoPanel.add(nameLable,balanceLable);
-        infoPanel.setBackground(player.getColor());
+        update();
 
     }
+    //Dette er updatemetoden som skal kaldes hver gang panellerne skal laves.
+    //Dette gør at playerpanelet ikke skal laves oppe i infopanelet, men at update-metoden blot skal kaldes hver gang.
+    public void update() {
+        infoPanel.removeAll();
+        JPanel playerPanel = new JPanel();
 
-    public void update(PlayerPanel playerpanel) {
-        this.removeAll();
+        playerPanel.setBackground(player.getColor());
+        playerPanel.setLayout(new BoxLayout(playerPanel,BoxLayout.Y_AXIS));
 
         JLabel nameLable = new JLabel(player.getName());
-        JLabel balanceLable = new JLabel(String.valueOf(player.getBalance()));
-        infoPanel.add(nameLable,balanceLable);
-        infoPanel.setBackground(player.getColor());
+        playerPanel.add(nameLable);
+        JLabel balanceLable = new JLabel("" + player.getBalance());
+        playerPanel.add(balanceLable);
 
+        infoPanel.add(playerPanel);
         this.revalidate();
         this.repaint();
     }
 
-}*/
+}
