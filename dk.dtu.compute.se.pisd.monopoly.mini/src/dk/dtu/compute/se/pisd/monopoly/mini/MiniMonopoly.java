@@ -1,6 +1,6 @@
 package dk.dtu.compute.se.pisd.monopoly.mini;
 
-import dk.dtu.compute.se.pisd.monopoly.mini.Database.s171281;
+import dk.dtu.compute.se.pisd.monopoly.mini.Database.Database;
 import dk.dtu.compute.se.pisd.monopoly.mini.controller.GameController;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.*;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.cards.CardMove;
