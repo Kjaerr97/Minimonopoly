@@ -4,6 +4,7 @@ import dk.dtu.compute.se.pisd.monopoly.mini.model.*;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.exceptions.GameEndedException;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.exceptions.PlayerBrokeException;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.properties.RealEstate;
+//import dk.dtu.compute.se.pisd.monopoly.mini.view.PlayerPanel;
 import dk.dtu.compute.se.pisd.monopoly.mini.view.View;
 import gui_main.GUI;
 
@@ -43,6 +44,8 @@ public class  GameController {
 	private GUI gui;
 	
 	private View view;
+
+	//private PlayerPanel playerpanel;
 	
     private boolean disposed = false;
 	
@@ -66,7 +69,7 @@ public class  GameController {
 	 * based on the underlying game's spaces (fields).
 	 */
 	public void initializeGUI() {		
-		this. view = new View(game, gui);
+		this.view = new View(game, gui/* playerpanel*/);
 	}
 	
 	/**
