@@ -24,7 +24,7 @@ public class PlayerPanel extends JFrame {
      this.setSize(800,150);
      this.setLocation(800,game.getPlayers().indexOf(player) * 200);
      this.setTitle(player.getName());
-     this.setResizable(false);
+     this.setResizable(true);
      //Panelet
         infoPanel.setLayout(new BoxLayout(infoPanel,BoxLayout.X_AXIS));
         this.setContentPane(infoPanel);
