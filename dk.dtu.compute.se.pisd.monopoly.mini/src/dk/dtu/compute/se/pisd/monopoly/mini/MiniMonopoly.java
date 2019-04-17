@@ -123,7 +123,7 @@ public class MiniMonopoly {
 		//Added more cards to the pile
 		//@s180911 Asger
 		List<Card> cards = new ArrayList<Card>();
-/*
+
 		CardMove move = new CardMove();
 		move.setTarget(game.getSpaces().get(game.randomSpace()));
 		move.setText("Move to Allégade!");
@@ -144,7 +144,7 @@ public class MiniMonopoly {
 		cards.add(b);
 
 		game.setCardDeck(cards);
-*/
+
 		return game;
 	}
 
