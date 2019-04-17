@@ -119,13 +119,13 @@ public class MiniMonopoly {
 		p.setCost(3200);
 		p.setRent(250);
 		game.addSpace(p);
-		
-		List<Card> cards = new ArrayList<Card>();
-		int nr =
 
+		//Added more cards to the pile
+		//@s180911 Asger
+		List<Card> cards = new ArrayList<Card>();
 
 		CardMove move = new CardMove();
-		move.setTarget(game.getSpaces().get());
+		move.setTarget(game.getSpaces().get(game.randomSpace()));
 		move.setText("Move to Allégade!");
 		cards.add(move);
 		
@@ -137,9 +137,13 @@ public class MiniMonopoly {
 		b.setText("You receive 100$ from the bank.");
 		b.setAmount(100);
 		cards.add(b);
+
+		CardReceiveMoneyFromBank bDay = new CardReceiveMoneyFromPlayers();
+		bDay.setText("You receive 100$ from the bank.");
+		bDay.setAmount(100);
+		cards.add(b);
+
 		game.setCardDeck(cards);
-
-
 
 		return game;
 	}
