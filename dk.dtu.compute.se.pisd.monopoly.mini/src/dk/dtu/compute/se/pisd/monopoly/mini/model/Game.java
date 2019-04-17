@@ -5,6 +5,7 @@ import dk.dtu.compute.se.pisd.designpatterns.Subject;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Represents the top-level element of a Monopoly game's state. In order
@@ -182,6 +183,12 @@ public class Game extends Subject {
 			throw new IllegalArgumentException("Player is not in the game!");
 		}
 		notifyChange();
+	}
+	//
+	public Space randomSpace (){
+		Random rand = new Random();
+		return spaces.get(rand.nextInt(spaces.size()));
+
 	}
 
 }

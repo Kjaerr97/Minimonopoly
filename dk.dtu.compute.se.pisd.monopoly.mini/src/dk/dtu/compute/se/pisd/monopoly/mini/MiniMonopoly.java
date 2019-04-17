@@ -14,6 +14,7 @@ import gui_main.GUI;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Main class for setting up and running a (Mini-)Monoploy game.
@@ -120,9 +121,11 @@ public class MiniMonopoly {
 		game.addSpace(p);
 		
 		List<Card> cards = new ArrayList<Card>();
-		
+		int nr =
+
+
 		CardMove move = new CardMove();
-		move.setTarget(game.getSpaces().get(9));
+		move.setTarget(game.getSpaces().get());
 		move.setText("Move to Allégade!");
 		cards.add(move);
 		
@@ -135,6 +138,8 @@ public class MiniMonopoly {
 		b.setAmount(100);
 		cards.add(b);
 		game.setCardDeck(cards);
+
+
 
 		return game;
 	}
