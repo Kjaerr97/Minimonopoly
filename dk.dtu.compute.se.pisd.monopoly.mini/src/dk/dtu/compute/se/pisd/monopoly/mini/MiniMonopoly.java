@@ -3,9 +3,7 @@ package dk.dtu.compute.se.pisd.monopoly.mini;
 import dk.dtu.compute.se.pisd.monopoly.mini.Database.Database;
 import dk.dtu.compute.se.pisd.monopoly.mini.controller.GameController;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.*;
-import dk.dtu.compute.se.pisd.monopoly.mini.model.cards.CardMove;
-import dk.dtu.compute.se.pisd.monopoly.mini.model.cards.CardReceiveMoneyFromBank;
-import dk.dtu.compute.se.pisd.monopoly.mini.model.cards.PayTax;
+import dk.dtu.compute.se.pisd.monopoly.mini.model.cards.*;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.exceptions.GameEndedException;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.properties.RealEstate;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.properties.Utility;
@@ -133,15 +131,30 @@ public class MiniMonopoly {
 		tax.setText("Pay 10% income tax!");
 		cards.add(tax);
 		
-		CardReceiveMoneyFromBank b = new CardReceiveMoneyFromBank();
-		b.setText("You receive 100$ from the bank.");
-		b.setAmount(100);
-		cards.add(b);
+		CardReceiveMoneyFromBank moneyBankA= new CardReceiveMoneyFromBank();
+		moneyBankA.setText(" You receive 300$ from the bank.");
+		moneyBankA.setAmount(300);
+		cards.add(moneyBankA);
 
-		CardReceiveMoneyFromBank bDay = new CardReceiveMoneyFromPlayers();
-		bDay.setText("You receive 100$ from the bank.");
-		bDay.setAmount(100);
-		cards.add(b);
+		CardReceiveMoneyFromBank moneyBankB = new CardReceiveMoneyFromBank();
+		moneyBankB.setText("You won 100 bucks from your lottery ticket. You receive 100$.");
+		moneyBankB.setAmount(100);
+		cards.add(moneyBankB);
+
+		CardReceiveMoneyFromBank moneyBankC = new CardReceiveMoneyFromBank();
+		moneyBankC.setText("You sold your Bitcoins! You receive 4000$ from the bank!");
+		moneyBankC.setAmount(4000);
+		cards.add(moneyBankC);
+
+		CardMonopolyLegat monopolyLegat = new CardMonopolyLegat();
+		monopolyLegat.setText("You've been chosen for the monopolylegat. If your balance is under 1000$, you will receive 4000$");
+		monopolyLegat.setAmount(5000);
+		cards.add(monopolyLegat);
+
+		CardReceiveMoneyFromPlayer bDay = new CardReceiveMoneyFromPlayer();
+		bDay.setText("Its your birthday, you recieve 500$ from all the other players");
+		bDay.setAmount(500);
+		cards.add(bDay);
 
 		game.setCardDeck(cards);
 

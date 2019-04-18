@@ -6,26 +6,26 @@ import dk.dtu.compute.se.pisd.monopoly.mini.model.Player;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.exceptions.GameEndedException;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.exceptions.PlayerBrokeException;
 
-public class CardReceiveMoneyFromPlayer extends Card {
+public class CardMonopolyLegat extends Card {
     private int amount;
 
-    public int getAmount (){
+    public int getAmount() {
         return amount;
     }
-    public void setAmount(int amount){
+
+    public void setAmount(int amount) {
         this.amount = amount;
     }
-
-    public void doAction(GameController controller, Player receiver, Player payer) throws PlayerBrokeException {
+    public void doAction(GameController controller, Player receiver) throws PlayerBrokeException {
         try {
-            controller.payment(payer,amount,receiver);
-        } catch (GameEndedException e) {
-            e.printStackTrace();
+            if(receiver.getBalance()>1000){
+                controller.paymentFromBank(receiver,amount);
+            }
+            else{
+                controller.paymentFromBank(receiver,0);
+            }
         } finally {
-
-            super.doAction(controller, payer, receiver);
+            super.doAction(controller, receiver);
         }
     }
-
 }
-
