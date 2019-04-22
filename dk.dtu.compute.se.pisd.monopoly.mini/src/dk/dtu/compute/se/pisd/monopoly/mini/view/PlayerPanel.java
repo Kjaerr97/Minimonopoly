@@ -31,7 +31,6 @@ public class PlayerPanel extends JFrame {
         this.validate();
         this.setVisible(true);
         update();
-
     }
     //Dette er updatemetoden som skal kaldes hver gang panellerne skal laves.
     //Dette gør at playerpanelet ikke skal laves oppe i infopanelet, men at update-metoden blot skal kaldes hver gang.
@@ -51,5 +50,4 @@ public class PlayerPanel extends JFrame {
         this.revalidate();
         this.repaint();
     }
-
 }
