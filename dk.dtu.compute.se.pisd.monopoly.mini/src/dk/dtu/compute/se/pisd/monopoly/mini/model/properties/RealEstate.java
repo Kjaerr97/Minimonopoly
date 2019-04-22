@@ -10,11 +10,11 @@ import dk.dtu.compute.se.pisd.monopoly.mini.model.Property;
  * @author Ekkart Kindler, ekki@dtu.dk
  *
  */
-public class RealEstate extends Property{
+public class RealEstate extends Property {
 
-	private int houses;
-	private int baseRent;
-	private int houseRent;
+    private int houses;
+    private int baseRent;
+    private int houseRent;
     private int housePrice;
 
     public int getHouses() {
@@ -52,15 +52,25 @@ public class RealEstate extends Property{
         notifyChange();
     }
 
-    public int computeRent(){
-
-        if (houses>0){
-            return baseRent*houses*3; // hertil skal vi finde en fast metode
-
-        }else{
-            return baseRent;
+//@s185034
+    public int computeRent() {
+        switch (houses) {
+            case 1:
+                baseRent = baseRent + (baseRent / 4);
+                break;
+            case 2:
+                baseRent = baseRent + ((baseRent / 4) * 2);
+                break;
+            case 3:
+                baseRent = baseRent + ((baseRent / 4) * 3);
+                break;
+            case 4:
+                baseRent = baseRent + (baseRent);
+                break;
         }
+        return baseRent;
     }
-
-
 }
+
+
+
