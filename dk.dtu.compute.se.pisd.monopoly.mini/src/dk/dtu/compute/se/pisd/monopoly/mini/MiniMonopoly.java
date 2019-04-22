@@ -1,6 +1,5 @@
 package dk.dtu.compute.se.pisd.monopoly.mini;
 
-import dk.dtu.compute.se.pisd.monopoly.mini.Database.Database;
 import dk.dtu.compute.se.pisd.monopoly.mini.controller.GameController;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.*;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.cards.CardMove;
@@ -9,12 +8,10 @@ import dk.dtu.compute.se.pisd.monopoly.mini.model.cards.PayTax;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.exceptions.GameEndedException;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.properties.RealEstate;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.properties.Utility;
-import gui_main.GUI;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Main class for setting up and running a (Mini-)Monoploy game.
@@ -152,27 +149,82 @@ public class MiniMonopoly {
 	 * This method will be called before the game is started to create
 	 * the participating players.
 	 */
-	public static void createPlayers(Game game) {
-		// TODO the players should eventually be created interactively or
-		// be loaded from a database
-		Player p = new Player();
-		p.setName("Player 1");
-		p.setCurrentPosition(game.getSpaces().get(0));
-		p.setColor(Color.RED);
-		game.addPlayer(p);
 
-		p = new Player();
-		p.setName("Player 2");
-		p.setCurrentPosition(game.getSpaces().get(0));
-		p.setColor(Color.YELLOW);
-		game.addPlayer(p);
+	//@auhtor s185034
+	public void createPlayers (Game game, Game players) {
+        // TODO the players should eventually be created interactively or
+        // be loaded from a database
 
-		p = new Player();
-		p.setName("Player 3");
-		p.setCurrentPosition(game.getSpaces().get(0));
-		p.setColor(Color.GREEN);
-		game.addPlayer(p);
-	}
+
+
+        //første udkast til metode
+
+        for (int i=0; i <= players.sizeOfList(); i++){
+            String name = gui.makeText("Please enter your name");
+            Player p = new Player();
+            p.setName(name);
+            p.setCurrentPosition(game.getSpaces().get(0));
+
+            switch (players.sizeOfList()) {
+
+                case 1:
+                    p.setColor(Color.RED);
+                    break;
+
+                case 2:
+                    p.setColor(Color.BLUE);
+                    break;
+
+                case 3:
+                    p.setColor(Color.YELLOW);
+                    break;
+
+
+                case 4:
+                    p.setColor(Color.GREEN);
+                    break;
+            }
+            game.addPlayer(p);
+            i++;
+
+        }
+
+
+        }
+
+
+
+
+
+
+
+
+
+/*
+
+
+            // original metode
+
+            Player p = new Player();
+            p.setName("player 1");
+            p.setCurrentPosition(game.getSpaces().get(0));
+            p.setColor(Color.RED);
+            game.addPlayer(p);
+
+            p = new Player();
+            p.setName("Player 2");
+            p.setCurrentPosition(game.getSpaces().get(0));
+            p.setColor(Color.YELLOW);
+            game.addPlayer(p);
+
+            p = new Player();
+            p.setName("Player 3");
+            p.setCurrentPosition(game.getSpaces().get(0));
+            p.setColor(Color.GREEN);
+            game.addPlayer(p);
+        }
+         */
+
 
 	/**
 	 * The main method which creates a game, shuffles the chance

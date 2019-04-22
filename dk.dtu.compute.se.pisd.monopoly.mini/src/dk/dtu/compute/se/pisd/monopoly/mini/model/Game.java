@@ -26,6 +26,8 @@ public class Game extends Subject {
 	
 	private Player current;
 
+	int listSize;
+
 	private int gameID;
 
 
@@ -46,6 +48,12 @@ public class Game extends Subject {
 	public List<Space> getSpaces() {
 		return Collections.unmodifiableList(spaces);
 	}
+
+
+	public int sizeOfList(){
+	    int listSize = players.size();
+	   return listSize;
+    }
 
 	/**
 	 * Sets all the spaces of the game. Note that the provided
