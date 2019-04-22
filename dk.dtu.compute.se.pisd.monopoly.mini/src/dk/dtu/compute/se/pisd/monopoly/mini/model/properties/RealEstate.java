@@ -52,7 +52,7 @@ public class RealEstate extends Property {
         notifyChange();
     }
 
-//@s185034
+//@author s185034
     public int computeRent() {
         switch (houses) {
             case 1:
