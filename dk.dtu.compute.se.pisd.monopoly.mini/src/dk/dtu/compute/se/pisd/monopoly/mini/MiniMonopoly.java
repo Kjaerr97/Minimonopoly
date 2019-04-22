@@ -122,6 +122,10 @@ public class MiniMonopoly {
 		//@s180911 Asger
 		List<Card> cards = new ArrayList<Card>();
 
+		CardMoveJail jailCard = new CardMoveJail();
+		jailCard.setText("You've been caught speeding and been put to jail.");
+		cards.add(jailCard);
+
 		CardMove move = new CardMove();
 		move.setTarget(game.getSpaces().get(game.randomSpace()));
 		move.setText("Move to Allégade!");
@@ -137,8 +141,8 @@ public class MiniMonopoly {
 		cards.add(moneyBankA);
 
 		CardReceiveMoneyFromBank moneyBankB = new CardReceiveMoneyFromBank();
-		moneyBankB.setText("You won 100 bucks from your lottery ticket. You receive 100$.");
-		moneyBankB.setAmount(100);
+		moneyBankB.setText("You won 500 bucks from your lottery ticket. You receive 100$.");
+		moneyBankB.setAmount(500);
 		cards.add(moneyBankB);
 
 		CardReceiveMoneyFromBank moneyBankC = new CardReceiveMoneyFromBank();
@@ -148,7 +152,7 @@ public class MiniMonopoly {
 
 		CardMonopolyLegat monopolyLegat = new CardMonopolyLegat();
 		monopolyLegat.setText("You've been chosen for the monopolylegat. If your balance is under 1000$, you will receive 4000$");
-		monopolyLegat.setAmount(5000);
+		monopolyLegat.setAmount(4000);
 		cards.add(monopolyLegat);
 
 		CardReceiveMoneyFromPlayer bDay = new CardReceiveMoneyFromPlayer();
@@ -156,7 +160,10 @@ public class MiniMonopoly {
 		bDay.setAmount(500);
 		cards.add(bDay);
 
-		game.setCardDeck(cards);
+		CardPayMoneyToBank carFix = new CardPayMoneyToBank();
+		carFix.setText("Your car broke down. You'll have to pay 3000$ in repairs");
+		carFix.setAmount(3000);
+		cards.add(carFix);
 
 		return game;
 	}
