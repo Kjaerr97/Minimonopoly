@@ -51,7 +51,7 @@ public class Game extends Subject {
 
 
 	public int sizeOfList(){
-	    int listSize = players.size();
+	    int listSize = players.indexOf();
 	   return listSize;
     }
 

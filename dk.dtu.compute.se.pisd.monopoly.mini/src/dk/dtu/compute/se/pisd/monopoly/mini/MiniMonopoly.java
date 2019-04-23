@@ -165,7 +165,7 @@ public class MiniMonopoly {
             p.setName(name);
             p.setCurrentPosition(game.getSpaces().get(0));
 
-            switch (players.sizeOfList()) {
+            switch () {
 
                 case 1:
                     p.setColor(Color.RED);
