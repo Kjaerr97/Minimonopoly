@@ -521,7 +521,11 @@ public class  GameController {
 			game.returnCardToDeck(player.getOwnedCards().get(0));
 		}
 	}
-	
+
+	public Game getGame() {
+		return game;
+	}
+
 	/**
 	 * Method for disposing of this controller and cleaning up its resources.
 	 */
@@ -537,5 +541,6 @@ public class  GameController {
 			//      deployed via Maven (or other official versions);
 		}
 	}
+
 
 }

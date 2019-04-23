@@ -16,14 +16,18 @@ public class CardReceiveMoneyFromPlayer extends Card {
         this.amount = amount;
     }
 
-    public void doAction(GameController controller, Player receiver, Player payer) throws PlayerBrokeException {
+    public void doAction(GameController controller, Player player) throws PlayerBrokeException {
         try {
-            controller.payment(payer,amount,receiver);
+            for (Player player2: controller.getGame().getPlayers()){
+                if (player2 != player){
+                    controller.payment(player2,amount,player);
+                }
+            }
         } catch (GameEndedException e) {
             e.printStackTrace();
         } finally {
 
-            super.doAction(controller, payer, receiver);
+            super.doAction(controller, player);
         }
     }
 
