@@ -166,26 +166,7 @@ public class MiniMonopoly {
 			Player p = new Player();
 			p.setName(name);
 			p.setCurrentPosition(game.getSpaces().get(0));
-
-			switch () {
-
-				case 1:
-					p.setColor(Color.RED);
-					break;
-
-				case 2:
-					p.setColor(Color.BLUE);
-					break;
-
-				case 3:
-					p.setColor(Color.YELLOW);
-					break;
-
-
-				case 4:
-					p.setColor(Color.GREEN);
-					break;
-			}
+			p.setColor(colorlist.get(i)); //colorlist kommer
 			game.addPlayer(p);
 			i++;
 
