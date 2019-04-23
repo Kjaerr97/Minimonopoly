@@ -84,6 +84,9 @@ public class Property extends Space {
 			controller.offerToBuy(this, player);
 		} else if (!owner.equals(player)) {
 			// TODO also check whether the property is mortgaged
+		}else{
+			player.payMoney();
+			owner.receiveMoney();
 			// TODO the computation of the actual rent could be delegated
 			//      the subclasses of Property, which can take the specific
 			//      individual conditions into account. Note that the
@@ -97,6 +100,6 @@ public class Property extends Space {
 
 
 
-	}
+}
 
 
