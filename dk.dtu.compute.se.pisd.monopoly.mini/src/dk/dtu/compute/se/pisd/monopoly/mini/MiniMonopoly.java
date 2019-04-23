@@ -162,7 +162,8 @@ public class MiniMonopoly {
 		//første udkast til metode
 
 		for (int i=0; i <= players.sizeOfList(); i++){
-			String name = gui.makeText("Please enter your name");
+			String name = JOptionPane.showInputDialog(null,
+					"Please enter your name","Name",JOptionPane.QUESTION_MESSAGE);
 			Player p = new Player();
 			p.setName(name);
 			p.setCurrentPosition(game.getSpaces().get(0));
@@ -186,7 +187,8 @@ public class MiniMonopoly {
 /**
  * @author s180911 Asger, s171281 Sascha, s185034 Andreas,
  */
-		String result = JOptionPane.showInputDialog(null, "Do you wish to load a game?, 'yes' or 'no'","Game",JOptionPane.QUESTION_MESSAGE);
+		String result = JOptionPane.showInputDialog(null,
+				"Do you wish to load a game?, 'yes' or 'no'","Game",JOptionPane.QUESTION_MESSAGE);
 		String string1 = new String("yes");
         if(result.equals(string1)){
 
