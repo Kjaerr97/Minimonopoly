@@ -194,7 +194,9 @@ public class MiniMonopoly {
 	 * @param args not used
 	 */
 	public static void main(String[] args) {
-
+/**
+ * @author s180911 Asger, s171281 Sascha, s185034 Andreas,
+ */
 		String result = JOptionPane.showInputDialog(null, "Do you wish to load a game?, 'yes' or 'no'","Game",JOptionPane.QUESTION_MESSAGE);
 		String string1 = new String("yes");
         if(result.equals(string1)){
