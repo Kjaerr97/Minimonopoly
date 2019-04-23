@@ -145,6 +145,14 @@ public class MiniMonopoly {
 	 * This method will be called before the game is started to create
 	 * the participating players.
 	 */
+
+
+	/**
+	 *
+	 * @param game
+	 * @param players
+	 * @author s185034
+	 */
 	public void createPlayers (Game game, Game players) {
 		// TODO the players should eventually be created interactively or
 		// be loaded from a database
