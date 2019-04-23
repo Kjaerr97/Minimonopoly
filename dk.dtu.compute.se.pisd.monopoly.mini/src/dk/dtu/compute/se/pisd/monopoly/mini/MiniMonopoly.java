@@ -145,26 +145,45 @@ public class MiniMonopoly {
 	 * This method will be called before the game is started to create
 	 * the participating players.
 	 */
-	public static void createPlayers(Game game) {
+	public void createPlayers (Game game, Game players) {
 		// TODO the players should eventually be created interactively or
 		// be loaded from a database
-		Player p = new Player();
-		p.setName("Player 1");
-		p.setCurrentPosition(game.getSpaces().get(0));
-		p.setColor(Color.RED);
-		game.addPlayer(p);
 
-		p = new Player();
-		p.setName("Player 2");
-		p.setCurrentPosition(game.getSpaces().get(0));
-		p.setColor(Color.YELLOW);
-		game.addPlayer(p);
 
-		p = new Player();
-		p.setName("Player 3");
-		p.setCurrentPosition(game.getSpaces().get(0));
-		p.setColor(Color.GREEN);
-		game.addPlayer(p);
+
+		//første udkast til metode
+
+		for (int i=0; i <= players.sizeOfList(); i++){
+			String name = gui.makeText("Please enter your name");
+			Player p = new Player();
+			p.setName(name);
+			p.setCurrentPosition(game.getSpaces().get(0));
+
+			switch () {
+
+				case 1:
+					p.setColor(Color.RED);
+					break;
+
+				case 2:
+					p.setColor(Color.BLUE);
+					break;
+
+				case 3:
+					p.setColor(Color.YELLOW);
+					break;
+
+
+				case 4:
+					p.setColor(Color.GREEN);
+					break;
+			}
+			game.addPlayer(p);
+			i++;
+
+		}
+
+
 	}
 
 	/**
