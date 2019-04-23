@@ -138,10 +138,6 @@ public class MiniMonopoly {
 		b.setAmount(100);
 		cards.add(b);
 
-		CardReceiveMoneyFromBank bDay = new CardReceiveMoneyFromPlayers();
-		bDay.setText("You receive 100$ from the bank.");
-		bDay.setAmount(100);
-		cards.add(b);
 
 		game.setCardDeck(cards);
 

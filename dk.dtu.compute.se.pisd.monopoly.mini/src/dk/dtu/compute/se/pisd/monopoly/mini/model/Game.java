@@ -185,10 +185,6 @@ public class Game extends Subject {
 		notifyChange();
 	}
 	//Made a method for choosing a random space. Used in one of the cards
-	//@s180911 Asger
-	public int randomSpace (){
-		Random rand = new Random();
-		return spaces.get(rand.nextInt(spaces.size()));
+	//
 	}
-
-}
+	
