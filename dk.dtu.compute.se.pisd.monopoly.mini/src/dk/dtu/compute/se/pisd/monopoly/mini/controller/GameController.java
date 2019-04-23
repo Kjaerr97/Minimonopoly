@@ -1,5 +1,6 @@
 package dk.dtu.compute.se.pisd.monopoly.mini.controller;
 
+import dk.dtu.compute.se.pisd.monopoly.mini.Database.Database;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.*;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.exceptions.GameEndedException;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.exceptions.PlayerBrokeException;
@@ -44,6 +45,8 @@ public class  GameController {
 	private GUI gui;
 	
 	private View view;
+
+	private Database database;
 
 	//private PlayerPanel playerpanel;
 	
@@ -199,6 +202,9 @@ public class  GameController {
 				}
 			}
 		} while (castDouble);
+		//ikke sikkert det virker
+		database.saveGame(game);
+
 	}
 	
 	/**

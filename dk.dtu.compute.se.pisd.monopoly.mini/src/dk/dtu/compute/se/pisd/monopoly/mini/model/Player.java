@@ -43,6 +43,7 @@ public class Player extends Subject {
 		this.playerID = playerID;
 	}
 
+
 	private int playerID;
 
 	/**
@@ -81,6 +82,10 @@ public class Player extends Subject {
 	public void setColor(Color color) {
 		this.color = color;
 		notifyChange();
+	}
+
+	public void colorList(Color color){
+	color a = new Color(Color.HSBtoRGB())
 	}
 
 	/**

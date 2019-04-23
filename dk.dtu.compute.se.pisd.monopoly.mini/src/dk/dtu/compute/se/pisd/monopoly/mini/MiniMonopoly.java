@@ -11,6 +11,7 @@ import dk.dtu.compute.se.pisd.monopoly.mini.model.properties.RealEstate;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.properties.Utility;
 import gui_main.GUI;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -144,26 +145,35 @@ public class MiniMonopoly {
 	 * This method will be called before the game is started to create
 	 * the participating players.
 	 */
-	public static void createPlayers(Game game) {
+
+
+	/**
+	 *
+	 * @param game
+	 * @param players
+	 * @author s185034
+	 */
+	public void createPlayers (Game game, Game players) {
 		// TODO the players should eventually be created interactively or
 		// be loaded from a database
-		Player p = new Player();
-		p.setName("Player 1");
-		p.setCurrentPosition(game.getSpaces().get(0));
-		p.setColor(Color.RED);
-		game.addPlayer(p);
 
-		p = new Player();
-		p.setName("Player 2");
-		p.setCurrentPosition(game.getSpaces().get(0));
-		p.setColor(Color.YELLOW);
-		game.addPlayer(p);
 
-		p = new Player();
-		p.setName("Player 3");
-		p.setCurrentPosition(game.getSpaces().get(0));
-		p.setColor(Color.GREEN);
-		game.addPlayer(p);
+
+		//første udkast til metode
+
+		for (int i=0; i <= players.sizeOfList(); i++){
+			String name = JOptionPane.showInputDialog(null,
+					"Please enter your name","Name",JOptionPane.QUESTION_MESSAGE);
+			Player p = new Player();
+			p.setName(name);
+			p.setCurrentPosition(game.getSpaces().get(0));
+			p.setColor(colorlist.get(i)); //colorlist kommer
+			game.addPlayer(p);
+			i++;
+
+		}
+
+
 	}
 
 	/**
@@ -174,26 +184,33 @@ public class MiniMonopoly {
 	 * @param args not used
 	 */
 	public static void main(String[] args) {
+/**
+ * @author s180911 Asger, s171281 Sascha, s185034 Andreas,
+ */
+		String result = JOptionPane.showInputDialog(null,
+				"Do you wish to load a game?, 'yes' or 'no'","Game",JOptionPane.QUESTION_MESSAGE);
+		String string1 = new String("yes");
+        if(result.equals(string1)){
+		int usergameID = Integer.parseInt(JOptionPane.showInputDialog(null, "What game do you want to load","GameLoader",JOptionPane.QUESTION_MESSAGE));
 
-		/*String selection = gui.getUserSelection("Do you wish to load a game?", "Yes", "No");
-		if (selection.equals("yes")) {
-			int usergameID = gui.getUserInteger("Enter gameID");
+		Game game = createGame();
+		Database gameDAO = new Database();
+		gameDAO.loadGame(game, usergameID);
 
-			Game game = createGame();
 			game.shuffleCardDeck();
 			createPlayers(game);
 			GameController controller = new GameController(game);
-			//Laver et objekt af vores database
-			s171281 gameDAO = new s171281();
-			gameDAO.loadGame(game, usergameID);
+			controller.initializeGUI();
 
-		} else {*/
-
+		} else {
 			Game game = createGame();
 			game.shuffleCardDeck();
 			createPlayers(game);
 			GameController controller = new GameController(game);
 			controller.initializeGUI();
+
+			Database gameDAO = new Database();
+			gameDAO.saveGame(game);
 
 			try {
 				controller.play();
@@ -203,7 +220,5 @@ public class MiniMonopoly {
 		}
 
 	}
-//}
 
-
-
+}

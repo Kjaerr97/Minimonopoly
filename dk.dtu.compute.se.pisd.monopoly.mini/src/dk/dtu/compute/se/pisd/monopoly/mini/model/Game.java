@@ -58,6 +58,12 @@ public class Game extends Subject {
 		this.spaces = new ArrayList<Space>(spaces);
 		notifyChange();
 	}
+
+
+	public int sizeOfList(){
+		int listofsize = players.size();
+		return listofsize;
+	}
 	
 	/**
 	 * Adds a space to the game at the end.
