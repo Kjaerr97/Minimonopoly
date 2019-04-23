@@ -13,7 +13,7 @@ import dk.dtu.compute.se.pisd.monopoly.mini.model.Property;
 public class RealEstate extends Property {
 
     private int houses;
-    private int baseRent;
+    private int newRent;
     private int houseRent;
     private int housePrice;
 
@@ -26,13 +26,6 @@ public class RealEstate extends Property {
         notifyChange();
     }
 
-    public int getBaseRent() {
-        return baseRent;
-    }
-
-    public void setBaseRent(int baseRent) {
-        this.baseRent = baseRent;
-    }
 
     public int getHouseRent() {
         return houseRent;
@@ -53,23 +46,23 @@ public class RealEstate extends Property {
     }
 
 //@s185034
-    public int computeRent() {
-        switch (houses) {
-            case 1:
-                 = baseRent + (baseRent / 4);
-                break;
-            case 2:
-                baseRent = baseRent + ((baseRent / 4) * 2);
-                break;
-            case 3:
-                baseRent = baseRent + ((baseRent / 4) * 3);
-                break;
-            case 4:
-                baseRent = baseRent + (baseRent);
-                break;
-        }
-        return baseRent;
+public int computeRent() {
+    switch (houses) {
+        case 1:
+            newRent = getRent() + (getRent() / 4);
+            break;
+        case 2:
+            newRent = getRent() + ((getRent() / 4) * 2);
+            break;
+        case 3:
+            newRent = getRent() + ((getRent() / 4) * 3);
+            break;
+        case 4:
+            newRent = getRent() + (getRent());
+            break;
     }
+    return newRent;
+}
 }
 
 
