@@ -128,6 +128,7 @@ public class MiniMonopoly {
 
 		CardMove move = new CardMove();
 		int index =  (int) Math.random()*game.getSpaces().size();
+
 		move.setTarget(game.getSpaces().get(game.randomSpace()));
 		move.setText("Move to Allégade!");
 		cards.add(move);
