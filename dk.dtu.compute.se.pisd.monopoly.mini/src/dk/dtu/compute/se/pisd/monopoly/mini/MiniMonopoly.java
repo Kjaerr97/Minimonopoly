@@ -11,6 +11,7 @@ import dk.dtu.compute.se.pisd.monopoly.mini.model.properties.RealEstate;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.properties.Utility;
 import gui_main.GUI;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -175,25 +176,30 @@ public class MiniMonopoly {
 	 */
 	public static void main(String[] args) {
 
-		/*String selection = gui.getUserSelection("Do you wish to load a game?", "Yes", "No");
-		if (selection.equals("yes")) {
-			int usergameID = gui.getUserInteger("Enter gameID");
+		String result = JOptionPane.showInputDialog(null, "Do you wish to load a game?, 'yes' or 'no'","Game",JOptionPane.QUESTION_MESSAGE);
+		String string1 = new String("yes");
+        if(result.equals(string1)){
 
-			Game game = createGame();
+		int usergameID = Integer.parseInt(JOptionPane.showInputDialog(null, "What game do you want to load","GameLoader",JOptionPane.QUESTION_MESSAGE));
+
+		Game game = createGame();
+		Database gameDAO = new Database();
+		gameDAO.loadGame(game, usergameID);
+
 			game.shuffleCardDeck();
 			createPlayers(game);
 			GameController controller = new GameController(game);
-			//Laver et objekt af vores database
-			s171281 gameDAO = new s171281();
-			gameDAO.loadGame(game, usergameID);
+			controller.initializeGUI();
 
-		} else {*/
-
+		} else {
 			Game game = createGame();
 			game.shuffleCardDeck();
 			createPlayers(game);
 			GameController controller = new GameController(game);
 			controller.initializeGUI();
+
+			Database gameDAO = new Database();
+			gameDAO.saveGame(game);
 
 			try {
 				controller.play();
@@ -203,7 +209,5 @@ public class MiniMonopoly {
 		}
 
 	}
-//}
 
-
-
+}
