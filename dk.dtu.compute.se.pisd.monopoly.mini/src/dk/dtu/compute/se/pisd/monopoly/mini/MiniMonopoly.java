@@ -162,15 +162,36 @@ public class MiniMonopoly {
 		//første udkast til metode
 
 		for (int i=0; i <= players.sizeOfList(); i++){
-            String name = JOptionPane.showInputDialog(null,
-                    "Please enter your name'","Name",JOptionPane.QUESTION_MESSAGE);
+			String name = gui.makeText("Please enter your name");
 			Player p = new Player();
 			p.setName(name);
 			p.setCurrentPosition(game.getSpaces().get(0));
-			p.setColor(colorlist.get(i)); // colorlist kommer fra Sascha
+
+			switch () {
+
+				case 1:
+					p.setColor(Color.RED);
+					break;
+
+				case 2:
+					p.setColor(Color.BLUE);
+					break;
+
+				case 3:
+					p.setColor(Color.YELLOW);
+					break;
+
+
+				case 4:
+					p.setColor(Color.GREEN);
+					break;
+			}
 			game.addPlayer(p);
 			i++;
+
 		}
+
+
 	}
 
 	/**
@@ -181,9 +202,10 @@ public class MiniMonopoly {
 	 * @param args not used
 	 */
 	public static void main(String[] args) {
-
-		String result = JOptionPane.showInputDialog(null,
-                "Do you wish to load a game?, 'yes' or 'no'","Game",JOptionPane.QUESTION_MESSAGE);
+/**
+ * @author s180911 Asger, s171281 Sascha, s185034 Andreas,
+ */
+		String result = JOptionPane.showInputDialog(null, "Do you wish to load a game?, 'yes' or 'no'","Game",JOptionPane.QUESTION_MESSAGE);
 		String string1 = new String("yes");
         if(result.equals(string1)){
 
