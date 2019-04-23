@@ -191,7 +191,6 @@ public class MiniMonopoly {
 				"Do you wish to load a game?, 'yes' or 'no'","Game",JOptionPane.QUESTION_MESSAGE);
 		String string1 = new String("yes");
         if(result.equals(string1)){
-
 		int usergameID = Integer.parseInt(JOptionPane.showInputDialog(null, "What game do you want to load","GameLoader",JOptionPane.QUESTION_MESSAGE));
 
 		Game game = createGame();

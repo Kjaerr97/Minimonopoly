@@ -56,7 +56,7 @@ public class RealEstate extends Property {
     public int computeRent() {
         switch (houses) {
             case 1:
-                 = baseRent + (baseRent / 4);
+                baseRent = baseRent + (baseRent / 4);
                 break;
             case 2:
                 baseRent = baseRent + ((baseRent / 4) * 2);

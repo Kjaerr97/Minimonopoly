@@ -46,6 +46,8 @@ public class  GameController {
 	
 	private View view;
 
+	private Database database;
+
 	//private PlayerPanel playerpanel;
 	
     private boolean disposed = false;
@@ -200,6 +202,8 @@ public class  GameController {
 				}
 			}
 		} while (castDouble);
+		//ikke sikkert det virker
+		database.saveGame(game);
 
 	}
 	
