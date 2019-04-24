@@ -37,7 +37,7 @@ public class MiniMonopoly {
 		// of creating it programmatically. This will be discussed
 		// later in this course.
 		Game game = new Game();
-		
+
 		Space go = new Space();
 		go.setName("Go");
 		game.addSpace(go);
@@ -119,20 +119,36 @@ public class MiniMonopoly {
 		game.addSpace(p);
 
 		//Added more cards to the pile
-		//@s180911 Asger
+		//@author s180911 Asger
 		List<Card> cards = new ArrayList<Card>();
 
 		CardMoveJail jailCard = new CardMoveJail();
 		jailCard.setText("You've been caught speeding and been put to jail.");
 		cards.add(jailCard);
 
-		CardMove move = new CardMove();
+		//Random number generator for a random space
 		int index =  (int) Math.random()*game.getSpaces().size();
 
-		move.setTarget(game.getSpaces().get(game.randomSpace()));
-		move.setText("Move to Allégade!");
+		CardMove move = new CardMove();
+		move.setTarget(game.getSpaces().get(index));
+		move.setText("Move to!" + game.getSpaces().get(index).getName());
 		cards.add(move);
-		
+
+		CardMove move1 = new CardMove();
+		move.setTarget(game.getSpaces().get(index));
+		move.setText("Move to!" + game.getSpaces().get(index).getName());
+		cards.add(move1);
+
+		CardMove move2 = new CardMove();
+		move.setTarget(game.getSpaces().get(index));
+		move.setText("Move to!" + game.getSpaces().get(index).getName());
+		cards.add(move2);
+
+		CardMove move3 = new CardMove();
+		move.setTarget(game.getSpaces().get(index));
+		move.setText("Move to!" + game.getSpaces().get(index).getName());
+		cards.add(move3);
+
 		PayTax tax = new PayTax();
 		tax.setText("Pay 10% income tax!");
 		cards.add(tax);
@@ -205,19 +221,6 @@ public class MiniMonopoly {
 	 */
 	public static void main(String[] args) {
 
-		/*String selection = gui.getUserSelection("Do you wish to load a game?", "Yes", "No");
-		if (selection.equals("yes")) {
-			int usergameID = gui.getUserInteger("Enter gameID");
-
-			Game game = createGame();
-			game.shuffleCardDeck();
-			createPlayers(game);
-			GameController controller = new GameController(game);
-			//Laver et objekt af vores database
-			s171281 gameDAO = new s171281();
-			gameDAO.loadGame(game, usergameID);
-
-		} else {*/
 
 			Game game = createGame();
 			game.shuffleCardDeck();
