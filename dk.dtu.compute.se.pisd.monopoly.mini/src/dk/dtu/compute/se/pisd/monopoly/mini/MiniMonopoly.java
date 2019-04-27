@@ -151,7 +151,7 @@ public class MiniMonopoly {
 	 *
 	 * @param game
 	 * @param players
-	 * @author s185034
+	 * @author s185034, s185466
 	 */
 	public void createPlayers (Game game, Game players) {
 		// TODO the players should eventually be created interactively or
@@ -165,14 +165,23 @@ public class MiniMonopoly {
 			String name = JOptionPane.showInputDialog(null,
 					"Please enter your name","Name",JOptionPane.QUESTION_MESSAGE);
 			Player p = new Player();
+
+			//udkast til at generere random color
+			Random rand = new Random();
+			float r = rand.nextFloat();
+			float g = rand.nextFloat();
+			float b = rand.nextFloat();
+			Color randomColor = new Color(r, g, b);
+
 			p.setName(name);
 			p.setCurrentPosition(game.getSpaces().get(0));
-			p.setColor(colorlist.get(i)); //colorlist kommer
+			// p.setColor(colorlist.get(i)); //colorlist kommer
+
+			p.setColor(randomColor); // måske virker dette? - Rasmus
 			game.addPlayer(p);
 			i++;
 
 		}
-
 
 	}
 
@@ -206,6 +215,7 @@ public class MiniMonopoly {
 			Game game = createGame();
 			game.shuffleCardDeck();
 			createPlayers(game);
+
 			GameController controller = new GameController(game);
 			controller.initializeGUI();
 
