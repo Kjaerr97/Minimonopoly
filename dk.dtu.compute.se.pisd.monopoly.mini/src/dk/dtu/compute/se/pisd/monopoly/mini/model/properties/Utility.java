@@ -11,26 +11,23 @@ import dk.dtu.compute.se.pisd.monopoly.mini.model.Property;
  */
 public class Utility extends Property {
     Property property = new Property();
-	
-	// TODO to be implemented
-    // for computing rent of ferries
-    public int rentOfFerry(){
 
+    // TODO to be implemented
+    // for computing rent of ferries
+    public int rentOfFerry() {
 
     }
 
-    // for computing rent of sodas / hiv fat i antal øjne.
-    public int rentOfSoda(){
-        int rent = 0;
-        if(property.getOwner().isInPrison()){
-            return 0;
-        } else if(property.getOwner().getOwnedCards().contains("Squash") &&
-                  property.getOwner().getOwnedCards().contains("Coca Cola")){
+    // for computing rent of sodas / hiv fat i antal øjne. hvordan?
+    public int rentOfSoda() {
+        if (property.getOwner().getOwnedCards().contains("Squash") &&
+                property.getOwner().getOwnedCards().contains("Coca Cola")) {
 
-            rent = (die1 + die2) * 200;
+            setRent((die1 + die2) * 200);
 
-        }return rent;
-    } else{
-        rent = (die1 + die2) * 100;
+        } else {
+            setRent((die1 + die2) * 100);
+        }
+        return getRent();
     }
 }

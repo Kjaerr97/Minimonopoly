@@ -84,6 +84,7 @@ public class Property extends Space {
 			controller.offerToBuy(this, player);
 		} else if (!owner.equals(player)) {
 			// TODO also check whether the property is mortgaged
+
 		}else{
 			player.payMoney();
 			owner.receiveMoney();
