@@ -15,13 +15,41 @@ public class Property extends Space {
 	
 	private int cost;
 	private int rent;
-	
 	private Player owner;
-	
+	private boolean groupOwned = false;
+	private ColorGroup colorGroup;
+
+	/**
+	 * @Aurthor Sascha s171281
+	 * Returns
+	 */
+
+	public boolean getGroupOwned(){
+		return this.groupOwned;
+	}
+
+	/**
+	 * @Aurthor Sascha s171281
+	 * Sets
+	 * @param bool the new state
+	 */
+
+	public void setGroupOwned(boolean bool){
+		this.groupOwned = bool;
+	}
+
+	public ColorGroup getColorGroup(){
+		return colorGroup;
+	}
+
+	public void setColorGroup (ColorGroup colorGroup){
+		this.colorGroup = colorGroup;
+	}
+
 
 	/**
 	 * Returns the cost of this property.
-	 * 
+	 *
 	 * @return the cost of this property
 	 */
 	public int getCost() {
@@ -30,7 +58,7 @@ public class Property extends Space {
 
 	/**
 	 * Sets the cost of this property.
-	 * 
+	 *
 	 * @param cost the new cost of this property
 	 */
 	public void setCost(int cost) {
@@ -40,7 +68,7 @@ public class Property extends Space {
 
 	/**
 	 * Returns the rent to be payed for this property.
-	 * 
+	 *
 	 * @return the rent for this property
 	 */
 	public int getRent() {
@@ -49,7 +77,7 @@ public class Property extends Space {
 
 	/**
 	 * Sets the rent for this property.
-	 * 
+	 *
 	 * @param rent the new rent for this property
 	 */
 	public void setRent(int rent) {
@@ -60,7 +88,7 @@ public class Property extends Space {
 	/**
 	 * Returns the owner of this property. The value is <code>null</code>,
 	 * if the property currently does not have an owner.
-	 * 
+	 *
 	 * @return the owner of the property or <code>null</code>
 	 */
 	public Player getOwner() {
@@ -68,9 +96,9 @@ public class Property extends Space {
 	}
 
 	/**
-	 * Sets the owner of this property  to the given owner (which can be 
+	 * Sets the owner of this property  to the given owner (which can be
 	 * <code>null</code>).
-	 * 
+	 *
 	 * @param player the new owner of the property
 	 */
 	public void setOwner(Player player) {
@@ -82,6 +110,7 @@ public class Property extends Space {
 	public void doAction(GameController controller, Player player) throws PlayerBrokeException {
 		if (owner == null) {
 			controller.offerToBuy(this, player);
+
 		} else if (!owner.equals(player)) {
 			// TODO also check whether the property is mortgaged
 			// TODO the computation of the actual rent could be delegated

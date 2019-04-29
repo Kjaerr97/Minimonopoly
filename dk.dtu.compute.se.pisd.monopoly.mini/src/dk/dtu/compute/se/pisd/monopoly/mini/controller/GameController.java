@@ -1,5 +1,6 @@
 package dk.dtu.compute.se.pisd.monopoly.mini.controller;
 
+import com.sun.xml.internal.bind.v2.TODO;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.*;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.exceptions.GameEndedException;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.exceptions.PlayerBrokeException;
@@ -319,10 +320,7 @@ public class  GameController {
     		}
     		player.addOwnedProperty(property);
     		property.setOwner(player);
-    		//TODO: Test, this should be fixed
-    		if (property instanceof RealEstate) {
-				((RealEstate)property).setHouses(1);
-			}
+
     		return;
         }
         
@@ -536,6 +534,10 @@ public class  GameController {
 			//      for my private version of the GUI and not for the GUI currently
 			//      deployed via Maven (or other official versions);
 		}
+	}
+
+	public void offerToBuyHouses() {
+		// TODO write method after colourgroup is finished
 	}
 
 }

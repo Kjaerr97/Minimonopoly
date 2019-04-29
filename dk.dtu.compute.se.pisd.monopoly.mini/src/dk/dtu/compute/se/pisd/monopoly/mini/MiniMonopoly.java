@@ -38,6 +38,11 @@ public class MiniMonopoly {
 		// could actually be loaded from a file or database instead
 		// of creating it programmatically. This will be discussed
 		// later in this course.
+
+		/**
+		 * @Sascha s171281
+		 * I added ColourGroup to the relevant spaces.
+		 */
 		Game game = new Game();
 		
 		Space go = new Space();
@@ -48,6 +53,7 @@ public class MiniMonopoly {
 		p.setName("Rødovrevej");
 		p.setCost(1200);
 		p.setRent(50);
+		p.setColorGroup(ColorGroup.lightblue);
 		game.addSpace(p);
 		
 		Chance chance = new Chance();
@@ -58,6 +64,7 @@ public class MiniMonopoly {
 		p.setName("Hvidovrevej");
 		p.setCost(1200);
 		p.setRent(50);
+		p.setColorGroup(ColorGroup.lightblue);
 		game.addSpace(p);
 		
 		Tax t = new Tax();
@@ -68,12 +75,14 @@ public class MiniMonopoly {
 		s.setName("Øresund");
 		s.setCost(4000);
 		s.setRent(500);
+		p.setColorGroup(ColorGroup.blue);
 		game.addSpace(s);
 
 		p = new RealEstate();
 		p.setName("Roskildevej");
 		p.setCost(2000);
 		p.setRent(100);
+		p.setColorGroup(ColorGroup.salmon);
 		game.addSpace(p);
 		
 		chance = new Chance();
@@ -84,12 +93,14 @@ public class MiniMonopoly {
 		p.setName("Valby Langgade");
 		p.setCost(2000);
 		p.setRent(100);
+		p.setColorGroup(ColorGroup.salmon);
 		game.addSpace(p);
 		
 		p = new RealEstate();
 		p.setName("Allégade");
 		p.setCost(2400);
 		p.setRent(150);
+		p.setColorGroup(ColorGroup.salmon);
 		game.addSpace(p);
 		
 		Space prison = new Space();
@@ -100,52 +111,31 @@ public class MiniMonopoly {
 		p.setName("Frederiksberg Allé");
 		p.setCost(2800);
 		p.setRent(200);
+		p.setColorGroup(ColorGroup.green);
 		game.addSpace(p);
 		
 		p = new RealEstate();
 		p.setName("Coca-Cola Tapperi");
 		p.setCost(3000);
 		p.setRent(300);
+		p.setColorGroup(ColorGroup.darkgreen);
 		game.addSpace(p);
 		
 		p = new RealEstate();
 		p.setName("Bülowsvej");
 		p.setCost(2800);
 		p.setRent(200);
+		p.setColorGroup(ColorGroup.green);
 		game.addSpace(p);
 		
 		p = new RealEstate();
 		p.setName("Gl. Kongevej");
 		p.setCost(3200);
 		p.setRent(250);
+		p.setColorGroup(ColorGroup.green);
 		game.addSpace(p);
 
-		//Added more cards to the pile
-		//@s180911 Asger
-		List<Card> cards = new ArrayList<Card>();
-
-		CardMove move = new CardMove();
-		move.setTarget(game.getSpaces().get(game.randomSpace()));
-		move.setText("Move to Allégade!");
-		cards.add(move);
-		
-		PayTax tax = new PayTax();
-		tax.setText("Pay 10% income tax!");
-		cards.add(tax);
-		
-		CardReceiveMoneyFromBank b = new CardReceiveMoneyFromBank();
-		b.setText("You receive 100$ from the bank.");
-		b.setAmount(100);
-		cards.add(b);
-
-		CardReceiveMoneyFromBank bDay = new CardReceiveMoneyFromPlayers();
-		bDay.setText("You receive 100$ from the bank.");
-		bDay.setAmount(100);
-		cards.add(b);
-
-		game.setCardDeck(cards);
-
-		return game;
+		return null;
 	}
 
 	/**
@@ -211,7 +201,7 @@ public class MiniMonopoly {
 		}
 
 	}
-//}
+
 
 
 

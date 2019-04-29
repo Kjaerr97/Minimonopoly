@@ -186,7 +186,7 @@ public class Game extends Subject {
 	}
 	//Made a method for choosing a random space. Used in one of the cards
 	//@s180911 Asger
-	public int randomSpace (){
+	public Space randomSpace (){
 		Random rand = new Random();
 		return spaces.get(rand.nextInt(spaces.size()));
 	}
