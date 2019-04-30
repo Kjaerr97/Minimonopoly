@@ -84,10 +84,6 @@ public class Player extends Subject {
 		notifyChange();
 	}
 
-	public void colorList(Color color){
-	color a = new Color(Color.HSBtoRGB())
-	}
-
 	/**
 	 * Returns the space that is the current position of the player.
 	 * 

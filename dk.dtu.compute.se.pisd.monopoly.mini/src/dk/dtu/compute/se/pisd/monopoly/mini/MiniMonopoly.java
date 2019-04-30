@@ -121,6 +121,142 @@ public class MiniMonopoly {
 		p.setRent(250);
 		game.addSpace(p);
 
+		s = new Utility();
+		s.setName("D.F.D.S.");
+		s.setCost(4000);
+		s.setRent(200);
+		game.addSpace(s);
+
+		p = new RealEstate();
+		p.setName("Bernstorffsvej");
+		p.setCost(2000);
+		p.setRent(300);
+		game.addSpace(p);
+
+		chance = new Chance();
+		chance.setName("Chance");
+		game.addSpace(chance);
+
+		p = new RealEstate();
+		p.setName("Hellerupvej");
+		p.setCost(2100);
+		p.setRent(500);
+		game.addSpace(p);
+
+		p = new RealEstate();
+		p.setName("Strandvejen");
+		p.setCost(2500);
+		p.setRent(600);
+		game.addSpace(p);
+
+		Space parkering = new Space();
+		parkering.setName("Parkering");
+		game.addSpace(parkering);
+
+		p = new RealEstate();
+		p.setName("Trianglen");
+		p.setCost(2600);
+		p.setRent(500);
+		game.addSpace(p);
+
+		chance = new Chance();
+		chance.setName("Chance");
+		game.addSpace(chance);
+
+		p = new RealEstate();
+		p.setName("Østerbrogade");
+		p.setCost(3000);
+		p.setCost(650);
+		game.addSpace(p);
+
+		p = new RealEstate();
+		p.setName("Grønningen");
+		p.setCost(3200);
+		p.setRent(600);
+		game.addSpace(p);
+
+		s = new Utility();
+		s.setName("Ø.S.");
+		s.setCost(4000);
+		s.setRent(500);
+		game.addSpace(s);
+
+		p = new RealEstate();
+		p.setName("Bredgade");
+		p.setCost(3500);
+		p.setRent(500);
+		game.addSpace(p);
+
+		p = new RealEstate();
+		p.setName("Kgs. Nytorv");
+		p.setCost(3800);
+		p.setRent(700);
+		game.addSpace(p);
+
+		s = new Utility();
+		s.setName("Carlsberg");
+		s.setCost(3000);
+		s.setRent(400);
+		game.addSpace(s);
+
+		p = new RealEstate();
+		p.setName("Østergade");
+		p.setCost(3800);
+		p.setRent(500);
+		game.addSpace(p);
+
+		Space toJail = new Space();
+		toJail.setName("Gå i fængsel");
+		game.addSpace(toJail);
+
+		p = new RealEstate();
+		p.setName("Amagertorv");
+		p.setCost(4000);
+		p.setRent(550);
+		game.addSpace(p);
+
+		p = new RealEstate();
+		p.setName("Vimmelskaftet");
+		p.setCost(4100);
+		p.setRent(600);
+		game.addSpace(p);
+
+		chance = new Chance();
+		chance.setName("Chance");
+		game.addSpace(chance);
+
+		p = new RealEstate();
+		p.setName("Nygade");
+		p.setCost(4500);
+		p.setRent(700);
+		game.addSpace(p);
+
+		s = new Utility();
+		s.setName("Bornholm");
+		s.setCost(4000);
+		s.setRent(500);
+		game.addSpace(s);
+
+		chance = new Chance();
+		chance.setName("Chance");
+		game.addSpace(chance);
+
+		p = new Property();
+		p.setName("Frederiksberggade");
+		p.setCost(5000);
+		p.setRent(750);
+		game.addSpace(p);
+
+		t = new Tax();
+		t.setName("Ekstraordinær statsskat. Betal 100");
+		game.addSpace(t);
+
+		p = new Property();
+		p.setName("Rådhuspladsen");
+		p.setCost(5200);
+		p.setRent(800);
+		game.addSpace(p);
+
 		//Added more cards to the pile
 		//@s180911 Asger
 		List<Card> cards = new ArrayList<Card>();
@@ -151,7 +287,7 @@ public class MiniMonopoly {
 	 *
 	 * @param game
 	 * @param players
-	 * @author s185034
+	 * @author s185034, s185466
 	 */
 	public void createPlayers (Game game, Game players) {
 		// TODO the players should eventually be created interactively or
@@ -165,14 +301,23 @@ public class MiniMonopoly {
 			String name = JOptionPane.showInputDialog(null,
 					"Please enter your name","Name",JOptionPane.QUESTION_MESSAGE);
 			Player p = new Player();
+
+			//udkast til at generere random color
+			Random rand = new Random();
+			float r = rand.nextFloat();
+			float g = rand.nextFloat();
+			float b = rand.nextFloat();
+			Color randomColor = new Color(r, g, b);
+
 			p.setName(name);
 			p.setCurrentPosition(game.getSpaces().get(0));
-			p.setColor(colorlist.get(i)); //colorlist kommer
+			// p.setColor(colorlist.get(i)); //colorlist kommer
+
+			p.setColor(randomColor); // måske virker dette? - Rasmus
 			game.addPlayer(p);
 			i++;
 
 		}
-
 
 	}
 
@@ -206,6 +351,7 @@ public class MiniMonopoly {
 			Game game = createGame();
 			game.shuffleCardDeck();
 			createPlayers(game);
+
 			GameController controller = new GameController(game);
 			controller.initializeGUI();
 
