@@ -322,7 +322,7 @@ public class MiniMonopoly {
 	 * @param players
 	 * @author s185034, s185466
 	 */
-	public static void createPlayers (Game game, Game players) {
+	public void createPlayers (Game game, Game players) {
 		
 		for (int i=0; i <= players.sizeOfList(); i++){
 			String name = JOptionPane.showInputDialog(null,

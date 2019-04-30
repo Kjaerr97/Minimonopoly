@@ -11,8 +11,8 @@ import java.util.List;
 public class Database implements IGameDAO {
 
     private Connection createConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:mysql://ec2-52-30-211-3.eu-west-1.compute.amazonaws.com/s185466",
-                "s185466", "J8LTqO61u5Ux9fEBcIm9Y"); // indsæt egne værdier her
+        return DriverManager.getConnection("database URL",
+                "username", "password"); // indsæt egne værdier her
 
     }
 
