@@ -53,6 +53,7 @@ public class Property extends Space {
 	 * 
 	 * @return the cost of this property
 	 */
+
 	public int getCost() {
 		return cost;
 	}
