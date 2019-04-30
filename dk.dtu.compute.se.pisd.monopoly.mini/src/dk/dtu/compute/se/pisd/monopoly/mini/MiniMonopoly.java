@@ -11,6 +11,7 @@ import dk.dtu.compute.se.pisd.monopoly.mini.model.properties.RealEstate;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.properties.Utility;
 import gui_main.GUI;
 
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -327,22 +328,44 @@ public class MiniMonopoly {
 			String name = JOptionPane.showInputDialog(null,
 					"Please enter your name","Name",JOptionPane.QUESTION_MESSAGE);
 			Player p = new Player();
+			p.setName(name);
+			p.setCurrentPosition(game.getSpaces().get(0));
 
-			//udkast til at generere random color
+			switch (i+1){
+
+				case 1:
+					p.setColor(Color.BLUE);
+					break;
+				case 2:
+					p.setColor(Color.GREEN);
+					break;
+				case 3:
+					p.setColor(Color.YELLOW);
+					break;
+				case 4:
+					p.setColor(Color.RED);
+					break;
+				case 5:
+					p.setColor(Color.PINK);
+					break;
+				case 6:
+					p.setColor(Color.ORANGE);
+					break;
+			}
+
+			game.addPlayer(p);
+			i++;
+
+/*
+			 p.setColor(colorlist.get(i)); //colorlist kommer
+			 p.setColor(randomColor); // måske virker dette? - Rasmus
+
 			Random rand = new Random();
 			float r = rand.nextFloat();
 			float g = rand.nextFloat();
 			float b = rand.nextFloat();
 			Color randomColor = new Color(r, g, b);
-
-			p.setName(name);
-			p.setCurrentPosition(game.getSpaces().get(0));
-			// p.setColor(colorlist.get(i)); //colorlist kommer
-
-			p.setColor(randomColor); // måske virker dette? - Rasmus
-			game.addPlayer(p);
-			i++;
-
+			 */
 		}
 
 	}
