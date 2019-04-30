@@ -15,9 +15,38 @@ public class Property extends Space {
 	
 	private int cost;
 	private int rent;
-	
 	private Player owner;
-	
+	private boolean groupOwned = false;
+	private ColorGroup colorGroup;
+
+	/**
+	 * @Aurthor Sascha s171281
+	 * Returns
+	 */
+
+	public boolean getGroupOwned(){
+		return this.groupOwned;
+	}
+
+	/**
+	 * @Aurthor Sascha s171281
+	 * Sets
+	 * @param bool the new state
+	 */
+
+	public void setGroupOwned(boolean bool){
+		this.groupOwned = bool;
+	}
+
+	public ColorGroup getColorGroup(){
+		return colorGroup;
+	}
+
+	public void setColorGroup (ColorGroup colorGroup){
+		this.colorGroup = colorGroup;
+	}
+
+
 
 	/**
 	 * Returns the cost of this property.
