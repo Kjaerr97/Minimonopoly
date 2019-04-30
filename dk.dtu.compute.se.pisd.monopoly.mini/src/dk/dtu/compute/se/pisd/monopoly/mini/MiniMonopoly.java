@@ -49,6 +49,7 @@ public class MiniMonopoly {
 		p.setName("Rødovrevej");
 		p.setCost(1200);
 		p.setRent(50);
+		p.setColorGroup(ColorGroup.lightblue);
 		game.addSpace(p);
 		
 		Chance chance = new Chance();
@@ -59,6 +60,7 @@ public class MiniMonopoly {
 		p.setName("Hvidovrevej");
 		p.setCost(1200);
 		p.setRent(50);
+		p.setColorGroup(ColorGroup.lightblue);
 		game.addSpace(p);
 		
 		Tax t = new Tax();
@@ -69,12 +71,14 @@ public class MiniMonopoly {
 		s.setName("Øresund");
 		s.setCost(4000);
 		s.setRent(500);
+		p.setColorGroup(ColorGroup.blue);
 		game.addSpace(s);
 
 		p = new RealEstate();
 		p.setName("Roskildevej");
 		p.setCost(2000);
 		p.setRent(100);
+		p.setColorGroup(ColorGroup.salmon);
 		game.addSpace(p);
 		
 		chance = new Chance();
@@ -85,12 +89,14 @@ public class MiniMonopoly {
 		p.setName("Valby Langgade");
 		p.setCost(2000);
 		p.setRent(100);
+		p.setColorGroup(ColorGroup.salmon);
 		game.addSpace(p);
 		
 		p = new RealEstate();
 		p.setName("Allégade");
 		p.setCost(2400);
 		p.setRent(150);
+		p.setColorGroup(ColorGroup.salmon);
 		game.addSpace(p);
 		
 		Space prison = new Space();
@@ -101,24 +107,28 @@ public class MiniMonopoly {
 		p.setName("Frederiksberg Allé");
 		p.setCost(2800);
 		p.setRent(200);
+		p.setColorGroup(ColorGroup.green);
 		game.addSpace(p);
 		
 		p = new RealEstate();
 		p.setName("Coca-Cola Tapperi");
 		p.setCost(3000);
 		p.setRent(300);
+		p.setColorGroup(ColorGroup.darkgreen);
 		game.addSpace(p);
 		
 		p = new RealEstate();
 		p.setName("Bülowsvej");
 		p.setCost(2800);
 		p.setRent(200);
+		p.setColorGroup(ColorGroup.green);
 		game.addSpace(p);
 		
 		p = new RealEstate();
 		p.setName("Gl. Kongevej");
 		p.setCost(3200);
 		p.setRent(250);
+		p.setColorGroup(ColorGroup.green);
 		game.addSpace(p);
 
 		/**
@@ -129,12 +139,14 @@ public class MiniMonopoly {
 		s.setName("D.F.D.S.");
 		s.setCost(4000);
 		s.setRent(200);
+		p.setColorGroup(ColorGroup.blue);
 		game.addSpace(s);
 
 		p = new RealEstate();
 		p.setName("Bernstorffsvej");
 		p.setCost(2000);
 		p.setRent(300);
+		p.setColorGroup(ColorGroup.grey);
 		game.addSpace(p);
 
 		chance = new Chance();
@@ -145,12 +157,14 @@ public class MiniMonopoly {
 		p.setName("Hellerupvej");
 		p.setCost(2100);
 		p.setRent(500);
+		p.setColorGroup(ColorGroup.grey);
 		game.addSpace(p);
 
 		p = new RealEstate();
 		p.setName("Strandvejen");
 		p.setCost(2500);
 		p.setRent(600);
+		p.setColorGroup(ColorGroup.grey);
 		game.addSpace(p);
 
 		Space parkering = new Space();
@@ -161,6 +175,7 @@ public class MiniMonopoly {
 		p.setName("Trianglen");
 		p.setCost(2600);
 		p.setRent(500);
+		p.setColorGroup(ColorGroup.red);
 		game.addSpace(p);
 
 		chance = new Chance();
@@ -171,42 +186,49 @@ public class MiniMonopoly {
 		p.setName("Østerbrogade");
 		p.setCost(3000);
 		p.setCost(650);
+		p.setColorGroup(ColorGroup.red);
 		game.addSpace(p);
 
 		p = new RealEstate();
 		p.setName("Grønningen");
 		p.setCost(3200);
 		p.setRent(600);
+		p.setColorGroup(ColorGroup.red);
 		game.addSpace(p);
 
 		s = new Utility();
 		s.setName("Ø.S.");
 		s.setCost(4000);
 		s.setRent(500);
+		p.setColorGroup(ColorGroup.blue);
 		game.addSpace(s);
 
 		p = new RealEstate();
 		p.setName("Bredgade");
 		p.setCost(3500);
 		p.setRent(500);
+		p.setColorGroup(ColorGroup.white);
 		game.addSpace(p);
 
 		p = new RealEstate();
 		p.setName("Kgs. Nytorv");
 		p.setCost(3800);
 		p.setRent(700);
+		p.setColorGroup(ColorGroup.white);
 		game.addSpace(p);
 
 		s = new Utility();
 		s.setName("Carlsberg");
 		s.setCost(3000);
 		s.setRent(400);
+		p.setColorGroup(ColorGroup.darkgreen);
 		game.addSpace(s);
 
 		p = new RealEstate();
 		p.setName("Østergade");
 		p.setCost(3800);
 		p.setRent(500);
+		p.setColorGroup(ColorGroup.white);
 		game.addSpace(p);
 
 		Space toJail = new Space();
@@ -217,12 +239,14 @@ public class MiniMonopoly {
 		p.setName("Amagertorv");
 		p.setCost(4000);
 		p.setRent(550);
+		p.setColorGroup(ColorGroup.yellow);
 		game.addSpace(p);
 
 		p = new RealEstate();
 		p.setName("Vimmelskaftet");
 		p.setCost(4100);
 		p.setRent(600);
+		p.setColorGroup(ColorGroup.yellow);
 		game.addSpace(p);
 
 		chance = new Chance();
@@ -233,12 +257,14 @@ public class MiniMonopoly {
 		p.setName("Nygade");
 		p.setCost(4500);
 		p.setRent(700);
+		p.setColorGroup(ColorGroup.yellow);
 		game.addSpace(p);
 
 		s = new Utility();
 		s.setName("Bornholm");
 		s.setCost(4000);
 		s.setRent(500);
+		p.setColorGroup(ColorGroup.blue);
 		game.addSpace(s);
 
 		chance = new Chance();
@@ -249,6 +275,7 @@ public class MiniMonopoly {
 		p.setName("Frederiksberggade");
 		p.setCost(5000);
 		p.setRent(750);
+		p.setColorGroup(ColorGroup.purple);
 		game.addSpace(p);
 
 		t = new Tax();
@@ -259,6 +286,7 @@ public class MiniMonopoly {
 		p.setName("Rådhuspladsen");
 		p.setCost(5200);
 		p.setRent(800);
+		p.setColorGroup(ColorGroup.purple);
 		game.addSpace(p);
 
 		//Added more cards to the pile
