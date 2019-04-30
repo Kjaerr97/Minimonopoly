@@ -121,6 +121,10 @@ public class MiniMonopoly {
 		p.setRent(250);
 		game.addSpace(p);
 
+		/**
+		 * @Markus s174879 resten af felterne nedenfor.
+		 */
+
 		s = new Utility();
 		s.setName("D.F.D.S.");
 		s.setCost(4000);
