@@ -1,5 +1,6 @@
 package dk.dtu.compute.se.pisd.monopoly.mini.model.properties;
 
+import dk.dtu.compute.se.pisd.monopoly.mini.controller.GameController;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.Property;
 
 /**
@@ -10,23 +11,28 @@ import dk.dtu.compute.se.pisd.monopoly.mini.model.Property;
  *
  */
 public class Utility extends Property {
-    Property property = new Property();
+
 
     // TODO to be implemented
     // for computing rent of ferries
     public int rentOfFerry() {
+        switch()
 
     }
+// Andreas - færger og tapperi er nødt til at initialiseres som hver sit objekt og ikke
+    // som fælles objekt? ellers kendes der ikke forskel på hvilken af disse to metoder
+    // der skal kaldes i doAction i Property-klassen.
 
-    // for computing rent of sodas / hiv fat i antal øjne. hvordan?
-    public int rentOfSoda() {
-        if (property.getOwner().getOwnedCards().contains("Squash") &&
-                property.getOwner().getOwnedCards().contains("Coca Cola")) {
+    // for computing rent of sodas
+    public int rentOfSoda(GameController controller) {
 
-            setRent((die1 + die2) * 200);
+        if (getOwner().getOwnedCards().contains("Tuborg") &&
+                getOwner().getOwnedCards().contains("Carlsberg")) {
+
+            setRent(( controller.getDie1()+ controller.getDie2()) * 200);
 
         } else {
-            setRent((die1 + die2) * 100);
+            setRent((controller.getDie1()+controller.getDie2()) * 100);
         }
         return getRent();
     }

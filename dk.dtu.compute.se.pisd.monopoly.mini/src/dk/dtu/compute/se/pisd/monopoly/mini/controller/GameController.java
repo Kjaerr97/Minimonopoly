@@ -48,7 +48,18 @@ public class  GameController {
 	//private PlayerPanel playerpanel;
 	
     private boolean disposed = false;
-	
+
+    // Andreas - sat fields her så terninger kan tilgås i utilityklassen
+    private int die1;
+    private int die2;
+
+	public int getDie1() {
+		return die1;
+	}
+	public int getDie2(){
+		return die2;
+	}
+
 	/**
 	 * Constructor for a controller of a game.
 	 * 
@@ -165,10 +176,11 @@ public class  GameController {
 			// for making the game faster. Eventually, this should be set
 			// to 1 - 6 again (to this end, the constants 3.0 below should
 			// be set to 6.0 again.
-			int die1 = (int) (1 + 6.0*Math.random());
-			int die2 = (int) (1 + 6.0*Math.random());
+			die1 = (int) (1 + 6.0*Math.random());
+			die2 = (int) (1 + 6.0*Math.random());
 			castDouble = (die1 == die2);
 			gui.setDice(die1, die2);
+
 			
 			if (player.isInPrison() && castDouble) {
 				player.setInPrison(false);

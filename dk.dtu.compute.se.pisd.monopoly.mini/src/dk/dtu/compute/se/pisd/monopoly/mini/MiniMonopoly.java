@@ -101,7 +101,7 @@ public class MiniMonopoly {
 		p.setCost(2800);
 		p.setRent(200);
 		game.addSpace(p);
-		// Andreas - ændrer tapperi til utility og der skal ikke være nogen startrent.
+
 		p = new Utility();
 		p.setName("Coca-Cola Tapperi");
 		p.setCost(3000);
