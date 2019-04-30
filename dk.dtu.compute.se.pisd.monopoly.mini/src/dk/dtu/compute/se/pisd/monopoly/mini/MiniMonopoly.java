@@ -290,13 +290,7 @@ public class MiniMonopoly {
 	 * @author s185034, s185466
 	 */
 	public void createPlayers (Game game, Game players) {
-		// TODO the players should eventually be created interactively or
-		// be loaded from a database
-
-
-
-		//første udkast til metode
-
+		
 		for (int i=0; i <= players.sizeOfList(); i++){
 			String name = JOptionPane.showInputDialog(null,
 					"Please enter your name","Name",JOptionPane.QUESTION_MESSAGE);
