@@ -322,7 +322,7 @@ public class MiniMonopoly {
 	 * @param players
 	 * @author s185034, s185466
 	 */
-	public void createPlayers (Game game, Game players) {
+	public static void createPlayers (Game game, Game players) {
 		
 		for (int i=0; i <= players.sizeOfList(); i++){
 			String name = JOptionPane.showInputDialog(null,
@@ -383,8 +383,7 @@ public class MiniMonopoly {
  */
 		String result = JOptionPane.showInputDialog(null,
 				"Do you wish to load a game?, 'yes' or 'no'","Game",JOptionPane.QUESTION_MESSAGE);
-		String string1 = new String("yes");
-        if(result.equals(string1)){
+        if(result.equals("yes")){
 		int usergameID = Integer.parseInt(JOptionPane.showInputDialog(null, "What game do you want to load","GameLoader",JOptionPane.QUESTION_MESSAGE));
 
 		Game game = createGame();
@@ -417,3 +416,29 @@ public class MiniMonopoly {
 	}
 
 }
+
+
+/** For at fjerne vores non-static problem kan vi sætte nedenstående del ind i gamecontroller (hvor gui'en er) og så kalde det herinde i vores main.
+*/
+
+/*
+String result = JOptionPane.showInputDialog(null,
+				"Do you wish to load a game?, 'yes' or 'no'","Game",JOptionPane.QUESTION_MESSAGE);
+        if(result.equals("yes")){
+		int usergameID = Integer.parseInt(JOptionPane.showInputDialog(null, "What game do you want to load","GameLoader",JOptionPane.QUESTION_MESSAGE));
+
+		Game game = createGame();
+		Database gameDAO = new Database();
+		gameDAO.loadGame(game, usergameID);
+
+			game.shuffleCardDeck();
+			createPlayers(game);
+			GameController controller = new GameController(game);
+			controller.initializeGUI();
+
+		} else {
+			Game game = createGame();
+			game.shuffleCardDeck();
+			createPlayers(game);
+
+ */
