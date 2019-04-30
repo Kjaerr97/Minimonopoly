@@ -11,7 +11,7 @@ public enum ColorGroup {
 
     // The colour and the number of spaces with that colour is defined:
 
-    lightblue(2), salmon(3), green(3), grey(3), red(3), white(3), yellow(3), puple(2), darkgreen(2), blue(4);
+    lightblue(2), salmon(3), green(3), grey(3), red(3), white(3), yellow(3), purple(2), darkgreen(2), blue(4);
 
 
     private int groupID;
@@ -26,7 +26,7 @@ public enum ColorGroup {
         this.groupID = groupID;
     }
 
-//The colours are grouped:
+    //The colours are grouped:
 
     public static Color color(ColorGroup x) {
 
@@ -52,7 +52,7 @@ public enum ColorGroup {
             case yellow:
                 return new Color(255, 255, 0); //Yellow
 
-            case puple:
+            case purple:
                 return new Color(146, 0, 146); //Purple
 
             case darkgreen:
