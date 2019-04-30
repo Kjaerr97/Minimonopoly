@@ -26,7 +26,7 @@ public enum ColorGroup {
         this.groupID = groupID;
     }
 
-//The colours are grouped:
+    //The colours are grouped:
 
     public static Color color(ColorGroup x) {
 
