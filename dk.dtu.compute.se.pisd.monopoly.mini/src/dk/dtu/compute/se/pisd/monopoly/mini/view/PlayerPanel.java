@@ -16,6 +16,8 @@ public class PlayerPanel extends JFrame {
     private Player player;
     private JPanel infoPanel;
 
+    private Map<ColorGroup, JPanel>colorGroupJPanelMap;
+
     public PlayerPanel (Game game, Player player){
      //Selve framet bliver konstrueret.
      this.game = game;
@@ -44,6 +46,8 @@ public class PlayerPanel extends JFrame {
         infoPanel.removeAll();
         JPanel playerPanel = new JPanel();
 
+        colorGroupJPanelMap = new HashMap<>();
+
         playerPanel.setBackground(player.getColor());
         playerPanel.setLayout(new BoxLayout(playerPanel,BoxLayout.Y_AXIS));
 
@@ -54,7 +58,50 @@ public class PlayerPanel extends JFrame {
 
         infoPanel.add(playerPanel);
 
+        for (Space space: game. getSpaces()){
+            if (space instanceof Property){
+                Property property = (Property) space;
+                if (property.getOwner() != null){
+                    if (property.getOwner() == player){
+                        ColorGroup colorGroup = property.getColorGroup();
+                        if (!colorGroupJPanelMap.containsKey(colorGroup))
+                            try{
+                                JPanel jPanel = PanelSkaber(colorGroup);
+                                colorGroupJPanelMap.put(colorGroup,jPanel);
+                                LabelSkaber(jPanel,property.getName());
+                            }catch (NullPointerException e){
+                                e.getMessage();
+                            }
+                        else{
+                            JPanel jPanel = colorGroupJPanelMap.get(colorGroup);
+                            LabelSkaber(jPanel,property.getName());
+                        }
+                    }
+                }
+            }
+        }
+
+
         this.revalidate();
         this.repaint();
     }
+
+    public JPanel PanelSkaber(ColorGroup colour){
+        JPanel colorGroupPanel = new JPanel();
+        colorGroupPanel.setBackground(ColorGroup.color(colour));
+        colorGroupPanel.setLayout(new BoxLayout(colorGroupPanel, BoxLayout.Y_AXIS));
+        colorGroupPanel.setBorder(new EtchedBorder());
+
+        colorGroupPanel.setVisible(true);
+        infoPanel.add(colorGroupPanel);
+
+        return colorGroupPanel;
+    }
+
+    public void LabelSkaber(JPanel jPanel, String name){
+        JLabel jLabel = new JLabel(name);
+        jPanel.add(jLabel);
+    }
+
+
 }
