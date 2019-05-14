@@ -7,60 +7,30 @@ import dk.dtu.compute.se.pisd.monopoly.mini.model.properties.RealEstate;
 
 /**
  * A property which is a space that can be owned by a player.
- * 
+ *
  * @author Ekkart Kindler, ekki@dtu.dk
  *
  */
-public class Property extends Space {
-	
+public abstract class Property extends Space {
+
 	private int cost;
 	private int rent;
+
 	private Player owner;
-	private boolean groupOwned = false;
-	private ColorGroup colorGroup;
-
-	/**
-	 * @Aurthor Sascha s171281
-	 * Returns
-	 */
-
-	public boolean getGroupOwned(){
-		return this.groupOwned;
-	}
-
-	/**
-	 * @Aurthor Sascha s171281
-	 * Sets
-	 * @param bool the new state
-	 */
-
-	public void setGroupOwned(boolean bool){
-		this.groupOwned = bool;
-	}
-
-	public ColorGroup getColorGroup(){
-		return colorGroup;
-	}
-
-	public void setColorGroup (ColorGroup colorGroup){
-		this.colorGroup = colorGroup;
-	}
-
 
 
 	/**
 	 * Returns the cost of this property.
-	 * 
+	 *
 	 * @return the cost of this property
 	 */
-
 	public int getCost() {
 		return cost;
 	}
 
 	/**
 	 * Sets the cost of this property.
-	 * 
+	 *
 	 * @param cost the new cost of this property
 	 */
 	public void setCost(int cost) {
@@ -70,7 +40,7 @@ public class Property extends Space {
 
 	/**
 	 * Returns the rent to be payed for this property.
-	 * 
+	 *
 	 * @return the rent for this property
 	 */
 	public int getRent() {
@@ -79,7 +49,7 @@ public class Property extends Space {
 
 	/**
 	 * Sets the rent for this property.
-	 * 
+	 *
 	 * @param rent the new rent for this property
 	 */
 	public void setRent(int rent) {
@@ -90,7 +60,7 @@ public class Property extends Space {
 	/**
 	 * Returns the owner of this property. The value is <code>null</code>,
 	 * if the property currently does not have an owner.
-	 * 
+	 *
 	 * @return the owner of the property or <code>null</code>
 	 */
 	public Player getOwner() {
@@ -98,9 +68,9 @@ public class Property extends Space {
 	}
 
 	/**
-	 * Sets the owner of this property  to the given owner (which can be 
+	 * Sets the owner of this property  to the given owner (which can be
 	 * <code>null</code>).
-	 * 
+	 *
 	 * @param player the new owner of the property
 	 */
 	public void setOwner(Player player) {
@@ -114,6 +84,15 @@ public class Property extends Space {
 			controller.offerToBuy(this, player);
 		} else if (!owner.equals(player)) {
 			// TODO also check whether the property is mortgaged
+			// Andreas
+
+
+		}else{
+			// polymorfisk kald: del utility op og kald alle metoderne det samme, som de overwriter herfra
+			// kald det eks computeRent.
+			player.payMoney(property.computeRent);
+			owner.receiveMoney(controller.compureRent);
+			if()
 			// TODO the computation of the actual rent could be delegated
 			//      the subclasses of Property, which can take the specific
 			//      individual conditions into account. Note that the
@@ -124,9 +103,11 @@ public class Property extends Space {
 
 		}
 	}
+	//Andreas - abstract klasse vi overskriver i de tre childklasser.
+	public abstract int computeRent(GameController gameController, Property property);
 
 
 
-	}
 
+}
 
