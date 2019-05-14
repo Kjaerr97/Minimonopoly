@@ -8,10 +8,12 @@ public class Ferry extends Property {
     // for computing rent of ferries based on amount of ferries owned.
 
 
+
     @Override
     public int computeRent(GameController gameController, Property property) {
         int rent;
         switch
+
 
         return 0;
     }
