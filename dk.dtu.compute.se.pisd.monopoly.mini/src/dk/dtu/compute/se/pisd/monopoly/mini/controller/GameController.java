@@ -427,15 +427,18 @@ public class  GameController {
 		// Creates new ArrayList called bidders.
 
 		List<Player> bidders = new ArrayList<Player>();
-
+		gui.showMessage("Now, there will be an auction of " + property.getName() + ".");
 		for (Player player : game.getPlayers()) {
 			if (!player.isBroke()) {
-				bidders.add(player);
+				String selection = gui.getUserSelection(
+						"Would you " + player.getName() + " participate in the auction?",
+						"yes",
+						"no");
+				if (selection.equals("yes")) {
+					bidders.add(player);
+				}
 			}
-
 		}
-
-		gui.showMessage("Now, there would be an auction of " + property.getName() + ".");
 
 		Player bidder = null;
 		int currentBid = 0;
@@ -443,29 +446,20 @@ public class  GameController {
 			int minBid = currentBid + 1;
 
 			bidder = bidders.get(0);
-			String selection = gui.getUserSelection(
-					"Would you " + bidder.getName() + " like to place a bid? Minimum bid:" + minBid + " kr.",
-					"yes",
-					"no");
-			if (selection.equals("no")) {
-				bidders.remove(0);
-			} else {       // de får lov at byde
+			// de får lov at byde
 
-				Player player = bidders.remove(0);
-				int newBid = gui.getUserInteger("Place bid here. Must be " + minBid + " or above",
-						currentBid + 1,
-						player.getBalance() + 0);
-				if (newBid >= minBid) {
-					currentBid = newBid;
+			Player player = bidders.remove(0);
+			int newBid = gui.getUserInteger("Place bid here. It must be " + minBid + " or above",
+					1,
+					player.getBalance() + 0);
+			if (newBid >= minBid) {
+				currentBid = newBid;
 
-					bidders.add(player);
+				bidders.add(player);
 
-					gui.showMessage(player.getName() + " has the new highest bid of " + currentBid);
-				} else {
-					gui.showMessage("Your bid wasn't enough");
-				}
-
-
+				gui.showMessage(player.getName() + " has the new highest bid of " + currentBid);
+			} else {
+				gui.showMessage("Your bid wasn't enough, you're removed from the auction.");
 			}
 		}
 		try {
@@ -483,9 +477,9 @@ public class  GameController {
 			gui.showMessage("PLayer is broke " + e.getMessage());
 		}
 
-
 		return bidder; //Tjek op på dette.
 	}
+
 
 	/**
 	 * Action handling the situation when one player is broke to another

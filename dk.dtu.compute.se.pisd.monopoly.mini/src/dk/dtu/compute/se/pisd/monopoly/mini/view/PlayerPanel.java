@@ -37,6 +37,10 @@ public class PlayerPanel extends JFrame {
     }
     //Dette er updatemetoden som skal kaldes hver gang panellerne skal laves.
     //Dette gør at playerpanelet ikke skal laves oppe i infopanelet, men at update-metoden blot skal kaldes hver gang.
+    /**
+     * @author Markus s174879
+     */
+
     public void update() {
         infoPanel.removeAll();
         JPanel playerPanel = new JPanel();
