@@ -3,9 +3,7 @@ package dk.dtu.compute.se.pisd.monopoly.mini;
 import dk.dtu.compute.se.pisd.monopoly.mini.Database.Database;
 import dk.dtu.compute.se.pisd.monopoly.mini.controller.GameController;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.*;
-import dk.dtu.compute.se.pisd.monopoly.mini.model.cards.CardMove;
-import dk.dtu.compute.se.pisd.monopoly.mini.model.cards.CardReceiveMoneyFromBank;
-import dk.dtu.compute.se.pisd.monopoly.mini.model.cards.PayTax;
+import dk.dtu.compute.se.pisd.monopoly.mini.model.cards.*;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.exceptions.GameEndedException;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.properties.RealEstate;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.properties.Utility;
@@ -290,24 +288,73 @@ public class MiniMonopoly {
 		p.setColorGroup(ColorGroup.purple);
 		game.addSpace(p);
 
-		//Added more cards to the pile
-		//@s180911 Asger
+//Added more cards to the pile
+//@author s180911 Asger
 		List<Card> cards = new ArrayList<Card>();
-		
-		
+
+		CardMoveJail jailCard = new CardMoveJail();
+		jailCard.setText("You've been caught speeding and been put to jail.");
+		cards.add(jailCard);
+
+//Random number generator for a random space
+		int index =  (int) Math.random()*game.getSpaces().size();
+
+		CardMove move = new CardMove();
+		move.setTarget(game.getSpaces().get(index));
+		move.setText("Move to!" + game.getSpaces().get(index).getName());
+		cards.add(move);
+
+		CardMove move1 = new CardMove();
+		move.setTarget(game.getSpaces().get(index));
+		move.setText("Move to!" + game.getSpaces().get(index).getName());
+		cards.add(move1);
+
+		CardMove move2 = new CardMove();
+		move.setTarget(game.getSpaces().get(index));
+		move.setText("Move to!" + game.getSpaces().get(index).getName());
+		cards.add(move2);
+
+		CardMove move3 = new CardMove();
+		move.setTarget(game.getSpaces().get(index));
+		move.setText("Move to!" + game.getSpaces().get(index).getName());
+		cards.add(move3);
+
 		PayTax tax = new PayTax();
 		tax.setText("Pay 10% income tax!");
 		cards.add(tax);
-		
-		CardReceiveMoneyFromBank b = new CardReceiveMoneyFromBank();
-		b.setText("You receive 100$ from the bank.");
-		b.setAmount(100);
-		cards.add(b);
 
+		CardReceiveMoneyFromBank moneyBankA= new CardReceiveMoneyFromBank();
+		moneyBankA.setText(" You receive 300$ from the bank.");
+		moneyBankA.setAmount(300);
+		cards.add(moneyBankA);
 
-		game.setCardDeck(cards);
+		CardReceiveMoneyFromBank moneyBankB = new CardReceiveMoneyFromBank();
+		moneyBankB.setText("You won 500 bucks from your lottery ticket. You receive 100$.");
+		moneyBankB.setAmount(500);
+		cards.add(moneyBankB);
+
+		CardReceiveMoneyFromBank moneyBankC = new CardReceiveMoneyFromBank();
+		moneyBankC.setText("You sold your Bitcoins! You receive 4000$ from the bank!");
+		moneyBankC.setAmount(4000);
+		cards.add(moneyBankC);
+
+		CardMonopolyLegat monopolyLegat = new CardMonopolyLegat();
+		monopolyLegat.setText("You've been chosen for the monopolylegat. If your balance is under 1000$, you will receive 4000$");
+		monopolyLegat.setAmount(4000);
+		cards.add(monopolyLegat);
+
+		CardReiceveMoneyFromPlayer bDay = new CardReiceveMoneyFromPlayer();
+		bDay.setText("Its your birthday, you recieve 500$ from all the other players");
+		bDay.setAmount(500);
+		cards.add(bDay);
+
+		CardPayMoneyToBank carFix = new CardPayMoneyToBank();
+		carFix.setText("Your car broke down. You'll have to pay 3000$ in repairs");
+		carFix.setAmount(3000);
+		cards.add(carFix);
 
 		return game;
+
 	}
 
 	/**
