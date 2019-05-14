@@ -8,7 +8,6 @@ public class Soda extends Property {
      * not be developed with houses or hotels.
      *
      * @author Ekkart Kindler, ekki@dtu.dk
-     *
      */
     public class Sodas extends Property {
 
@@ -17,20 +16,24 @@ public class Soda extends Property {
         // der skal kaldes i doAction i Property-klassen.
 
         // for computing rent of sodas
+
         @Override
-        public int computeRent(GameController controller, Property property) {
+        public int computeRent(GameController controller) {
+            int count = 0;
             int rent;
-
-            if (getOwner().getOwnedCards().contains("Tuborg") &&
-                    getOwner().getOwnedCards().contains("Carlsberg")) {
-
-                rent = (( controller.getDie1()+ controller.getDie2()) * 200);
+            for (Property property : getOwner().getOwnedProperties()) {
+                if (property instanceof Soda) {
+                    count++;
+                }
+            }
+            if (count == 2) {
+                rent = ((controller.getDie1() + controller.getDie2()) * 200);
 
             } else {
-                rent = ((controller.getDie1()+controller.getDie2()) * 100);
+                rent = ((controller.getDie1() + controller.getDie2()) * 100);
             }
+
             return rent;
         }
     }
-
 }

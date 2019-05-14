@@ -114,29 +114,29 @@ public class Property extends Space {
 		} else if (!owner.equals(player)) {
 			// TODO also check whether the property is mortgaged
 			// Andreas
+			// if(property.isPawned){ return}
+			// isPawned skal vi have i metoden obtainCash? sætter isPawned til true hvis feltet er pawned.
+
+
 
 
 		}else{
 			// polymorfisk kald: del utility op og kald alle metoderne det samme, som de overwriter herfra
 			// kald det eks computeRent.
-			player.payMoney(property.computeRent);
-			owner.receiveMoney(controller.computeRent);
-			if()
-			// TODO the computation of the actual rent could be delegated
-			//      the subclasses of Property, which can take the specific
-			//      individual conditions into account. Note that the
-			//      groups of properties (which are not part of the model
-			//      yet also need to be taken into account).
-
-
+			// se op på om computeRent kaldes polymorfisk eller der skal tre if'er til for at se
+			// hvilket objekt metoden kaldes på/ hvilken type felt spilleren er på.
+			player.payMoney(computeRent());
+			owner.receiveMoney(computeRent());
 
 		}
 	}
-	//Andreas - abstract klasse vi overskriver i de tre childklasser.
-//	public int computeRent(GameController gameController, Property property);
-
-
-
-
+	//Andreas - metode vi overskriver i de tre child-klasser. atm er den overloaded så Soda kan
+	// have controller som parameter, så sikr at den kaldes på det rigtige objekt i doAction.
+	public int computeRent(){
+		return 0;
+	}
+	public int computeRent(GameController controller){
+		return 0;
+	}
 }
 

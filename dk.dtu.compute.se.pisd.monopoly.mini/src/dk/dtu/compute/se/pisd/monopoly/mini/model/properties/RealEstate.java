@@ -45,7 +45,7 @@ public class RealEstate extends Property {
         notifyChange();
     }
 
-
+    @Override
     public int computeRent() {
         if (getHouses() == 0) {
             newRent = getRent();

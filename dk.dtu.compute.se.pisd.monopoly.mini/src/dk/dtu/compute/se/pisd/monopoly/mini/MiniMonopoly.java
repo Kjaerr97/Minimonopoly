@@ -70,7 +70,7 @@ public class MiniMonopoly {
 		f.setName("Øresund");
 		f.setCost(4000);
 		f.setRent(500);
-		p.setColorGroup(ColorGroup.blue);
+		f.setColorGroup(ColorGroup.blue);
 		game.addSpace(f);
 
 		p = new RealEstate();
@@ -110,11 +110,11 @@ public class MiniMonopoly {
 		game.addSpace(p);
 
 		Soda s = new Soda();
-		p.setName("Coca-Cola Tapperi");
-		p.setCost(3000);
-		p.setRent(300);
-		p.setColorGroup(ColorGroup.darkgreen);
-		game.addSpace(p);
+		s.setName("Tuborg");
+		s.setCost(3000);
+		s.setRent(300);
+		s.setColorGroup(ColorGroup.darkgreen);
+		game.addSpace(s);
 		
 		p = new RealEstate();
 		p.setName("Bülowsvej");
@@ -138,7 +138,7 @@ public class MiniMonopoly {
 		f.setName("D.F.D.S.");
 		f.setCost(4000);
 		f.setRent(200);
-		p.setColorGroup(ColorGroup.blue);
+		f.setColorGroup(ColorGroup.blue);
 		game.addSpace(f);
 
 		p = new RealEstate();
@@ -199,7 +199,7 @@ public class MiniMonopoly {
 		f.setName("Ø.S.");
 		f.setCost(4000);
 		f.setRent(500);
-		p.setColorGroup(ColorGroup.blue);
+		f.setColorGroup(ColorGroup.blue);
 		game.addSpace(f);
 
 		p = new RealEstate();
@@ -218,10 +218,11 @@ public class MiniMonopoly {
 
 
 
+		s = new Soda();
 		s.setName("Carlsberg");
 		s.setCost(3000);
 		s.setRent(400);
-		p.setColorGroup(ColorGroup.darkgreen);
+		s.setColorGroup(ColorGroup.darkgreen);
 		game.addSpace(s);
 
 		p = new RealEstate();
@@ -340,8 +341,8 @@ public class MiniMonopoly {
 		cards.add(moneyBankC);
 
 		CardMonopolyLegat monopolyLegat = new CardMonopolyLegat();
-		monopolyLegat.setText("You've been chosen for the monopolylegat. If your balance is under 1000$, you will receive 4000$");
-		monopolyLegat.setAmount(4000);
+		monopolyLegat.setText("You've been chosen for the monopolylegat. If your balance is under 15000$, you will receive 40000$");
+		monopolyLegat.setAmount(40000);
 		cards.add(monopolyLegat);
 
 		CardReceiveMoneyFromPlayer bDay = new CardReceiveMoneyFromPlayer();
