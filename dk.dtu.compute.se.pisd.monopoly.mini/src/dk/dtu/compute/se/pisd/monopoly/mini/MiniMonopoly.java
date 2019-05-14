@@ -343,7 +343,7 @@ public class MiniMonopoly {
 		monopolyLegat.setAmount(4000);
 		cards.add(monopolyLegat);
 
-		CardReiceveMoneyFromPlayer bDay = new CardReiceveMoneyFromPlayer();
+		CardReceiveMoneyFromPlayer bDay = new CardReceiveMoneyFromPlayer();
 		bDay.setText("Its your birthday, you recieve 500$ from all the other players");
 		bDay.setAmount(500);
 		cards.add(bDay);
