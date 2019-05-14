@@ -1,5 +1,6 @@
 package dk.dtu.compute.se.pisd.monopoly.mini.model.properties;
 
+import dk.dtu.compute.se.pisd.monopoly.mini.controller.GameController;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.Property;
 
 /**
@@ -52,8 +53,9 @@ public class RealEstate extends Property {
         notifyChange();
     }
 
-//@s185034
-    public int computeRent() {
+
+    @Override
+    public int computeRent(GameController gameController, Property property) {
         switch (houses) {
             case 1:
                 baseRent = baseRent + (baseRent / 4);
