@@ -49,8 +49,22 @@ public class  GameController {
 	private Database database;
 
 	//private PlayerPanel playerpanel;
-	
-    private boolean disposed = false;
+
+	private boolean disposed = false;
+
+	// Andreas - sat fields her så terninger kan tilgås i utilityklassen
+	private int die1;
+	private int die2;
+
+	public int getDie1() {
+		return die1;
+	}
+	public int getDie2(){
+		return die2;
+	}
+
+
+	private boolean disposed = false;
 	
 	/**
 	 * Constructor for a controller of a game.
