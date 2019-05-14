@@ -9,10 +9,10 @@ public class Ferry extends Property {
 
 
 
-    @Override
+
     public int computeRent(GameController gameController, Property property) {
         int rent;
-        switch
+       // switch
 // kald getcolorGroup og lav switch på case 1 return 500, case 2 return 1000 osv.
 
         return 0;

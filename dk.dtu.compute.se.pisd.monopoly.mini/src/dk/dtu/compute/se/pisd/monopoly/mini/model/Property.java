@@ -11,7 +11,7 @@ import dk.dtu.compute.se.pisd.monopoly.mini.model.properties.RealEstate;
  * @author Ekkart Kindler, ekki@dtu.dk
  *
  */
-public abstract class Property extends Space {
+public class Property extends Space {
 
 	private int cost;
 	private int rent;
@@ -120,7 +120,7 @@ public abstract class Property extends Space {
 			// polymorfisk kald: del utility op og kald alle metoderne det samme, som de overwriter herfra
 			// kald det eks computeRent.
 			player.payMoney(property.computeRent);
-			owner.receiveMoney(controller.compureRent);
+			owner.receiveMoney(controller.computeRent);
 			if()
 			// TODO the computation of the actual rent could be delegated
 			//      the subclasses of Property, which can take the specific
@@ -133,7 +133,7 @@ public abstract class Property extends Space {
 		}
 	}
 	//Andreas - abstract klasse vi overskriver i de tre childklasser.
-	public abstract int computeRent(GameController gameController, Property property);
+//	public int computeRent(GameController gameController, Property property);
 
 
 

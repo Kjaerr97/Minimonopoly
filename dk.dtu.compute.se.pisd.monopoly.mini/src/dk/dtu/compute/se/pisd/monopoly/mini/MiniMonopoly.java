@@ -5,7 +5,9 @@ import dk.dtu.compute.se.pisd.monopoly.mini.controller.GameController;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.*;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.cards.*;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.exceptions.GameEndedException;
+import dk.dtu.compute.se.pisd.monopoly.mini.model.properties.Ferry;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.properties.RealEstate;
+import dk.dtu.compute.se.pisd.monopoly.mini.model.properties.Soda;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.properties.Utility;
 
 
@@ -64,12 +66,12 @@ public class MiniMonopoly {
 		t.setName("Pay tax (10% on Cash)");
 		game.addSpace(t);
 
-		Utility s = new Utility();
-		s.setName("Øresund");
-		s.setCost(4000);
-		s.setRent(500);
+		Ferry f = new Ferry();
+		f.setName("Øresund");
+		f.setCost(4000);
+		f.setRent(500);
 		p.setColorGroup(ColorGroup.blue);
-		game.addSpace(s);
+		game.addSpace(f);
 
 		p = new RealEstate();
 		p.setName("Roskildevej");
@@ -106,8 +108,8 @@ public class MiniMonopoly {
 		p.setRent(200);
 		p.setColorGroup(ColorGroup.green);
 		game.addSpace(p);
-		
-		p = new RealEstate();
+
+		Soda s = new Soda();
 		p.setName("Coca-Cola Tapperi");
 		p.setCost(3000);
 		p.setRent(300);
@@ -132,12 +134,12 @@ public class MiniMonopoly {
 		 * @Markus s174879 resten af felterne nedenfor.
 		 */
 
-		s = new Utility();
-		s.setName("D.F.D.S.");
-		s.setCost(4000);
-		s.setRent(200);
+		f = new Ferry();
+		f.setName("D.F.D.S.");
+		f.setCost(4000);
+		f.setRent(200);
 		p.setColorGroup(ColorGroup.blue);
-		game.addSpace(s);
+		game.addSpace(f);
 
 		p = new RealEstate();
 		p.setName("Bernstorffsvej");
@@ -193,12 +195,12 @@ public class MiniMonopoly {
 		p.setColorGroup(ColorGroup.red);
 		game.addSpace(p);
 
-		s = new Utility();
-		s.setName("Ø.S.");
-		s.setCost(4000);
-		s.setRent(500);
+		f = new Ferry();
+		f.setName("Ø.S.");
+		f.setCost(4000);
+		f.setRent(500);
 		p.setColorGroup(ColorGroup.blue);
-		game.addSpace(s);
+		game.addSpace(f);
 
 		p = new RealEstate();
 		p.setName("Bredgade");
@@ -214,7 +216,8 @@ public class MiniMonopoly {
 		p.setColorGroup(ColorGroup.white);
 		game.addSpace(p);
 
-		s = new Utility();
+
+
 		s.setName("Carlsberg");
 		s.setCost(3000);
 		s.setRent(400);
@@ -257,12 +260,12 @@ public class MiniMonopoly {
 		p.setColorGroup(ColorGroup.yellow);
 		game.addSpace(p);
 
-		s = new Utility();
-		s.setName("Bornholm");
-		s.setCost(4000);
-		s.setRent(500);
+		f = new Ferry();
+		f.setName("Bornholm");
+		f.setCost(4000);
+		f.setRent(500);
 		p.setColorGroup(ColorGroup.blue);
-		game.addSpace(s);
+		game.addSpace(f);
 
 		chance = new Chance();
 		chance.setName("Chance");

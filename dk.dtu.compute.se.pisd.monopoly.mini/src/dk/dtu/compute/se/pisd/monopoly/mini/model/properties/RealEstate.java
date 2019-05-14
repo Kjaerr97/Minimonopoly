@@ -45,24 +45,31 @@ public class RealEstate extends Property {
         notifyChange();
     }
 
-//@s185034
-public int computeRent() {
-    switch (houses) {
-        case 1:
-            newRent = getRent() + (getRent() / 4);
-            break;
-        case 2:
-            newRent = getRent() + ((getRent() / 4) * 2);
-            break;
-        case 3:
-            newRent = getRent() + ((getRent() / 4) * 3);
-            break;
-        case 4:
-            newRent = getRent() + (getRent());
-            break;
+
+    public int computeRent() {
+        if (getHouses() == 0) {
+            newRent = getRent();
+
+        } else if (getHouses() >= 1) {
+            switch (getHouses()) {
+                case 1:
+                    newRent = getRent() * 5;
+                    break;
+                case 2:
+                    newRent = getRent() * 12;
+                    break;
+                case 3:
+                    newRent = getRent() * 26;
+                    break;
+                case 4:
+                    newRent = getRent() * 34;
+                    break;
+            }
+        } else {
+            newRent = getRent() * 40;
+        }
+        return newRent;
     }
-    return newRent;
-}
 }
 
 
