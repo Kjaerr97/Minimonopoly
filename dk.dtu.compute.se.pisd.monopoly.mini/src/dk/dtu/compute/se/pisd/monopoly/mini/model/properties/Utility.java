@@ -9,8 +9,8 @@ import dk.dtu.compute.se.pisd.monopoly.mini.model.Property;
  * @author Ekkart Kindler, ekki@dtu.dk
  *
  */
-public class Utility extends Property {
+public class Ferry extends Property {
 	
-	// TODO to be implemented
+	
 
 }
