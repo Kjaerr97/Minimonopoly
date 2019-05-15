@@ -64,7 +64,7 @@ public class  GameController {
 	}
 
 
-	private boolean disposed = false;
+	//private boolean disposed = false;
 	
 	/**
 	 * Constructor for a controller of a game.
@@ -520,7 +520,11 @@ public class  GameController {
 
 		player.setBalance(0);
 		player.setBroke(true);
-		
+
+		for (Property property: player.getOwnedProperties()) {
+			if (property instanceof RealEstate)
+				((RealEstate) property).setHouses(0);
+		}
 		// TODO we also need to remove the houses and the mortgage from the properties 
 
 		for (Property property: player.getOwnedProperties()) {
