@@ -173,28 +173,30 @@ public class  GameController {
 	 * @param player the player making the move
 	 * @throws PlayerBrokeException if the player goes broke during the move
 	 */
+	// Andreas - ændret så terningerne kan tilgås i Soda-klassen og muligt at købe sig ud af fængsel
 	public void makeMove(Player player) throws PlayerBrokeException {
 
 		boolean castDouble;
 		int doublesCount = 0;
 		do {
-			// TODO right now the dice are limited to the numbers 1, 2 and 3
-			// for making the game faster. Eventually, this should be set
-			// to 1 - 6 again (to this end, the constants 3.0 below should
-			// be set to 6.0 again.
 			die1 = (int) (1 + 6.0*Math.random());
 			die2 = (int) (1 + 6.0*Math.random());
 			castDouble = (die1 == die2);
 			gui.setDice(die1, die2);
-			
+			if(player.isInPrison()){
+				String selection = gui.getUserSelection("Would you like to pay 1000$ to get out of prison?",
+						"yes", "no");
+				if (selection.equals("yes")){
+					player.payMoney(1000);
+					player.setInPrison(false);
+			    }
+			}
 			if (player.isInPrison() && castDouble) {
 				player.setInPrison(false);
 				gui.showMessage("Player " + player.getName() + " leaves prison now since he cast a double!");
 			} else if (player.isInPrison()) {
 				gui.showMessage("Player " + player.getName() + " stays in prison since he did not cast a double!");
 			}
-			// TODO note that the player could also pay to get out of prison,
-			//      which is not yet implemented 
 			if (castDouble) {
 				doublesCount++;
 				if (doublesCount > 2) {
@@ -234,11 +236,9 @@ public class  GameController {
 		player.setCurrentPosition(space);
 
 		if (posOld > player.getCurrentPosition().getIndex()) {
-			// Note that this assumes that the game has more than 12 spaces here!
-			// TODO: the amount of 2000$ should not be a fixed constant here (could also
-			//       be configured in the Game class.
-			gui.showMessage("Player " + player.getName() + " receives 2000$ for passing Go!");
-			this.paymentFromBank(player, 2000);
+
+			gui.showMessage("Player " + player.getName() + " receives 4000$ for passing Go!");
+			this.paymentFromBank(player, 4000);
 		}		
 		gui.showMessage("Player " + player.getName() + " arrives at " + space.getIndex() + ": " +  space.getName() + ".");
 		
@@ -253,9 +253,7 @@ public class  GameController {
 	 * @param player the player going to jail
 	 */
 	public void gotoJail(Player player) {
-		// Field #10 is in the default game board of Monopoly the field
-		// representing the prison.
-		// TODO the 10 should not be hard coded
+
 		player.setCurrentPosition(game.getSpaces().get(10));
 		player.setInPrison(true);
 	}
@@ -300,8 +298,24 @@ public class  GameController {
 	 * @param player the player
 	 * @param amount the amount the player should have available after the act
 	 */
+	// Andreas
 	public void obtainCash(Player player, int amount) {
 		// TODO implement
+		String selection = gui.getUserSelection("You must free at least " + amount +
+				                                "$ to move on with your move. Would you like to " +
+				                                " sell houses, mortgage properties or sell properties?" ,
+				                                " Sell houses",
+				                                "Mortgage properties", "Sell properties", "None of above" );
+		if(selection.equals("Sell houses")){
+
+		} else if(selection.equals("Mortgage properties")){
+
+		} else if(selection.equals("Sell properties")){
+
+
+		} else{
+			return;
+
 	}
 	
 	/**
