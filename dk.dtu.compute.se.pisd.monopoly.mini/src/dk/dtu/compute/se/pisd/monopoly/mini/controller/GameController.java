@@ -154,11 +154,12 @@ public class  GameController {
 				if(selecter.equals("Finish turn")){
 					return;
 				} else if(selecter.equals("Sell/buy houses")){
+					// hvilke huse osv. kan det gøres med mere end et hus ad gangen`?
 
 				}else if(selecter.equals("Trade others")){
 
 				}else if(selecter.equals("Mortgage properties")){
-					
+
 				}
 
 
@@ -326,17 +327,29 @@ public class  GameController {
 				                                " Sell houses",
 				                                "Mortgage properties", "Sell properties", "None of above" );
 		if(selection.equals("Sell houses")){
+			// tilgå en rigtig property??
+
+
+
 
 		} else if(selection.equals("Mortgage properties")) {
-
+// kan String herunder på nogen måde ændres til property type?
 			String propertySelection = gui.getUserString("Choose which property to mortgage");
 			// dette er et string object og skal convertes til at propertyobject?
+			for(int i=0; i<40; i++)
+			if(game.getSpaces().get(i).getName().equals(propertySelection)) {
+
+
+			}
+
 			if (player.getOwnedProperties().contains(propertySelection)) {// og den ikke er mortgaged
 				gui.showMessage("You mortgage " + propertySelection + " and receive ?");
+				player.getOwnedProperties()
 
 
 				//.setMortgaged(true);
 				// player.paymentFromBank(property.getprice/2
+			}
 			} else {
 				gui.showMessage("");
 
@@ -375,7 +388,11 @@ public class  GameController {
 				" for " + property.getCost() + "$?",
 				"yes",
 				"no");
-
+// Andreas. added mulighed for at obtaine cash hvis man vælger ja men alligevel ikke har råd. i så
+		// fald skal der jo ikke komme en playbrokeException hvis man kan sælge andre ting.
+		if(choice.equals("yes") && property.getCost() > player.getBalance()){
+			this.obtainCash(player,property.getCost());
+		}
         if (choice.equals("yes")) {
     		try {
     			paymentToBank(player, property.getCost());

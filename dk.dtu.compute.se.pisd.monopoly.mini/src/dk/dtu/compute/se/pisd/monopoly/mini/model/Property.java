@@ -126,7 +126,7 @@ public class Property extends Space {
 		} else if (!owner.equals(player)) {
 			// TODO also check whether the property is mortgaged
 			// Andreas
-			if (this.isMortgaged()) {
+			if (this.isMortgaged()){
 				gui.showMessage("Property is mortgaged");
 			}
 		} else {
