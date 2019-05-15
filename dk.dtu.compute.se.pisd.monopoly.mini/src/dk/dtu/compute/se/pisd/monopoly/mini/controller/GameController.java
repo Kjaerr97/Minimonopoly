@@ -145,6 +145,24 @@ public class  GameController {
 				}
 
 				// TODO offer all players the options to trade etc.
+			    // Andreas - jeg giver kun currentplayer mulighed for at handle
+			    // dels fordi reglerne er sådan og dels fordi det ville tage for lang tid
+			    // hvis hver spiller skulle tage stilling efter hver eneste tur.
+			       String selecter = gui.getUserSelection("What would you like to do?" ,
+						                                  "Finish turn", "Sell/buy houses",
+						                                           "Trade others", "Mortgage properties");
+				if(selecter.equals("Finish turn")){
+					return;
+				} else if(selecter.equals("Sell/buy houses")){
+
+				}else if(selecter.equals("Trade others")){
+
+				}else if(selecter.equals("Mortgage properties")){
+					
+				}
+
+
+
 
 				current = (current + 1) % players.size();
 				game.setCurrentPlayer(players.get(current));
@@ -164,7 +182,7 @@ public class  GameController {
 	}
 
 	/**
-	 * This method implements a activity of asingle move of the given player.
+	 * This method implements a activity of a single move of the given player.
 	 * It throws a {@link dk.dtu.compute.se.pisd.monopoly.mini.model.exceptions.PlayerBrokeException}
 	 * if the player goes broke in this move. Note that this is still a very
 	 * basic implementation of the move of a player; many aspects are still
@@ -301,6 +319,7 @@ public class  GameController {
 	// Andreas
 	public void obtainCash(Player player, int amount) {
 		// TODO implement
+		while(player.getBalance() < amount){
 		String selection = gui.getUserSelection("You must free at least " + amount +
 				                                "$ to move on with your move. Would you like to " +
 				                                " sell houses, mortgage properties or sell properties?" ,
@@ -308,7 +327,24 @@ public class  GameController {
 				                                "Mortgage properties", "Sell properties", "None of above" );
 		if(selection.equals("Sell houses")){
 
-		} else if(selection.equals("Mortgage properties")){
+		} else if(selection.equals("Mortgage properties")) {
+
+			String propertySelection = gui.getUserString("Choose which property to mortgage");
+			// dette er et string object og skal convertes til at propertyobject?
+			if (player.getOwnedProperties().contains(propertySelection)) {// og den ikke er mortgaged
+				gui.showMessage("You mortgage " + propertySelection + " and receive ?");
+
+
+				//.setMortgaged(true);
+				// player.paymentFromBank(property.getprice/2
+			} else {
+				gui.showMessage("");
+
+			}
+		}
+
+
+		} player.getOwnedProperties().contains()
 
 		} else if(selection.equals("Sell properties")){
 

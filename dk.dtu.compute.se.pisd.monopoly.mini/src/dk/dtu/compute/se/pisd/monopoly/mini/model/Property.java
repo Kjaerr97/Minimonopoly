@@ -4,6 +4,7 @@ import dk.dtu.compute.se.pisd.monopoly.mini.MiniMonopoly;
 import dk.dtu.compute.se.pisd.monopoly.mini.controller.GameController;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.exceptions.PlayerBrokeException;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.properties.RealEstate;
+import gui_main.GUI;
 
 /**
  * A property which is a space that can be owned by a player.
@@ -19,6 +20,17 @@ public class Property extends Space {
 
 	private boolean groupOwned = false;
 	private ColorGroup colorGroup;
+// Andreas. tiføjet pantsat som kan tilgås ved setteren.
+	private GUI gui = new GUI();
+	private boolean isMortgaged = false;
+
+	public boolean isMortgaged() {
+		return isMortgaged;
+	}
+
+	public void setMortgaged(boolean mortgaged) {
+		isMortgaged = mortgaged;
+	}
 
 	/**
 	 * @Aurthor Sascha s171281
@@ -114,13 +126,10 @@ public class Property extends Space {
 		} else if (!owner.equals(player)) {
 			// TODO also check whether the property is mortgaged
 			// Andreas
-			// if(property.isPawned){ return}
-			// isPawned skal vi have i metoden obtainCash? sætter isPawned til true hvis feltet er pawned.
-
-
-
-
-		}else{
+			if (this.isMortgaged()) {
+				gui.showMessage("Property is mortgaged");
+			}
+		} else {
 			// polymorfisk kald: del utility op og kald alle metoderne det samme, som de overwriter herfra
 			// kald det eks computeRent.
 			// se op på om computeRent kaldes polymorfisk eller der skal tre if'er til for at se
