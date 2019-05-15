@@ -255,7 +255,6 @@ public class  GameController {
 	public void gotoJail(Player player) {
 		// Field #10 is in the default game board of Monopoly the field
 		// representing the prison.
-		// TODO the 10 should not be hard coded
 		player.setCurrentPosition(game.getSpaces().get(10));
 		player.setInPrison(true);
 	}
