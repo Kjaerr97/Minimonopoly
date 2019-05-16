@@ -233,8 +233,9 @@ public class  GameController {
 				}
 			}
 		} while (castDouble);
-		//ikke sikkert det virker
-		database.saveGame(game);
+		//Virker sgu nok, men der skal lige styr på vores database først.
+		
+		//database.saveGame(game);
 
 	}
 
