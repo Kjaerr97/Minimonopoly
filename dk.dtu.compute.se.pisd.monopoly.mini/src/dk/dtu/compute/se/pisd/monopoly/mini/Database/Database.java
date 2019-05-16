@@ -49,6 +49,8 @@ public class Database implements IGameDAO {
             game.setPlayers(listOfPlayer);
 
 
+
+
         } catch (SQLException e){
             e.printStackTrace();
         }
