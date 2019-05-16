@@ -371,15 +371,18 @@ public class MiniMonopoly {
 	 * @author s185034, s185466
 	 */
 	public static void createPlayers (Game game) {
-		
-		for (int i=0; i <= game.getPlayers().size(); i++){
+		Object[] choices = {2,3,4};
+		int input = (int) JOptionPane.showInputDialog(null, "How many players do you wish to play",
+				"Players", JOptionPane.QUESTION_MESSAGE, null, choices, 2);
+
+		for (int i=0; i <= input; i++) {
 			String name = JOptionPane.showInputDialog(null,
-					"Please enter your name","Name",JOptionPane.QUESTION_MESSAGE);
+					"Please enter your name", "Name", JOptionPane.QUESTION_MESSAGE);
 			Player p = new Player();
 			p.setName(name);
 			p.setCurrentPosition(game.getSpaces().get(0));
 
-			switch (i+1){
+			switch (i + 1) {
 
 				case 1:
 					p.setColor(Color.BLUE);
@@ -404,6 +407,8 @@ public class MiniMonopoly {
 			game.addPlayer(p);
 			i++;
 
+		}
+
 /*
 			 p.setColor(colorlist.get(i)); //colorlist kommer
 			 p.setColor(randomColor); // måske virker dette? - Rasmus
@@ -416,7 +421,6 @@ public class MiniMonopoly {
 			 */
 		}
 
-	}
 
 	/**
 	 * The main method which creates a game, shuffles the chance
