@@ -313,7 +313,7 @@ public class  GameController {
 	 * @param player the player
 	 * @param amount the amount the player should have available after the act
 	 */
-	// Andreas
+
 	public void obtainCash(Player player, int amount) {
 		// TODO implement
 		while (player.getBalance() < amount) {
@@ -328,15 +328,15 @@ public class  GameController {
 
 
 			} else if (selection.equals("Mortgage properties")) {
-// kan String herunder på nogen måde ændres til property type?
+
 				String propertySelection = gui.getUserString("Choose which property to mortgage");
 				// dette er et string object og skal convertes til at propertyobject?
-				for (int i = 0; i < 40; i++)
-					if (game.getSpaces().get(i).getName().equals(propertySelection)) {
-
-
-					}
-
+			//	for (int i = 0; i < 40; i++)
+				//	if (game.getSpaces().get(i).getName().equals(propertySelection)) {
+					//}
+// giv ham grundene i en dropdown og lad ham vælge den rigtige grund derfra. se slide og brug en toString.
+				// fordi de objekter vi giver krypteres og ikke kan læses. derfra gives det rigtige property-objekt
+				// tilbage.
 				if (player.getOwnedProperties().contains(propertySelection)) {// og den ikke er mortgaged
 					gui.showMessage("You mortgage " + propertySelection + " and receive ?");
 					player.getOwnedProperties();

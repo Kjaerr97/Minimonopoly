@@ -6,6 +6,8 @@ import dk.dtu.compute.se.pisd.monopoly.mini.model.exceptions.PlayerBrokeExceptio
 import dk.dtu.compute.se.pisd.monopoly.mini.model.properties.RealEstate;
 import gui_main.GUI;
 
+import javax.swing.*;
+
 /**
  * A property which is a space that can be owned by a player.
  *
@@ -21,9 +23,11 @@ public class Property extends Space {
 	private boolean groupOwned = false;
 	private ColorGroup colorGroup;
 // Andreas. tiføjet pantsat som kan tilgås ved setteren.
-	private GUI gui = new GUI();
-	private boolean isMortgaged = false;
 
+	// private GUI gui = new GUI(); //
+
+	private boolean isMortgaged = false;
+// find brug
 	public boolean isMortgaged() {
 		return isMortgaged;
 	}
@@ -127,7 +131,7 @@ public class Property extends Space {
 			// TODO also check whether the property is mortgaged
 			// Andreas
 			if (this.isMortgaged()){
-				gui.showMessage("Property is mortgaged");
+				// Skriv at den er mortgaged og gå blot videre. 
 			}
 		} else {
 			// polymorfisk kald: del utility op og kald alle metoderne det samme, som de overwriter herfra

@@ -365,7 +365,6 @@ public class MiniMonopoly {
 	/**
 	 *
 	 * @param game
-	 * @param players
 	 * @author s185034, s185466
 	 */
 	public static void createPlayers (Game game) {
