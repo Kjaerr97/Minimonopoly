@@ -421,6 +421,7 @@ public class  GameController {
 	 *
      * @param property the property which is for auction
      * @GruppeF made this method (class assignment 2)
+	 * @author Markus, Andreas P.
      */
 	public Player auction(Property property) {
 		// Creates new ArrayList called bidders.
@@ -493,6 +494,10 @@ public class  GameController {
 		brokePlayer.setBalance(0);
 		brokePlayer.setBroke(true);
 
+		/**
+		 * @author Markus s174879
+		 */
+
 		for (Property property: brokePlayer.getOwnedProperties()){
 			if (property instanceof RealEstate) {
 				((RealEstate) property).setHouses(0);
@@ -528,6 +533,10 @@ public class  GameController {
 
 		player.setBalance(0);
 		player.setBroke(true);
+
+		/**
+		 * @author Markus s174879
+		 */
 
 		for (Property property: player.getOwnedProperties()) {
 			if (property instanceof RealEstate) {
