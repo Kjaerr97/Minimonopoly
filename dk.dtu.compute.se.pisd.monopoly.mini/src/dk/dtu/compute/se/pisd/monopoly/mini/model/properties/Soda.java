@@ -17,7 +17,7 @@ public class Soda extends Property {
 
         // for computing rent of sodas
 
-        @Override
+
         public int computeRent(GameController controller) {
             int count = 0;
             int rent;

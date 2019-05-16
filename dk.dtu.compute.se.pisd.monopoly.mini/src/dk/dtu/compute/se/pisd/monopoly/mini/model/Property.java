@@ -123,8 +123,7 @@ public class Property extends Space {
 		notifyChange();
 	}
 
-	@Override
-	public void doAction(GameController controller, Player player) throws PlayerBrokeException {
+		public void doAction(GameController controller, Player player) throws PlayerBrokeException {
 		if (owner == null) {
 			controller.offerToBuy(this, player);
 		} else if (!owner.equals(player)) {

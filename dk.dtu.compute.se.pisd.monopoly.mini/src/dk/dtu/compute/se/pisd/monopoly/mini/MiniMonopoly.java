@@ -351,6 +351,8 @@ public class MiniMonopoly {
 		carFix.setText("Your car broke down. You'll have to pay 3000$ in repairs");
 		carFix.setAmount(3000);
 		cards.add(carFix);
+		
+		game.setCardDeck(cards);
 
 		return game;
 

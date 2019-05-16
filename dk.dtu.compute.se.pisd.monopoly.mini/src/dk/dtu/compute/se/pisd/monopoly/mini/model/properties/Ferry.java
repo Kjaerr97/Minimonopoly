@@ -8,7 +8,7 @@ public class Ferry extends Property {
 
 
     // for computing rent of ferries based on amount of ferries owned.
-    @Override
+
     public int computeRent() {
         int count = 0;
         int rent = 0;
