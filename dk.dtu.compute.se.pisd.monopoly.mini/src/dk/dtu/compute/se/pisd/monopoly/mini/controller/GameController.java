@@ -395,10 +395,6 @@ public class  GameController {
 		}
 		player.addOwnedProperty(property);
 		property.setOwner(player);
-		//TODO: Test, this should be fixed
-		if(property instanceof RealEstate){
-		((RealEstate)property).setHouses(1);
-		}
 		return;
 		}
         

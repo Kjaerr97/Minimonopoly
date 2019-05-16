@@ -131,23 +131,22 @@ public class Property extends Space {
 			// TODO also check whether the property is mortgaged
 			// Andreas
 			if (this.isMortgaged()){
-				// Skriv at den er mortgaged og gå blot videre. 
+				// Skriv at den er mortgaged og gå blot videre.
 			}
 		} else {
 			// polymorfisk kald: del utility op og kald alle metoderne det samme, som de overwriter herfra
 			// kald det eks computeRent.
 			// se op på om computeRent kaldes polymorfisk eller der skal tre if'er til for at se
 			// hvilket objekt metoden kaldes på/ hvilken type felt spilleren er på.
-			player.payMoney(computeRent());
-			owner.receiveMoney(computeRent());
+			player.payMoney(computeRent(controller));
+			owner.receiveMoney(computeRent(controller));
 
 		}
 	}
 	//Andreas - metode vi overskriver i de tre child-klasser. atm er den overloaded så Soda kan
 	// have controller som parameter, så sikr at den kaldes på det rigtige objekt i doAction.
-	public int computeRent(){
-		return 0;
-	}
+// lige nu udskrives nok kun 0 fordi den kalder denne metode. sikr dig at den kalder underklassernes metode.
+	// det kan du teste når vi kommer dertil.
 	public int computeRent(GameController controller){
 		return 0;
 	}
