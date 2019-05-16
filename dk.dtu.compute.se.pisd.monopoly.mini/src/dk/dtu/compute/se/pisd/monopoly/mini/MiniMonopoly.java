@@ -215,8 +215,6 @@ public class MiniMonopoly {
 		p.setColorGroup(ColorGroup.white);
 		game.addSpace(p);
 
-
-
 		s = new Soda();
 		s.setName("Carlsberg");
 		s.setCost(3000);
@@ -371,11 +369,12 @@ public class MiniMonopoly {
 	 * @author s185034, s185466
 	 */
 	public static void createPlayers (Game game) {
+
 		Object[] choices = {2,3,4};
 		int input = (int) JOptionPane.showInputDialog(null, "How many players do you wish to play",
 				"Players", JOptionPane.QUESTION_MESSAGE, null, choices, 2);
 
-		for (int i=0; i <= input; i++) {
+		for (int i=1; i <= input; i++) {
 			String name = JOptionPane.showInputDialog(null,
 					"Please enter your name", "Name", JOptionPane.QUESTION_MESSAGE);
 			Player p = new Player();
