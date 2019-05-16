@@ -8,7 +8,7 @@ import dk.dtu.compute.se.pisd.monopoly.mini.model.exceptions.GameEndedException;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.properties.Ferry;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.properties.RealEstate;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.properties.Soda;
-import dk.dtu.compute.se.pisd.monopoly.mini.model.properties.Utility;
+
 
 
 import javax.swing.*;

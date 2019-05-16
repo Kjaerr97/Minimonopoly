@@ -333,6 +333,8 @@ public class  GameController {
 				// dette er et string object og skal convertes til at propertyobject?
 				for (int i = 0; i < 40; i++)
 					if (game.getSpaces().get(i).getName().equals(propertySelection)) {
+						player.getOwnedProperties().
+
 
 
 					}
@@ -346,6 +348,7 @@ public class  GameController {
 					// player.paymentFromBank(property.getprice/2
 				}
 			} else if (selection.equals("Sell properties")) {
+
 
 			} else {
 				return;
@@ -367,9 +370,6 @@ public class  GameController {
 	 * @throws PlayerBrokeException when the player chooses to buy but could not afford it
 	 */
 	public void offerToBuy(Property property, Player player) throws PlayerBrokeException {
-		// TODO We might also allow the player to obtainCash before
-		// the actual offer, to see whether he can free enough cash
-		// for the sale.
 	
 		String choice = gui.getUserSelection(
 				"Player " + player.getName() +
@@ -395,10 +395,7 @@ public class  GameController {
 		}
 		player.addOwnedProperty(property);
 		property.setOwner(player);
-		//TODO: Test, this should be fixed
-		if(property instanceof RealEstate){
-		((RealEstate)property).setHouses(1);
-		}
+
 		return;
 		}
         
