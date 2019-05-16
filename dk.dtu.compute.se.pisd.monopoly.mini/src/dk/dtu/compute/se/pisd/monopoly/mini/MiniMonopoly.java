@@ -405,7 +405,6 @@ public class MiniMonopoly {
 			}
 
 			game.addPlayer(p);
-			i++;
 
 		}
 
@@ -443,7 +442,6 @@ public class MiniMonopoly {
 		gameDAO.loadGame(game, usergameID);
 
 			game.shuffleCardDeck();
-			createPlayers(game);
 			GameController controller = new GameController(game);
 			controller.initializeGUI();
 
