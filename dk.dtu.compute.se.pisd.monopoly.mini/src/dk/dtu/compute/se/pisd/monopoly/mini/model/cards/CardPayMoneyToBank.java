@@ -16,11 +16,11 @@ public class CardPayMoneyToBank extends Card {
         this.amount = amount;
     }
     @Override
-    public void doAction(GameController controller, Player payer) throws PlayerBrokeException {
+    public void doAction(GameController controller, Player player) throws PlayerBrokeException {
         try {
-            controller.paymentToBank(payer,amount);
+            controller.paymentToBank(player,amount);
         } finally {
-            super.doAction(controller, payer);
+            super.doAction(controller, player);
         }
     }
 
