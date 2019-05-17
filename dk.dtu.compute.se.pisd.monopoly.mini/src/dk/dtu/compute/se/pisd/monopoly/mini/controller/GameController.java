@@ -660,8 +660,6 @@ public class  GameController {
 	}
 	public void groupOwned(Property property, Player player) {
 
-		//if(Collections.frequency(player.getOwnedProperties(), property.getColorGroup().);
-
 		int ownedColour = 0;
 		for (Property property1 : player.getOwnedProperties()){
 			if (property.getColorGroup() == property.getColorGroup()) {
