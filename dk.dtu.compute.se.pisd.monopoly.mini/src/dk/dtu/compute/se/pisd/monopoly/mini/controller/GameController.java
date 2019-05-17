@@ -150,7 +150,6 @@ public class  GameController {
 					"Finish turn", "Sell/buy houses",
 					"Trade others", "Mortgage properties");
 			if (selecter.equals("Finish turn")) {
-				return;
 			} else if (selecter.equals("Sell/buy houses")) {
 				// hvilke huse osv. kan det gøres med mere end et hus ad gangen`?
 
