@@ -169,6 +169,14 @@ public class  GameController {
 					String select = gui.getUserSelection("Would you like to buy or sell a house?",
 							"Buy", "Sell");
 					if(select.equals("Buy")){
+						for(Property property : player.getOwnedProperties())
+							if(player.getOwnedProperties().equals(result)) {
+								if(((RealEstate)property).getHouses() < 5){
+								player.payMoney(((RealEstate) property).getHousePrice());
+									((RealEstate) property).setHouses(((RealEstate) property).getHouses() +1);
+
+							}
+					}
 
 					}
 				}
