@@ -97,6 +97,8 @@ public class  GameController {
 		game.getPlayers().get(1).setCurrentPosition(game.getSpaces().get(1));
 
 
+
+
 		int current = 0;
 		for (int i = 0; i < players.size(); i++) {
 			Player p = players.get(i);
@@ -159,6 +161,7 @@ public class  GameController {
 			} else if (selecter.equals("Trade others")) {
 
 			} else if (selecter.equals("Mortgage properties")) {
+
 
 			}
 
@@ -400,6 +403,7 @@ public class  GameController {
 			}
 			player.addOwnedProperty(property);
 			property.setOwner(player);
+			groupOwned(property,player);
 
 		} else {
 
@@ -624,17 +628,20 @@ public class  GameController {
 		if(option.length == 0){
 			gui.showMessage("You don't own any groups");
 		} else {
+
 			Object result = JOptionPane.showInputDialog(JOptionPane.showInputDialog(null,
 					"Choose a property to buy/sell houses on",
 					"sell/buy", JOptionPane.QUESTION_MESSAGE, null, option, 2));
+
 			String select = gui.getUserSelection("Would you like to buy or sell a house?",
 					"Buy", "Sell");
 			if(select.equals("Buy")){
 				for(Property property : player.getOwnedProperties())
-					if(player.getOwnedProperties().equals(result)) {
+					if(player.getOwnedProperties().equals(result)&& property.getGroupOwned()) {
 						if(((RealEstate)property).getHouses() < 5){
 							player.payMoney(((RealEstate) property).getHousePrice());
 							((RealEstate) property).setHouses(((RealEstate) property).getHouses() +1);
+
 
 						}
 					}

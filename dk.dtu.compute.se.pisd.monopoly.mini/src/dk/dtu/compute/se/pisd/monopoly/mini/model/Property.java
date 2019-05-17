@@ -21,10 +21,13 @@ public class Property extends Space {
 	private Player owner;
 
 	private boolean groupOwned = false;
+
+	public boolean isGroupOwned() {
+		return groupOwned;
+	}
+
 	private ColorGroup colorGroup;
 // Andreas. tiføjet pantsat som kan tilgås ved setteren.
-
-	// private GUI gui = new GUI(); //
 
 	private boolean isMortgaged = false;
 // find brug

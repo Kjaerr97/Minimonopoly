@@ -40,7 +40,6 @@ public class Space extends Subject {
 		this.name = name;
 		notifyChange();
 	}
-
 	/**
 	 * Returns the index of this space in the game.
 	 * 
