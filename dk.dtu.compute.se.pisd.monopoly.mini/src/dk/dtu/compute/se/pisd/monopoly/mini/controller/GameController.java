@@ -9,6 +9,7 @@ import dk.dtu.compute.se.pisd.monopoly.mini.model.properties.RealEstate;
 import dk.dtu.compute.se.pisd.monopoly.mini.view.View;
 import gui_main.GUI;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,8 +49,6 @@ public class  GameController {
 
 	private Database database;
 
-	//private PlayerPanel playerpanel;
-
 	private boolean disposed = false;
 
 	// Andreas - sat fields her så terninger kan tilgås i utilityklassen
@@ -84,7 +83,7 @@ public class  GameController {
 	 * based on the underlying game's spaces (fields).
 	 */
 	public void initializeGUI() {
-		this.view = new View(game, gui/* playerpanel*/);
+		this.view = new View(game, gui);
 	}
 
 	/**
@@ -150,13 +149,34 @@ public class  GameController {
 					"Finish turn", "Sell/buy houses",
 					"Trade others", "Mortgage properties");
 			if (selecter.equals("Finish turn")) {
-				return;
+
 			} else if (selecter.equals("Sell/buy houses")) {
 				// hvilke huse osv. kan det gøres med mere end et hus ad gangen`?
+
+				ArrayList<RealEstate> options = new ArrayList<>();
+				Object[] option = options.toArray();
+				for(Property property : player.getOwnedProperties()){
+					if(property instanceof RealEstate && property.getGroupOwned()){
+						options.add((RealEstate)property);
+					}
+				}
+				if(option.length == 0){
+					gui.showMessage("You don't own any groups");
+				} else if(option.length >= 0) {
+					Object result = JOptionPane.showInputDialog(JOptionPane.showInputDialog(null,
+							"Choose a property to buy/sell houses on",
+							"sell/buy", JOptionPane.QUESTION_MESSAGE, null, option, 2));
+					String select = gui.getUserSelection("Would you like to buy or sell a house?",
+							"Buy", "Sell");
+					if(select.equals("Buy")){
+						
+					}
+				}
 
 			} else if (selecter.equals("Trade others")) {
 
 			} else if (selecter.equals("Mortgage properties")) {
+
 
 			}
 
@@ -338,6 +358,9 @@ public class  GameController {
 // giv ham grundene i en dropdown og lad ham vælge den rigtige grund derfra. se slide og brug en toString.
 				// fordi de objekter vi giver krypteres og ikke kan læses. derfra gives det rigtige property-objekt
 				// tilbage.
+
+
+
 				if (player.getOwnedProperties().contains(propertySelection)) {// og den ikke er mortgaged
 					gui.showMessage("You mortgage " + propertySelection + " and receive ?");
 					player.getOwnedProperties();
@@ -371,37 +394,38 @@ public class  GameController {
 		// TODO We might also allow the player to obtainCash before
 		// the actual offer, to see whether he can free enough cash
 		// for the sale.
-	
+
 		String choice = gui.getUserSelection(
 				"Player " + player.getName() +
-				": Do you want to buy " + property.getName() +
-				" for " + property.getCost() + "$?",
+						": Do you want to buy " + property.getName() +
+						" for " + property.getCost() + "$?",
 				"yes",
 				"no");
 // Andreas. added mulighed for at obtaine cash hvis man vælger ja men alligevel ikke har råd. i så
 		// fald skal der jo ikke komme en playbrokeException hvis man kan sælge andre ting.
-		if(choice.equals("yes") && property.getCost() > player.getBalance()){
-			this.obtainCash(player,property.getCost());
+		if (choice.equals("yes") && property.getCost() > player.getBalance()) {
+			this.obtainCash(player, property.getCost());
 		}
-        if (choice.equals("yes")){
-		try{
-		paymentToBank(player,property.getCost());
-		}catch(PlayerBrokeException e){
-		// if the payment fails due to the player being broke,
-		// an auction (among the other players is started
-		auction(property);
-		// then the current move is aborted by casting the
-		// PlayerBrokeException again
-		throw e;
+		if (choice.equals("yes")) {
+			try {
+				paymentToBank(player, property.getCost());
+			} catch (PlayerBrokeException e) {
+				// if the payment fails due to the player being broke,
+				// an auction (among the other players is started
+				auction(property);
+				// then the current move is aborted by casting the
+				// PlayerBrokeException again
+				throw e;
+			}
+			player.addOwnedProperty(property);
+			property.setOwner(player);
+
+		} else {
+
+			// In case the player does not buy the property,
+			// an auction is started
+			auction(property);
 		}
-		player.addOwnedProperty(property);
-		property.setOwner(player);
-		return;
-		}
-        
-		// In case the player does not buy the property,
-		// an auction is started
-		auction(property);
 	}
 
 	
