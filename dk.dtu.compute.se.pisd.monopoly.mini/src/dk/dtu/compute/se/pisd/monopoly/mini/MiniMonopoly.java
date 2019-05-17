@@ -118,7 +118,6 @@ public class MiniMonopoly {
 		Soda s = new Soda();
 		s.setName("Tuborg");
 		s.setCost(3000);
-		s.setRent(300);
 		s.setColorGroup(ColorGroup.darkgreen);
 		game.addSpace(s);
 		
@@ -138,10 +137,6 @@ public class MiniMonopoly {
 		p.setHousePrice(2000);
 		game.addSpace(p);
 
-		/**
-		 * @Markus s174879 resten af felterne nedenfor.
-		 */
-
 		f = new Ferry();
 		f.setName("D.F.D.S.");
 		f.setCost(4000);
@@ -151,7 +146,7 @@ public class MiniMonopoly {
 
 		p = new RealEstate();
 		p.setName("Bernstorffsvej");
-		p.setCost(2000);
+		p.setCost(3600);
 		p.setRent(300);
 		p.setColorGroup(ColorGroup.grey);
 		p.setHousePrice(2000);
@@ -163,16 +158,16 @@ public class MiniMonopoly {
 
 		p = new RealEstate();
 		p.setName("Hellerupvej");
-		p.setCost(2100);
-		p.setRent(500);
+		p.setCost(3600);
+		p.setRent(300);
 		p.setColorGroup(ColorGroup.grey);
 		p.setHousePrice(2000);
 		game.addSpace(p);
 
 		p = new RealEstate();
 		p.setName("Strandvejen");
-		p.setCost(2500);
-		p.setRent(600);
+		p.setCost(4000);
+		p.setRent(350);
 		p.setColorGroup(ColorGroup.grey);
 		p.setHousePrice(2000);
 		game.addSpace(p);
@@ -183,8 +178,8 @@ public class MiniMonopoly {
 
 		p = new RealEstate();
 		p.setName("Trianglen");
-		p.setCost(2600);
-		p.setRent(500);
+		p.setCost(4400);
+		p.setRent(400);
 		p.setColorGroup(ColorGroup.red);
 		p.setHousePrice(3000);
 		game.addSpace(p);
@@ -195,8 +190,8 @@ public class MiniMonopoly {
 
 		p = new RealEstate();
 		p.setName("Østerbrogade");
-		p.setCost(3000);
-		p.setCost(650);
+		p.setCost(4400);
+		p.setCost(400);
 		p.setColorGroup(ColorGroup.red);
 		p.setHousePrice(3000);
 		game.addSpace(p);
@@ -204,8 +199,8 @@ public class MiniMonopoly {
 
 		p = new RealEstate();
 		p.setName("Grønningen");
-		p.setCost(3200);
-		p.setRent(600);
+		p.setCost(4800);
+		p.setRent(450);
 		p.setColorGroup(ColorGroup.red);
 		p.setHousePrice(3000);
 		game.addSpace(p);
@@ -219,7 +214,7 @@ public class MiniMonopoly {
 
 		p = new RealEstate();
 		p.setName("Bredgade");
-		p.setCost(3500);
+		p.setCost(5200);
 		p.setRent(500);
 		p.setColorGroup(ColorGroup.white);
 		p.setHousePrice(3000);
@@ -227,8 +222,8 @@ public class MiniMonopoly {
 
 		p = new RealEstate();
 		p.setName("Kgs. Nytorv");
-		p.setCost(3800);
-		p.setRent(700);
+		p.setCost(5200);
+		p.setRent(500);
 		p.setColorGroup(ColorGroup.white);
 		p.setHousePrice(3000);
 		game.addSpace(p);
@@ -236,14 +231,13 @@ public class MiniMonopoly {
 		s = new Soda();
 		s.setName("Carlsberg");
 		s.setCost(3000);
-		s.setRent(400);
 		s.setColorGroup(ColorGroup.darkgreen);
 		game.addSpace(s);
 
 		p = new RealEstate();
 		p.setName("Østergade");
-		p.setCost(3800);
-		p.setRent(500);
+		p.setCost(5600);
+		p.setRent(550);
 		p.setColorGroup(ColorGroup.white);
 		p.setHousePrice(3000);
 		game.addSpace(p);
@@ -254,15 +248,15 @@ public class MiniMonopoly {
 
 		p = new RealEstate();
 		p.setName("Amagertorv");
-		p.setCost(4000);
-		p.setRent(550);
+		p.setCost(6000);
+		p.setRent(600);
 		p.setColorGroup(ColorGroup.yellow);
 		p.setHousePrice(4000);
 		game.addSpace(p);
 
 		p = new RealEstate();
 		p.setName("Vimmelskaftet");
-		p.setCost(4100);
+		p.setCost(6000);
 		p.setRent(600);
 		p.setColorGroup(ColorGroup.yellow);
 		p.setHousePrice(4000);
@@ -274,8 +268,8 @@ public class MiniMonopoly {
 
 		p = new RealEstate();
 		p.setName("Nygade");
-		p.setCost(4500);
-		p.setRent(700);
+		p.setCost(6400);
+		p.setRent(650);
 		p.setColorGroup(ColorGroup.yellow);
 		p.setHousePrice(4000);
 		game.addSpace(p);
@@ -293,8 +287,8 @@ public class MiniMonopoly {
 
 		p = new RealEstate();
 		p.setName("Frederiksberggade");
-		p.setCost(5000);
-		p.setRent(750);
+		p.setCost(7000);
+		p.setRent(700);
 		p.setColorGroup(ColorGroup.purple);
 		p.setHousePrice(4000);
 		game.addSpace(p);
@@ -305,8 +299,8 @@ public class MiniMonopoly {
 
 		p = new RealEstate();
 		p.setName("Rådhuspladsen");
-		p.setCost(5200);
-		p.setRent(800);
+		p.setCost(8000);
+		p.setRent(1000);
 		p.setColorGroup(ColorGroup.purple);
 		p.setHousePrice(4000);
 		game.addSpace(p);
