@@ -74,22 +74,28 @@ public class PlayerPanel extends JFrame {
 
         infoPanel.add(propertyPanel);
 
-        JLabel propertyLabel;
-        for (Space space : game.getSpaces()) {
-            if (space instanceof Property || space instanceof RealEstate) {
-                if (((Property) space).getOwner() != null) {
-                    if (((Property) space).getOwner().equals(player)) {
-                        propertyLabel = new JLabel(space.getName());
-                        propertyLabel.add(propertyLabel);
+        for (Space space: game.getSpaces()){
+            if (space instanceof Property){
+                Property property = (Property) space;
+                if (property.getOwner() != null){
+                    if (property.getOwner() == player){
+                        ColorGroup colorGroup = property.getColorGroup();
+                        if (!colorGroupJPanelMap.containsKey(colorGroup))
+                            try{
+                                JPanel jPanel = PanelSkaber(colorGroup);
+                                colorGroupJPanelMap.put(colorGroup,jPanel);
+                                LabelSkaber(jPanel,property.getName());
+                            }catch (NullPointerException x){
+                                x.getMessage();
+                            }
+                        else{
+                            JPanel jPanel = colorGroupJPanelMap.get(colorGroup);
+                            LabelSkaber(jPanel,property.getName());
+                        }
                     }
                 }
             }
         }
-
-            /*for (ColorGroup colorGroup : ColorGroup.values()) {
-                JPanel jPanel = PanelSkaber(colorGroup);
-                colorGroupJPanelMap.put(colorGroup, jPanel);
-            }*/
 
 
             this.revalidate();
@@ -97,7 +103,7 @@ public class PlayerPanel extends JFrame {
         }
 
 
-        /*public JPanel PanelSkaber (ColorGroup colour){
+        public JPanel PanelSkaber (ColorGroup colour){
             JPanel colorGroupPanel = new JPanel();
             colorGroupPanel.setBackground(ColorGroup.color(colour));
             colorGroupPanel.setLayout(new BoxLayout(colorGroupPanel, BoxLayout.Y_AXIS));
@@ -115,7 +121,7 @@ public class PlayerPanel extends JFrame {
         public void LabelSkaber (JPanel jPanel, String name){
             JLabel jLabel = new JLabel(name);
             jPanel.add(jLabel);
-        }*/
+        }
 
     }
 
