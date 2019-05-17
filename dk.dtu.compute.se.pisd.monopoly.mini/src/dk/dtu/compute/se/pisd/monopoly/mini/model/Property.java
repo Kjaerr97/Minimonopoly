@@ -19,6 +19,7 @@ public class Property extends Space {
 	private int cost;
 	private int rent;
 	private Player owner;
+	private boolean isOwned = false;
 
 	private boolean groupOwned = false;
 	private ColorGroup colorGroup;
@@ -120,6 +121,7 @@ public class Property extends Space {
 	 */
 	public void setOwner(Player player) {
 		this.owner = player;
+		isOwned = true;
 		notifyChange();
 	}
 
