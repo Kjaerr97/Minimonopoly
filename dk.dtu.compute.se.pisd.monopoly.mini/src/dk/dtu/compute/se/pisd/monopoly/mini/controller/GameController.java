@@ -94,7 +94,8 @@ public class  GameController {
 	public void play() throws GameEndedException {
 		List<Player> players = game.getPlayers();
 		Player c = game.getCurrentPlayer();
-		game.getPlayers().get(1).setCurrentPosition(game.getSpaces().get(1));
+		game.getPlayers().get(1).setCurrentPosition(game.getSpaces().get(21));
+		game.getPlayers().get(0).setCurrentPosition(game.getSpaces().get(21));
 
 
 
@@ -201,6 +202,9 @@ public class  GameController {
 		boolean castDouble;
 		int doublesCount = 0;
 		do {
+			// her skal if(isprison evt først??)
+			// og her skal die1 og die2 gemmes? hvorfor gør de ikke det. lige nu er de 0 så rent bliver 0 i Soda
+			// det er fordi de kun ændres i denne metode.
 			die1 = (int) (1 + 6.0 * Math.random());
 			die2 = (int) (1 + 6.0 * Math.random());
 			castDouble = (die1 == die2);
@@ -213,6 +217,8 @@ public class  GameController {
 					player.setInPrison(false);
 				}
 			}
+
+
 			if (player.isInPrison() && castDouble) {
 				player.setInPrison(false);
 				gui.showMessage("Player " + player.getName() + " leaves prison now since he cast a double!");

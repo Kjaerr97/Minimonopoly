@@ -28,12 +28,12 @@ public class Soda extends Property {
             }
             if (count == 2) {
                 rent = ((controller.getDie1() + controller.getDie2()) * 200);
+                return rent;
 
             } else {
                 rent = ((controller.getDie1() + controller.getDie2()) * 100);
+                return rent;
             }
-
-            return rent;
         }
     }
 }
