@@ -170,8 +170,6 @@ public class  GameController {
 						"no");
 				if (selection.equals("no")) {
 					terminated = true;
-				} else if (selection.equals("yes")){
-					play();
 				}
 			}
 		}
@@ -236,7 +234,7 @@ public class  GameController {
 			}
 		} while (castDouble);
 		//Virker sgu nok, men der skal lige styr på vores database først.
-
+		
 		//database.saveGame(game);
 
 	}
