@@ -51,7 +51,6 @@ public class PlayerPanel extends JFrame {
     public void update() {
         infoPanel.removeAll();
         JPanel playerPanel = new JPanel();
-
         colorGroupJPanelMap = new HashMap<>();
 
         playerPanel.setBackground(player.getColor());
@@ -64,15 +63,7 @@ public class PlayerPanel extends JFrame {
 
         playerPanel.setPreferredSize(dimension);
         playerPanel.setMaximumSize(dimension);
-
         infoPanel.add(playerPanel);
-
-        JPanel propertyPanel = new JPanel();
-        propertyPanel.setLayout(new BoxLayout(propertyPanel, BoxLayout.Y_AXIS));
-        propertyPanel.setPreferredSize(dimension);
-        propertyPanel.setMaximumSize(dimension);
-
-        infoPanel.add(propertyPanel);
 
         for (Space space: game.getSpaces()){
             if (space instanceof Property){
@@ -96,7 +87,6 @@ public class PlayerPanel extends JFrame {
                 }
             }
         }
-
 
             this.revalidate();
             this.repaint();
@@ -122,7 +112,6 @@ public class PlayerPanel extends JFrame {
             JLabel jLabel = new JLabel(name);
             jPanel.add(jLabel);
         }
-
     }
 
 
