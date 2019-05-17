@@ -43,12 +43,12 @@ public class MiniMonopoly {
 		go.setName("Go");
 		game.addSpace(go);
 		
-		Property p = new RealEstate();
+		RealEstate p = new RealEstate();
 		p.setName("Rødovrevej");
 		p.setCost(1200);
 		p.setRent(50);
 		p.setColorGroup(ColorGroup.lightblue);
-		((RealEstate) p).setHousePrice(1000);
+		p.setHousePrice(1000);
 		game.addSpace(p);
 
 		
@@ -61,7 +61,7 @@ public class MiniMonopoly {
 		p.setCost(1200);
 		p.setRent(50);
 		p.setColorGroup(ColorGroup.lightblue);
-		((RealEstate) p).setHousePrice(1000);
+		p.setHousePrice(1000);
 		game.addSpace(p);
 		
 		Tax t = new Tax();
@@ -80,7 +80,7 @@ public class MiniMonopoly {
 		p.setCost(2000);
 		p.setRent(100);
 		p.setColorGroup(ColorGroup.salmon);
-		((RealEstate) p).setHousePrice(1000);
+		p.setHousePrice(1000);
 		game.addSpace(p);
 		
 		chance = new Chance();
@@ -92,7 +92,7 @@ public class MiniMonopoly {
 		p.setCost(2000);
 		p.setRent(100);
 		p.setColorGroup(ColorGroup.salmon);
-		((RealEstate) p).setHousePrice(1000);
+		p.setHousePrice(1000);
 		game.addSpace(p);
 		
 		p = new RealEstate();
@@ -100,7 +100,7 @@ public class MiniMonopoly {
 		p.setCost(2400);
 		p.setRent(150);
 		p.setColorGroup(ColorGroup.salmon);
-		((RealEstate) p).setHousePrice(1000);
+		p.setHousePrice(1000);
 		game.addSpace(p);
 		
 		Space prison = new Space();
@@ -112,7 +112,7 @@ public class MiniMonopoly {
 		p.setCost(2800);
 		p.setRent(200);
 		p.setColorGroup(ColorGroup.green);
-		((RealEstate) p).setHousePrice(2000);
+		p.setHousePrice(2000);
 		game.addSpace(p);
 
 		Soda s = new Soda();
@@ -127,7 +127,7 @@ public class MiniMonopoly {
 		p.setCost(2800);
 		p.setRent(200);
 		p.setColorGroup(ColorGroup.green);
-		((RealEstate) p).setHousePrice(2000);
+		p.setHousePrice(2000);
 		game.addSpace(p);
 		
 		p = new RealEstate();
@@ -135,7 +135,7 @@ public class MiniMonopoly {
 		p.setCost(3200);
 		p.setRent(250);
 		p.setColorGroup(ColorGroup.green);
-		((RealEstate) p).setHousePrice(2000);
+		p.setHousePrice(2000);
 		game.addSpace(p);
 
 		/**
@@ -154,7 +154,7 @@ public class MiniMonopoly {
 		p.setCost(2000);
 		p.setRent(300);
 		p.setColorGroup(ColorGroup.grey);
-		((RealEstate) p).setHousePrice(2000);
+		p.setHousePrice(2000);
 		game.addSpace(p);
 
 		chance = new Chance();
@@ -166,7 +166,7 @@ public class MiniMonopoly {
 		p.setCost(2100);
 		p.setRent(500);
 		p.setColorGroup(ColorGroup.grey);
-		((RealEstate) p).setHousePrice(2000);
+		p.setHousePrice(2000);
 		game.addSpace(p);
 
 		p = new RealEstate();
@@ -174,7 +174,7 @@ public class MiniMonopoly {
 		p.setCost(2500);
 		p.setRent(600);
 		p.setColorGroup(ColorGroup.grey);
-		((RealEstate) p).setHousePrice(2000);
+		p.setHousePrice(2000);
 		game.addSpace(p);
 
 		Space parkering = new Space();
@@ -186,7 +186,7 @@ public class MiniMonopoly {
 		p.setCost(2600);
 		p.setRent(500);
 		p.setColorGroup(ColorGroup.red);
-		((RealEstate) p).setHousePrice(3000);
+		p.setHousePrice(3000);
 		game.addSpace(p);
 
 		chance = new Chance();
@@ -198,7 +198,7 @@ public class MiniMonopoly {
 		p.setCost(3000);
 		p.setCost(650);
 		p.setColorGroup(ColorGroup.red);
-		((RealEstate) p).setHousePrice(3000);
+		p.setHousePrice(3000);
 		game.addSpace(p);
 
 
@@ -207,7 +207,7 @@ public class MiniMonopoly {
 		p.setCost(3200);
 		p.setRent(600);
 		p.setColorGroup(ColorGroup.red);
-		((RealEstate) p).setHousePrice(3000);
+		p.setHousePrice(3000);
 		game.addSpace(p);
 
 		f = new Ferry();
@@ -222,7 +222,7 @@ public class MiniMonopoly {
 		p.setCost(3500);
 		p.setRent(500);
 		p.setColorGroup(ColorGroup.white);
-		((RealEstate) p).setHousePrice(3000);
+		p.setHousePrice(3000);
 		game.addSpace(p);
 
 		p = new RealEstate();
@@ -230,7 +230,7 @@ public class MiniMonopoly {
 		p.setCost(3800);
 		p.setRent(700);
 		p.setColorGroup(ColorGroup.white);
-		((RealEstate) p).setHousePrice(3000);
+		p.setHousePrice(3000);
 		game.addSpace(p);
 
 		s = new Soda();
@@ -245,7 +245,7 @@ public class MiniMonopoly {
 		p.setCost(3800);
 		p.setRent(500);
 		p.setColorGroup(ColorGroup.white);
-		((RealEstate) p).setHousePrice(3000);
+		p.setHousePrice(3000);
 		game.addSpace(p);
 
 		Space toJail = new Space();
@@ -257,7 +257,7 @@ public class MiniMonopoly {
 		p.setCost(4000);
 		p.setRent(550);
 		p.setColorGroup(ColorGroup.yellow);
-		((RealEstate) p).setHousePrice(4000);
+		p.setHousePrice(4000);
 		game.addSpace(p);
 
 		p = new RealEstate();
@@ -265,7 +265,7 @@ public class MiniMonopoly {
 		p.setCost(4100);
 		p.setRent(600);
 		p.setColorGroup(ColorGroup.yellow);
-		((RealEstate) p).setHousePrice(4000);
+		p.setHousePrice(4000);
 		game.addSpace(p);
 
 		chance = new Chance();
@@ -277,7 +277,7 @@ public class MiniMonopoly {
 		p.setCost(4500);
 		p.setRent(700);
 		p.setColorGroup(ColorGroup.yellow);
-		((RealEstate) p).setHousePrice(4000);
+		p.setHousePrice(4000);
 		game.addSpace(p);
 
 		f = new Ferry();
@@ -291,24 +291,24 @@ public class MiniMonopoly {
 		chance.setName("Chance");
 		game.addSpace(chance);
 
-		p = new Property();
+		p = new RealEstate();
 		p.setName("Frederiksberggade");
 		p.setCost(5000);
 		p.setRent(750);
 		p.setColorGroup(ColorGroup.purple);
-		((RealEstate) p).setHousePrice(4000);
+		p.setHousePrice(4000);
 		game.addSpace(p);
 
 		t = new Tax();
 		t.setName("Ekstraordinær statsskat. Betal 100");
 		game.addSpace(t);
 
-		p = new Property();
+		p = new RealEstate();
 		p.setName("Rådhuspladsen");
 		p.setCost(5200);
 		p.setRent(800);
 		p.setColorGroup(ColorGroup.purple);
-		((RealEstate) p).setHousePrice(4000);
+		p.setHousePrice(4000);
 		game.addSpace(p);
 
 //Added more cards to the pile
@@ -320,27 +320,7 @@ public class MiniMonopoly {
 		cards.add(jailCard);
 
 //Random number generator for a random space
-		int index =  (int) Math.random()*game.getSpaces().size();
-
-		CardMove move = new CardMove();
-		move.setTarget(game.getSpaces().get(index));
-		move.setText("Move to!" + game.getSpaces().get(index).getName());
-		cards.add(move);
-
-		CardMove move1 = new CardMove();
-		move.setTarget(game.getSpaces().get(index));
-		move.setText("Move to!" + game.getSpaces().get(index).getName());
-		cards.add(move1);
-
-		CardMove move2 = new CardMove();
-		move.setTarget(game.getSpaces().get(index));
-		move.setText("Move to!" + game.getSpaces().get(index).getName());
-		cards.add(move2);
-
-		CardMove move3 = new CardMove();
-		move.setTarget(game.getSpaces().get(index));
-		move.setText("Move to!" + game.getSpaces().get(index).getName());
-		cards.add(move3);
+		
 
 		PayTax tax = new PayTax();
 		tax.setText("Pay 10% income tax!");
@@ -405,6 +385,7 @@ public class MiniMonopoly {
 			Player p = new Player();
 			p.setName(name);
 			p.setCurrentPosition(game.getSpaces().get(0));
+
 
 			switch (i + 1) {
 
@@ -479,6 +460,8 @@ public class MiniMonopoly {
 
 			Database gameDAO = new Database();
 			gameDAO.saveGame(game);
+
+
 
 			try {
 				controller.play();

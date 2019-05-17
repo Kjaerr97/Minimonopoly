@@ -94,6 +94,8 @@ public class  GameController {
 	public void play() throws GameEndedException {
 		List<Player> players = game.getPlayers();
 		Player c = game.getCurrentPlayer();
+		game.getPlayers().get(1).setCurrentPosition(game.getSpaces().get(1));
+
 
 		int current = 0;
 		for (int i = 0; i < players.size(); i++) {
@@ -151,40 +153,12 @@ public class  GameController {
 			if (selecter.equals("Finish turn")) {
 
 			} else if (selecter.equals("Sell/buy houses")) {
-				// hvilke huse osv. kan det gøres med mere end et hus ad gangen`?
 
-				ArrayList<RealEstate> options = new ArrayList<>();
-				Object[] option = options.toArray();
-				for(Property property : player.getOwnedProperties()){
-					if(property instanceof RealEstate && property.getGroupOwned()){
-						options.add((RealEstate)property);
-					}
-				}
-				if(options.size() == 0){
-					gui.showMessage("You don't own any groups");
-				} else if(options.size() > 0) {
-					Object result = JOptionPane.showInputDialog(JOptionPane.showInputDialog(null,
-							"Choose a property to buy/sell houses on",
-							"sell/buy", JOptionPane.QUESTION_MESSAGE, null, option, 2));
-					String select = gui.getUserSelection("Would you like to buy or sell a house?",
-							"Buy", "Sell");
-					if(select.equals("Buy")){
-						for(Property property : player.getOwnedProperties())
-							if(player.getOwnedProperties().equals(result)) {
-								if(((RealEstate)property).getHouses() < 5){
-								player.payMoney(((RealEstate) property).getHousePrice());
-									((RealEstate) property).setHouses(((RealEstate) property).getHouses() +1);
-
-							}
-					}
-
-					}
-				}
+				this.tradeHouses(player);
 
 			} else if (selecter.equals("Trade others")) {
 
 			} else if (selecter.equals("Mortgage properties")) {
-
 
 			}
 
@@ -355,7 +329,8 @@ public class  GameController {
 					"Mortgage properties", "Sell properties", "None of above");
 
 			if (selection.equals("Sell houses")) {
-				// tilgå en rigtig property??
+				this.tradeHouses(player);
+
 
 
 			} else if (selection.equals("Mortgage properties")) {
@@ -401,10 +376,6 @@ public class  GameController {
 	 * @throws PlayerBrokeException when the player chooses to buy but could not afford it
 	 */
 	public void offerToBuy(Property property, Player player) throws PlayerBrokeException {
-		// TODO We might also allow the player to obtainCash before
-		// the actual offer, to see whether he can free enough cash
-		// for the sale.
-
 		String choice = gui.getUserSelection(
 				"Player " + player.getName() +
 						": Do you want to buy " + property.getName() +
@@ -637,6 +608,59 @@ public class  GameController {
 			// TODO we should also dispose of the GUI here. But this works only
 			//      for my private version of the GUI and not for the GUI currently
 			//      deployed via Maven (or other official versions);
+		}
+	}
+	public void tradeHouses(Player player){
+		// hvilke huse osv. kan det gøres med mere end et hus ad gangen
+		// vi kan stadig bygge uneven antal huse. kom evt tilbage hertil
+		ArrayList<RealEstate> options = new ArrayList<>();
+		for(Property property : player.getOwnedProperties()){
+
+			if(property instanceof RealEstate && property.getGroupOwned()){
+				options.add((RealEstate)property);
+			}
+		}
+		Object[] option = options.toArray();
+		if(option.length == 0){
+			gui.showMessage("You don't own any groups");
+		} else {
+			Object result = JOptionPane.showInputDialog(JOptionPane.showInputDialog(null,
+					"Choose a property to buy/sell houses on",
+					"sell/buy", JOptionPane.QUESTION_MESSAGE, null, option, 2));
+			String select = gui.getUserSelection("Would you like to buy or sell a house?",
+					"Buy", "Sell");
+			if(select.equals("Buy")){
+				for(Property property : player.getOwnedProperties())
+					if(player.getOwnedProperties().equals(result)) {
+						if(((RealEstate)property).getHouses() < 5){
+							player.payMoney(((RealEstate) property).getHousePrice());
+							((RealEstate) property).setHouses(((RealEstate) property).getHouses() +1);
+
+						}
+					}
+
+			}
+		}
+	}
+	public void mortgagePropeties(){
+
+	}
+	public void groupOwned(Property property, Player player) {
+
+		//if(Collections.frequency(player.getOwnedProperties(), property.getColorGroup().);
+
+		int ownedColour = 0;
+		for (Property property1 : player.getOwnedProperties()){
+			if (property.getColorGroup() == property.getColorGroup()) {
+				ownedColour++;
+			}
+		}
+		if (ownedColour == property.getColorGroup().getGroupID()) {
+			for (Property property1 : player.getOwnedProperties()) {
+				if (property.getColorGroup() == property.getColorGroup()) {
+					property.setGroupOwned(true);
+				}
+			}
 		}
 	}
 
