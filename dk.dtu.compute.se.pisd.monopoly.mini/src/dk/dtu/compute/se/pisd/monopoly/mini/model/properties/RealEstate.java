@@ -46,8 +46,8 @@ public class RealEstate extends Property {
         notifyChange();
     }
 
-
-    public int computeRent() {
+@Override
+    public int computeRent(GameController controller) {
         if (getHouses() == 0) {
             newRent = getRent();
 

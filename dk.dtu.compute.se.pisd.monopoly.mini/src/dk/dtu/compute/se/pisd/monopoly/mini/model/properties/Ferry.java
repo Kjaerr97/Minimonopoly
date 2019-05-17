@@ -8,8 +8,8 @@ public class Ferry extends Property {
 
 
     // for computing rent of ferries based on amount of ferries owned.
-
-    public int computeRent() {
+@Override
+    public int computeRent(GameController controller) {
         int count = 0;
         int rent = 0;
         for (Property property : getOwner().getOwnedProperties()) {

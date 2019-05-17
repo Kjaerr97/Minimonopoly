@@ -140,8 +140,8 @@ public class Property extends Space {
 			// se op på om computeRent kaldes polymorfisk eller der skal tre if'er til for at se
 			// hvilket objekt metoden kaldes på/ hvilken type felt spilleren er på.
 
-			player.payMoney(computeRent(controller));
-			owner.receiveMoney(computeRent(controller));
+			player.payMoney(this.computeRent(controller));
+			owner.receiveMoney(this.computeRent(controller));
 
 		}
 	}

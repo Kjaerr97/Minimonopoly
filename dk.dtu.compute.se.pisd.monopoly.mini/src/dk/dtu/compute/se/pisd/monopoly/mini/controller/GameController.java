@@ -586,9 +586,15 @@ public class  GameController {
 		player.setBroke(true);
 		
 		// TODO we also need to remove the houses and the mortgage from the properties 
-
+// skulle gerne være gjort her. Andreas
 		for (Property property: player.getOwnedProperties()) {
 			property.setOwner(null);
+			if(property.isMortgaged()) {
+				property.setMortgaged(false);
+			}
+			if(property instanceof RealEstate){
+				((RealEstate) property).setHouses(0);
+			}
 		}
 		player.removeAllProperties();
 		
