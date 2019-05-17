@@ -160,16 +160,16 @@ public class  GameController {
 						options.add((RealEstate)property);
 					}
 				}
-				if(option.length == 0){
+				if(options.size() == 0){
 					gui.showMessage("You don't own any groups");
-				} else if(option.length >= 0) {
+				} else if(options.size() > 0) {
 					Object result = JOptionPane.showInputDialog(JOptionPane.showInputDialog(null,
 							"Choose a property to buy/sell houses on",
 							"sell/buy", JOptionPane.QUESTION_MESSAGE, null, option, 2));
 					String select = gui.getUserSelection("Would you like to buy or sell a house?",
 							"Buy", "Sell");
 					if(select.equals("Buy")){
-						
+
 					}
 				}
 
@@ -190,6 +190,8 @@ public class  GameController {
 						"no");
 				if (selection.equals("no")) {
 					terminated = true;
+				}else if(selection.equals("yes")){
+					play();
 				}
 			}
 		}
