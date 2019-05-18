@@ -219,17 +219,17 @@ public class Database implements IGameDAO {
                 }
                 if (space instanceof Ferry) {
                     Ferry ferry = (Ferry) space;
-                    spaceStatement.setString(3, "utility");
+                    spaceStatement.setString(3, "ferry");
                 }
-                if (space instanceof Ferry) {
-                    Ferry ferry = (Ferry) space;
-                    spaceStatement.setString(3, "utility");
+                if (space instanceof Soda) {
+                    Soda soda = (Soda) space;
+                    spaceStatement.setString(3, "soda");
                 }
 
                 if (space instanceof RealEstate) {
                     RealEstate realEstate = (RealEstate) space;
                     spaceStatement.setInt(4, realEstate.getHouses());
-                    spaceStatement.setString(5, "Realestate");
+                    spaceStatement.setString(5, "realestate");
                 }
                 spaceStatement.setInt(6, gameID);
             }
