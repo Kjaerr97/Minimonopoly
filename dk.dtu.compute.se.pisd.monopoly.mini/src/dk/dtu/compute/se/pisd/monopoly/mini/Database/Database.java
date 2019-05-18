@@ -207,15 +207,18 @@ public class Database implements IGameDAO {
 //Properties
             PreparedStatement spaceStatement = connection.prepareStatement("INSERT INTO property " + "VALUES(?,?,?,?,?,?);");
 
-                for (Space space : game.getSpaces()) {
+              //  for (Space space : game.getSpaces()) {
+                    for(int i=0; i >=game.getSpaces().size(); i++) {
+                        if(game.getSpaces().get(i) instanceof  Property){
+                            spaceStatement.setInt(1, game.getSpaces().get(i).getIndex());
+                    }
 
-                if (space instanceof Property) {
-                      spaceStatement.setInt(1, space.getIndex());
-                }
 
+               // if (space instanceof Property) {
+                //      spaceStatement.setInt(1, space.getIndex());
                 int player_id = -1;
                 for (Player player : game.getPlayers()) {
-                    if (player.getOwnedProperties().contains(space)) {
+                    if (player.getOwnedProperties().contains(game.getSpaces().get(i))) {
                         player_id = game.getPlayers().indexOf(player);
                         spaceStatement.setInt(2, player_id);
                     } else {
@@ -223,17 +226,17 @@ public class Database implements IGameDAO {
                 }
 
                 }
-                if (space instanceof Ferry) {
+                if (game.getSpaces().get(i) instanceof Ferry) {
 
                     spaceStatement.setString(3, "ferry");
                 }
-                if (space instanceof Soda) {
+                if (game.getSpaces().get(i) instanceof Soda) {
 
                     spaceStatement.setString(3, "soda");
                 }
 
-                if (space instanceof RealEstate) {
-                    RealEstate realEstate = (RealEstate) space;
+                if (game.getSpaces().get(i) instanceof RealEstate) {
+                    RealEstate realEstate = (RealEstate) game.getSpaces().get(i);
                     spaceStatement.setInt(4, realEstate.getHouses());
                     spaceStatement.setString(5, "realestate");
                 }
