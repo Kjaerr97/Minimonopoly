@@ -80,6 +80,7 @@ public class PlayerPanel extends JFrame {
                                 x.getMessage();
                             }
                         else{
+                            //Hvis mappet allerede indeholder en værdi med den farve, så vil der kun oprettes et label.
                             JPanel jPanel = colorGroupJPanelMap.get(colorGroup);
                             LabelSkaber(jPanel,property.getName());
                         }
