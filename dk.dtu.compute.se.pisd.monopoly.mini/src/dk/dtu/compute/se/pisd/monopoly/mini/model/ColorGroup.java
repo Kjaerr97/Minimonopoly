@@ -14,17 +14,18 @@ public enum ColorGroup {
     lightblue(2), salmon(3), green(3), grey(3), red(3), white(3), yellow(3), purple(2), turquoise(2), pink(4);
 
 
-    private int groupID;
+    private int groupNumber;
 
+    ColorGroup(int groupNumber) {
+        this.groupNumber = groupNumber;
+    }
 
-    public int getGroupID() {
-        return this.groupID;
+    public int getGroupNumber() {
+        return this.groupNumber;
     }
 
 
-    ColorGroup(int groupID) {
-        this.groupID = groupID;
-    }
+
 
     //The colours are grouped:
 

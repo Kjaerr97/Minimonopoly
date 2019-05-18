@@ -685,22 +685,6 @@ public class  GameController {
 	public void mortgagePropeties(){
 
 	}
-	public void groupOwned(Property property, Player player) {
-
-		int ownedColour = 0;
-		for (Property property1 : player.getOwnedProperties()){
-			if (property.getColorGroup() == property.getColorGroup()) {
-				ownedColour++;
-			}
-		}
-		if (ownedColour == property.getColorGroup().getGroupID()) {
-			for (Property property1 : player.getOwnedProperties()) {
-				if (property.getColorGroup() == property.getColorGroup()) {
-					property.setGroupOwned(true);
-				}
-			}
-		}
-	}
 
 	public Game getGame() {
 		return game;
