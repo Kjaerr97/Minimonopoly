@@ -1,6 +1,7 @@
 package dk.dtu.compute.se.pisd.monopoly.mini.model;
 
 import dk.dtu.compute.se.pisd.designpatterns.Subject;
+import dk.dtu.compute.se.pisd.monopoly.mini.model.properties.RealEstate;
 
 import java.awt.*;
 import java.util.List;
@@ -26,6 +27,8 @@ public class Player extends Subject {
 	private Space currentPosition;
 	
 	private int balance = 34030000;
+
+	private int assets;
 	
 	private boolean inPrison = false;
 	
@@ -121,20 +124,48 @@ public class Player extends Subject {
 		this.balance = balance;
 		notifyChange();
 	}
-	
+
+	/**
+	 * @author Sascha.
+	 *
+	 * @param player
+	 * @return
+	 */
+
+	public int playerAssets(Player player){
+		assets = 0;
+		assets += balance;
+		for (Property property : player.getOwnedProperties()){
+			assets += property.getCost();
+
+			//if (property instanceof RealEstate)  {
+			//assets +=((RealEstate) property).getHouses()* (prisen for et hus)}
+
+		} return assets;
+	}
+
+	public int getAssets(){
+		return assets;
+	}
+
+	public void setAssets(int assets){
+		this.assets = assets;
+		notifyChange();
+	}
+
 	/**
 	 * Adds the given amount to the balance of the player.
-	 * 
+	 *
 	 * @param amount the received amount
 	 */
 	public void receiveMoney(int amount) {
 		balance = balance + amount;
 		notifyChange();
 	}
-	
+
 	/**
 	 * Removes the given amount from the balance of the player.
-	 * 
+	 *
 	 * @param amount the payed amount
 	 */
 	public void payMoney(int amount) {
