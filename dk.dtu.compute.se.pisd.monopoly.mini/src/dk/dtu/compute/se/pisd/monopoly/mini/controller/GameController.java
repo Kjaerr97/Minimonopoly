@@ -431,6 +431,7 @@ public class  GameController {
 			}
 			player.addOwnedProperty(property);
 			property.setOwner(player);
+			groupOwned(property,player);
 
 		} else {
 
@@ -513,7 +514,7 @@ public class  GameController {
      * @param property the property which is for auction
      * @GruppeF made this method (class assignment 2)
      */
-	public Player auction(Property property) {
+	public void auction(Property property) {
 		// Creates new ArrayList called bidders.
 
 		List<Player> bidders = new ArrayList<Player>();
@@ -541,7 +542,7 @@ public class  GameController {
 			Player player = bidders.remove(0);
 			int newBid = gui.getUserInteger("Place bid here. It must be " + minBid + " or above",
 					1,
-					player.getBalance() + 0);
+					player.getBalance() );
 			if (newBid >= minBid) {
 				currentBid = newBid;
 
@@ -558,6 +559,7 @@ public class  GameController {
 				paymentToBank(winner, currentBid);
 				winner.addOwnedProperty(property);
 				property.setOwner(winner);
+				groupOwned(property,winner);
 
 			} else {
 				gui.showMessage("The property isn't sold by auction");
@@ -567,7 +569,6 @@ public class  GameController {
 			gui.showMessage("PLayer is broke " + e.getMessage());
 		}
 
-		return bidder; //Tjek op på dette.
 	}
 
 
@@ -584,13 +585,14 @@ public class  GameController {
 		brokePlayer.setBalance(0);
 		brokePlayer.setBroke(true);
 
-		// TODO We assume here, that the broke player has already sold all his houses! But, if
-		// not, we could make sure at this point that all houses are removed from
-		// properties (properties with houses on are not supposed to be transferred, neither
-		// in a trade between players, nor when  player goes broke to another player)
+
 		for (Property property: brokePlayer.getOwnedProperties()) {
 			property.setOwner(benificiary);
 			benificiary.addOwnedProperty(property);
+			if(property instanceof RealEstate) {
+				((RealEstate) property).setHouses(0);
+			}
+
 		}	
 		brokePlayer.removeAllProperties();
 		
@@ -612,7 +614,7 @@ public class  GameController {
 		player.setBalance(0);
 		player.setBroke(true);
 		
-		// TODO we also need to remove the houses and the mortgage from the properties 
+		// TODO we also need to remove the houses and the mortgage from the properties
 // skulle gerne være gjort her. Andreas
 		for (Property property: player.getOwnedProperties()) {
 			property.setOwner(null);
@@ -642,9 +644,7 @@ public class  GameController {
 				view.dispose();
 				view = null;
 			}
-			// TODO we should also dispose of the GUI here. But this works only
-			//      for my private version of the GUI and not for the GUI currently
-			//      deployed via Maven (or other official versions);
+
 		}
 	}
 	public void tradeHouses(Player player){
@@ -662,18 +662,20 @@ public class  GameController {
 			gui.showMessage("You don't own any groups");
 		} else {
 
-			Object result = JOptionPane.showInputDialog(JOptionPane.showInputDialog(null,
+			Object result = JOptionPane.showInputDialog(null,
 					"Choose a property to buy/sell houses on",
-					"sell/buy", JOptionPane.QUESTION_MESSAGE, null, option, 2));
+					"sell/buy", JOptionPane.QUESTION_MESSAGE, null, option,null);
 
 			String select = gui.getUserSelection("Would you like to buy or sell a house?",
 					"Buy", "Sell");
 			if(select.equals("Buy")){
 				for(Property property : player.getOwnedProperties())
+					for(int i=0; i < game.getCurrentPlayer().getOwnedProperties().size(); i++){
 					if(player.getOwnedProperties().equals(result)&& property.getGroupOwned()) {
 						if(((RealEstate)property).getHouses() < 5){
 							player.payMoney(((RealEstate) property).getHousePrice());
 							((RealEstate) property).setHouses(((RealEstate) property).getHouses() +1);
+							gui.showMessage("A house has been added");
 
 
 						}
@@ -682,21 +684,21 @@ public class  GameController {
 			}
 		}
 	}
-	public void mortgagePropeties(){
+	public void mortgageProperties(){
 
 	}
 	public void groupOwned(Property property, Player player) {
 
 		int ownedColour = 0;
 		for (Property property1 : player.getOwnedProperties()){
-			if (property.getColorGroup() == property.getColorGroup()) {
+			if (property.getColorGroup() == property1.getColorGroup()) {
 				ownedColour++;
 			}
 		}
-		if (ownedColour == property.getColorGroup().getGroupID()) {
+		if (ownedColour == 3) {
 			for (Property property1 : player.getOwnedProperties()) {
-				if (property.getColorGroup() == property.getColorGroup()) {
-					property.setGroupOwned(true);
+				if (property1.getColorGroup() == property.getColorGroup()) {
+					property1.setGroupOwned(true);
 				}
 			}
 		}
