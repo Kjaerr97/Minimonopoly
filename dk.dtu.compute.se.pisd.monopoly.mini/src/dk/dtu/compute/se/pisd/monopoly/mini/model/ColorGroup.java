@@ -25,8 +25,6 @@ public enum ColorGroup {
     }
 
 
-
-
     //The colours are grouped:
 
     public static Color color(ColorGroup x) {
