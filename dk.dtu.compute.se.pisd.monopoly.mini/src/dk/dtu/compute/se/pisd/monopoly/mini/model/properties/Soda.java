@@ -9,6 +9,7 @@ public class Soda extends Property {
      *
      * @author Ekkart Kindler, ekki@dtu.dk
      */
+
     public class Sodas extends Property {
 
 // Andreas - færger og tapperi er nødt til at initialiseres som hver sit objekt og ikke
@@ -28,11 +29,11 @@ public class Soda extends Property {
                 }
             }
             if (count == 2) {
-                rent = ((controller.getDie11() + controller.getDie22()) * 200);
+                rent = ((controller.getDie1() + controller.getDie2()) * 200);
                 return rent;
 
             } else {
-                rent = ((controller.getDie11() + controller.getDie22()) * 100);
+                rent = ((controller.getDie1() + controller.getDie2()) * 100);
                 return rent;
             }
         }
