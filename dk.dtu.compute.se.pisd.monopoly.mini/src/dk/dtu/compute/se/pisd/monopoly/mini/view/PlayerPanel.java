@@ -112,5 +112,5 @@ public class PlayerPanel extends JFrame {
         JLabel jLabel = new JLabel(name);
         jPanel.add(jLabel);
     }
-}
+}   
 
