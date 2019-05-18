@@ -65,7 +65,7 @@ public class MiniMonopoly {
 		game.addSpace(p);
 		
 		Tax t = new Tax();
-		t.setName("Pay tax (10% on Cash)");
+		t.setName("Pay tax (10% of all assets)");
 		game.addSpace(t);
 
 		Ferry f = new Ferry();
@@ -294,7 +294,7 @@ public class MiniMonopoly {
 		game.addSpace(p);
 
 		t = new Tax();
-		t.setName("Ekstraordinær statsskat. Betal 100");
+		t.setName("Pay tax (10% of your assets");
 		game.addSpace(t);
 
 		p = new RealEstate();

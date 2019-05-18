@@ -1,12 +1,7 @@
 package dk.dtu.compute.se.pisd.monopoly.mini.model;
-
-import dk.dtu.compute.se.pisd.monopoly.mini.MiniMonopoly;
 import dk.dtu.compute.se.pisd.monopoly.mini.controller.GameController;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.exceptions.PlayerBrokeException;
-import dk.dtu.compute.se.pisd.monopoly.mini.model.properties.RealEstate;
-import gui_main.GUI;
 
-import javax.swing.*;
 
 /**
  * A property which is a space that can be owned by a player.
