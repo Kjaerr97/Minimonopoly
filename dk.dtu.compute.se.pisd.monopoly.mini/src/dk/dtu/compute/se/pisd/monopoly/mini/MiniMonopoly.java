@@ -313,8 +313,26 @@ public class MiniMonopoly {
 		jailCard.setText("You've been caught speeding and been put to jail.");
 		cards.add(jailCard);
 
-//Random number generator for a random space
-		
+
+		CardMove cardmove1 = new CardMove();
+		cardmove1.setText("You have been visiting a friend, move to" + game.getSpaces().get(11).getName());
+		cardmove1.setTarget(game.getSpaces().get(11));
+		cards.add(cardmove1);
+
+		CardMove cardmove2 = new CardMove();
+		cardmove2.setText("You have been visiting a friend, move to" + game.getSpaces().get(18).getName());
+		cardmove2.setTarget(game.getSpaces().get(18));
+		cards.add(cardmove2);
+
+		CardMove cardmove3 = new CardMove();
+		cardmove3.setText("You have been visiting a friend, move to" + game.getSpaces().get(21).getName());
+		cardmove3.setTarget(game.getSpaces().get(21));
+		cards.add(cardmove3);
+
+		CardMove cardmove4 = new CardMove();
+		cardmove4.setText("You have been visiting a friend, move to" + game.getSpaces().get(29).getName());
+		cardmove4.setTarget(game.getSpaces().get(29));
+		cards.add(cardmove4);
 
 		PayTax tax = new PayTax();
 		tax.setText("Pay 10% income tax!");
