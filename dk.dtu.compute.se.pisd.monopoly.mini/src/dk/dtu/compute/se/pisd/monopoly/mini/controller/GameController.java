@@ -276,6 +276,9 @@ public class  GameController {
 		// Execute the action associated with the respective space. Note
 		// that this is delegated to the field, which implements this action
 		space.doAction(this, player);
+		// vi kan evt skrive hvad og hvem han betaler til hvis tid.
+		gui.showMessage("player " + game.getCurrentPlayer().getName() + " pays rent");
+
 	}
 
 	/**

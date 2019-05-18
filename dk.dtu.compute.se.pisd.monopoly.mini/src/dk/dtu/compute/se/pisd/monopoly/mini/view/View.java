@@ -178,5 +178,4 @@ public class View implements Observer {
 
 		}
 	}
-
 }
