@@ -16,8 +16,8 @@ import java.util.List;
 public class Database implements IGameDAO {
 
     private Connection createConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:mysql://ec2-52-30-211-3.eu-west-1.compute.amazonaws.com/s171281",
-                "s171281", "6ixUAhvpEnhjDB6CxunnF"); // indsæt egne værdier her
+        return DriverManager.getConnection("jdbc:mysql://ec2-52-30-211-3.eu-west-1.compute.amazonaws.com/s180911",
+                "s180911", "QekXA8EbroGRPIN1MOpRI"); // indsæt egne værdier her
 
     }
 
@@ -30,19 +30,6 @@ public class Database implements IGameDAO {
     public void loadGame(Game game, int gameID) {
         try (Connection connection = createConnection()) {
             connection.setAutoCommit(false);
-
-//Henter resultset fra databsen
-//GAMELOAD
-            PreparedStatement gameLoad = connection.prepareStatement("SELECT * FROM game WHERE game_id=?");
-
-            gameLoad.setInt(1, gameID);
-            ResultSet gameResultset = gameLoad.getResultSet();
-
-            if (gameResultset.next());
-            {
-                gameID = gameResultset.getInt(1);
-            }
-
 //PLAYER LOAD
             PreparedStatement playerLoad = connection.prepareStatement("SELECT * FROM player WHERE game_id = ?");
             playerLoad.setInt(1, gameID);
@@ -56,20 +43,18 @@ public class Database implements IGameDAO {
                 player.setBroke(playerResultset.getBoolean("isBroke"));
                 player.setBalance(playerResultset.getInt("balance"));
                 player.setCurrentPosition(game.getSpaces().get(playerResultset.getInt("currentPosition")));
-                player.setColor(new Color(playerResultset.getInt("colour")));
-                player.setPlayerID((playerResultset.getInt("playerID")));
+                player.setColor(new Color(playerResultset.getInt("color")));
+                player.setPlayerID((playerResultset.getInt("player_id")));
                 player.setInPrison(playerResultset.getBoolean("inPrison"));
+                player.setName(playerResultset.getString("playerName"));
 
                 //tilføjer playeren til vores array
-                listOfPlayer.add(playerResultset.getInt("playerID"), player);
+                listOfPlayer.add(playerResultset.getInt("player_id"), player);
 
             }
             //Sætter vores array til gamets nuværende player array.
             game.setPlayers(listOfPlayer);
 
-            if (gameResultset.next()) {
-                game.setCurrentPlayer(game.getPlayers().get(gameResultset.getInt("currentPlayer")));
-            }
 //PROPERTY LOAD
             PreparedStatement propertyLoad = connection.prepareStatement("SELECT * FROM property WHERE game_id = ?");
             propertyLoad.setInt(1,gameID);
@@ -112,33 +97,6 @@ public class Database implements IGameDAO {
 
         }
 
-
-    /**
-     *   @author Andreas s185034, Markus s174879, Asger s180911 og Sascha s171281
-     */
-
-    @Override
-    public void updateGame(Game game, int gameID) {
-
-        try (Connection connection = createConnection()) {
-            connection.setAutoCommit(false);
-        PreparedStatement statement2 = connection.prepareStatement("INSERT INTO player VALUES balance= ?, currentPosition=?, isBroke=?, inPrison=?,colour=? WHERE gameID=" + gameID);
-
-            for ( Player player : game.getPlayers()) {
-                statement2.setInt(1, player.getBalance());
-                statement2.setInt(2, player.getCurrentPosition().getIndex());
-                statement2.setBoolean(3, player.isBroke());
-                statement2.setBoolean(4, player.isInPrison());
-                statement2.setInt(5, player.getColor().getRGB());
-                statement2.executeUpdate();
-            }
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
-
-        }
-
-
     /**
      *   @author Andreas s185034, Markus s174879, Asger s180911 og Sascha s171281
      */
@@ -148,8 +106,17 @@ public class Database implements IGameDAO {
         try (Connection connection = createConnection()) {
             connection.setAutoCommit(false);
 
-            PreparedStatement statement = connection.prepareStatement("DELELTE FROM game WHERE gameID=" + gameID);
+            PreparedStatement statement = connection.prepareStatement("DELETE * FROM game WHERE game_id= ?");
+            PreparedStatement statement1 = connection.prepareStatement("DELETE *  FROM player WHERE game_id = ?");
+            PreparedStatement statement2 = connection.prepareStatement("DELETE * FROM property WHERE game_id = ? ");
+
+            statement.setInt(1,gameID);
+            statement1.setInt(1,gameID);
+            statement2.setInt(1,gameID);
+
             statement.executeUpdate();
+            statement1.executeUpdate();
+            statement2.executeUpdate();
             connection.commit();
 
         } catch (SQLException e){
@@ -168,10 +135,8 @@ public class Database implements IGameDAO {
             connection.setAutoCommit(false);
 //indsætter i vores Game tabel
             PreparedStatement createGame = connection.prepareStatement(
-                    "INSERT INTO game (currentPlayer) VALUES (?)", Statement.RETURN_GENERATED_KEYS);
-            int currentPlayer = game.getPlayers().indexOf(game.getCurrentPlayer());
+                    "INSERT INTO game VALUES (null)", Statement.RETURN_GENERATED_KEYS);
 
-           createGame.setInt(1, currentPlayer);
            createGame.executeUpdate();
 
             /*
@@ -188,7 +153,7 @@ public class Database implements IGameDAO {
             }
 
 //Indsætter i vores player tabel
-            PreparedStatement statement2 = connection.prepareStatement("INSERT INTO player VALUES (?,?,?,?,?,?,?)");
+            PreparedStatement statement2 = connection.prepareStatement("INSERT INTO player VALUES (?,?,?,?,?,?,?,?)");
 
             int playerID = 0;
             for (Player player : game.getPlayers()) {
@@ -202,28 +167,26 @@ public class Database implements IGameDAO {
                 statement2.setBoolean(5, player.isInPrison());
                 statement2.setInt(6, player.getBalance());
                 statement2.setInt(7, player.getColor().getRGB());
+                statement2.setString(8,player.getName());
                 statement2.executeUpdate();
             }
 //Properties
             PreparedStatement spaceStatement = connection.prepareStatement("INSERT INTO property " + "VALUES(?,?,?,?,?,?);");
 
               //  for (Space space : game.getSpaces()) {
-                    for(int i=0; i >=game.getSpaces().size(); i++) {
-                        if(game.getSpaces().get(i) instanceof  Property){
-                            spaceStatement.setInt(1, game.getSpaces().get(i).getIndex());
-                    }
+            for (int i = 0; i >= game.getSpaces().size(); i++) {
+                if (game.getSpaces().get(i) instanceof Property) {
+                    spaceStatement.setInt(1, game.getSpaces().get(i).getIndex());
+                }
 
-
-               // if (space instanceof Property) {
+                // if (space instanceof Property) {
                 //      spaceStatement.setInt(1, space.getIndex());
                 int player_id = -1;
                 for (Player player : game.getPlayers()) {
                     if (player.getOwnedProperties().contains(game.getSpaces().get(i))) {
                         player_id = game.getPlayers().indexOf(player);
                         spaceStatement.setInt(2, player_id);
-                    } else {
-                        spaceStatement.setInt(2,player_id);
-                }
+                    }
 
                 }
                 if (game.getSpaces().get(i) instanceof Ferry) {
@@ -245,7 +208,7 @@ public class Database implements IGameDAO {
             }
 
             connection.commit();
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 

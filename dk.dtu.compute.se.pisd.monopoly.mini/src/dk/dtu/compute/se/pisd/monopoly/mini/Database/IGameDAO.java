@@ -8,8 +8,6 @@ public interface IGameDAO {
 
     void loadGame (Game game, int gameID);
 
-    void updateGame (Game game, int gameID);
-
     void deleteGame (Game game, int gameID);
 
 }
