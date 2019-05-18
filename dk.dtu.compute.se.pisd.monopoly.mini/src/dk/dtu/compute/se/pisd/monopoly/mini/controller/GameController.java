@@ -174,9 +174,9 @@ public class  GameController {
 			} else if (selecter.equals("Trade others")) {
 
 			} else if (selecter.equals("Mortgage properties")) {
-
-
+				this.mortgageProperties(player);
 			}
+
 
 
 			current = (current + 1) % players.size();
@@ -351,7 +351,6 @@ public class  GameController {
 	 */
 
 	public void obtainCash(Player player, int amount) {
-		// TODO implement
 		while (player.getBalance() < amount) {
 			String selection = gui.getUserSelection("You must free at least " + amount +
 							"$ to move on with your move. Would you like to " +
@@ -366,25 +365,8 @@ public class  GameController {
 
 			} else if (selection.equals("Mortgage properties")) {
 
-				String propertySelection = gui.getUserString("Choose which property to mortgage");
-				// dette er et string object og skal convertes til at propertyobject?
-			//	for (int i = 0; i < 40; i++)
-				//	if (game.getSpaces().get(i).getName().equals(propertySelection)) {
-					//}
-// giv ham grundene i en dropdown og lad ham vælge den rigtige grund derfra. se slide og brug en toString.
-				// fordi de objekter vi giver krypteres og ikke kan læses. derfra gives det rigtige property-objekt
-				// tilbage.
+				this.mortgageProperties(player);
 
-
-
-				if (player.getOwnedProperties().contains(propertySelection)) {// og den ikke er mortgaged
-					gui.showMessage("You mortgage " + propertySelection + " and receive ?");
-					player.getOwnedProperties();
-
-
-					//.setMortgaged(true);
-					// player.paymentFromBank(property.getprice/2
-				}
 			} else if (selection.equals("Sell properties")) {
 
 			} else {
@@ -431,7 +413,7 @@ public class  GameController {
 			}
 			player.addOwnedProperty(property);
 			property.setOwner(player);
-			groupOwned(property,player);
+
 
 		} else {
 
@@ -559,7 +541,6 @@ public class  GameController {
 				paymentToBank(winner, currentBid);
 				winner.addOwnedProperty(property);
 				property.setOwner(winner);
-				groupOwned(property,winner);
 
 			} else {
 				gui.showMessage("The property isn't sold by auction");
@@ -647,64 +628,73 @@ public class  GameController {
 
 		}
 	}
-	public void tradeHouses(Player player){
+
+	public void tradeHouses(Player player) {
 		// hvilke huse osv. kan det gøres med mere end et hus ad gangen
 		// vi kan stadig bygge uneven antal huse. kom evt tilbage hertil
 		ArrayList<RealEstate> options = new ArrayList<>();
-		for(Property property : player.getOwnedProperties()){
+		for (Property property : player.getOwnedProperties()) {
 
-			if(property instanceof RealEstate && property.getGroupOwned()){
-				options.add((RealEstate)property);
+			if (property instanceof RealEstate && property.getGroupOwned()) {
+				options.add((RealEstate) property);
 			}
 		}
 		Object[] option = options.toArray();
-		if(option.length == 0){
+		if (option.length == 0) {
 			gui.showMessage("You don't own any groups");
 		} else {
 
 			Object result = JOptionPane.showInputDialog(null,
 					"Choose a property to buy/sell houses on",
-					"sell/buy", JOptionPane.QUESTION_MESSAGE, null, option,null);
+					"sell/buy", JOptionPane.QUESTION_MESSAGE, null, option, null);
 
 			String select = gui.getUserSelection("Would you like to buy or sell a house?",
 					"Buy", "Sell");
-			if(select.equals("Buy")){
-				for(Property property : player.getOwnedProperties())
-					for(int i=0; i < game.getCurrentPlayer().getOwnedProperties().size(); i++){
-					if(player.getOwnedProperties().equals(result)&& property.getGroupOwned()) {
-						if(((RealEstate)property).getHouses() < 5){
-							player.payMoney(((RealEstate) property).getHousePrice());
-							((RealEstate) property).setHouses(((RealEstate) property).getHouses() +1);
-							gui.showMessage("A house has been added");
-
-
+			if (select.equals("Buy")) {
+				for (Property property : player.getOwnedProperties()) {
+						if (player.getOwnedProperties().equals(result) && property.getGroupOwned()) {
+							if (((RealEstate) property).getHouses() < 5) {
+								player.payMoney(((RealEstate) property).getHousePrice());
+								((RealEstate) property).setHouses(((RealEstate) property).getHouses() + 1);
+								gui.showMessage("A house has been added");
+							}
 						}
+
 					}
-
 			}
 		}
 	}
-	public void mortgageProperties(){
+	public void mortgageProperties(Player player){
+		ArrayList<RealEstate> options = new ArrayList<>();
+		for (Property property : player.getOwnedProperties()) {
 
-	}
-	public void groupOwned(Property property, Player player) {
-
-		int ownedColour = 0;
-		for (Property property1 : player.getOwnedProperties()){
-			if (property.getColorGroup() == property1.getColorGroup()) {
-				ownedColour++;
+			if (property instanceof RealEstate && !property.isMortgaged()) {
+				options.add((RealEstate) property);
 			}
-		}
-		if (ownedColour == 3) {
-			for (Property property1 : player.getOwnedProperties()) {
-				if (property1.getColorGroup() == property.getColorGroup()) {
-					property1.setGroupOwned(true);
+			Object[] option = options.toArray();
+			if (option.length == 0) {
+				gui.showMessage("You don't own any properties that can be mortgaged");
+			} else {
+				Object result = JOptionPane.showInputDialog(null,
+						"Choose a property mortgage",
+						"Mortgage", JOptionPane.QUESTION_MESSAGE, null, option, null);
+				for (int i=1; i < game.getCurrentPlayer().getOwnedProperties().size(); i++){
+					if(property == result){
+						property.isMortgaged();
+						gui.showMessage("Property is now mortgaged and you receive " + property.getCost()/2);
+						player.receiveMoney(property.getCost()/2);
+
+					}
+				}
+
 				}
 			}
-		}
+
 	}
+
 
 	public Game getGame() {
 		return game;
 	}
 }
+
