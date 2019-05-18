@@ -192,6 +192,7 @@ public class Player extends Subject {
 	 */
 	public void addOwnedProperty(Property property) {
 		ownedProperties.add(property);
+		groupOwned(property);
 		notifyChange();
 	}
 	
@@ -294,5 +295,23 @@ public class Player extends Subject {
 			notifyChange();
 		}
 	}
+
+	public void groupOwned(Property property) {
+
+		int ownedColour = 0;
+		for (Property property1 : ownedProperties){
+			if (property1.getColorGroup() == property.getColorGroup()) {
+				ownedColour++;
+			}
+		}
+		if (ownedColour == 3) {
+			for (Property property1 : ownedProperties) {
+				if (property1.getColorGroup() == property.getColorGroup()) {
+					property1.setGroupOwned(true);
+				}
+			}
+		}
+	}
+
 
 }
