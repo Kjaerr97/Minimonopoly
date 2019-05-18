@@ -27,8 +27,6 @@ public class Player extends Subject {
 	private Space currentPosition;
 	
 	private int balance = 34030000;
-
-	private int assets;
 	
 	private boolean inPrison = false;
 	
@@ -128,14 +126,13 @@ public class Player extends Subject {
 	/**
 	 * @author Sascha.
 	 *
-	 * @param player
 	 * @return
 	 */
 
-	public int playerAssets(Player player){
-		assets = 0;
+	public int playerAssets(){
+		int assets = 0;
 		assets += balance;
-		for (Property property : player.getOwnedProperties()){
+		for (Property property : this.getOwnedProperties()){
 			assets += property.getCost();
 
 		if (property instanceof RealEstate)  {
@@ -145,14 +142,6 @@ public class Player extends Subject {
 		} return assets;
 	}
 
-	public int getAssets(){
-		return assets;
-	}
-
-	public void setAssets(int assets){
-		this.assets = assets;
-		notifyChange();
-	}
 
 	/**
 	 * Adds the given amount to the balance of the player.

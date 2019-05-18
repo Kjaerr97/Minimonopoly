@@ -19,7 +19,7 @@ public class PayTax extends Card {
 		// TODO note that tax concerns all assets an not just cash
 		//      this is just a simple  way of implementing tax
 		try {
-			controller.paymentToBank(player, player.getAssets() / 10);
+			controller.paymentToBank(player, player.playerAssets() / 10);
 		} finally {
 			// Make sure that the card is returned to the deck even when
 			// an Exception should occur!
