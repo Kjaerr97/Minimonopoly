@@ -138,8 +138,9 @@ public class Player extends Subject {
 		for (Property property : player.getOwnedProperties()){
 			assets += property.getCost();
 
-			//if (property instanceof RealEstate)  {
-			//assets +=((RealEstate) property).getHouses()* (prisen for et hus)}
+		if (property instanceof RealEstate)  {
+		assets +=((RealEstate) property).getHouses() * ((RealEstate) property).getHousePrice();
+		}
 
 		} return assets;
 	}
