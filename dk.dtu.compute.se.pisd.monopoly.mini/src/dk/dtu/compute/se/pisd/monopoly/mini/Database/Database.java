@@ -122,7 +122,7 @@ public class Database implements IGameDAO {
 
         try (Connection connection = createConnection()) {
             connection.setAutoCommit(false);
-        PreparedStatement statement2 = connection.prepareStatement("INSERT INTO Player VALUES balance= ?, currentPosition=?, isBroke=?, inPrison=?,colour=? WHERE gameID=" + gameID);
+        PreparedStatement statement2 = connection.prepareStatement("INSERT INTO Player VALUES balance= ?, currentPosition=?, isBroke=?, inPrison=?,color=? WHERE gameID=" + gameID);
 
             for ( Player player : game.getPlayers()) {
                 statement2.setInt(1, player.getBalance());
