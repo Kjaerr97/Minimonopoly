@@ -56,12 +56,12 @@ public class Database implements IGameDAO {
                 player.setBroke(playerResultset.getBoolean("isBroke"));
                 player.setBalance(playerResultset.getInt("balance"));
                 player.setCurrentPosition(game.getSpaces().get(playerResultset.getInt("currentPosition")));
-                player.setColor(new Color(playerResultset.getInt("colour")));
-                player.setPlayerID((playerResultset.getInt("playerID")));
+                player.setColor(new Color(playerResultset.getInt("color")));
+                player.setPlayerID((playerResultset.getInt("player_id")));
                 player.setInPrison(playerResultset.getBoolean("inPrison"));
 
                 //tilføjer playeren til vores array
-                listOfPlayer.add(playerResultset.getInt("playerID"), player);
+                listOfPlayer.add(playerResultset.getInt("player_id"), player);
 
             }
             //Sætter vores array til gamets nuværende player array.
@@ -204,7 +204,7 @@ public class Database implements IGameDAO {
                 statement2.executeUpdate();
             }
 //Properties
-            PreparedStatement spaceStatement = connection.prepareStatement("INSERT INTO property " + "VALUES(?,?,?,?,?,?);");
+            PreparedStatement spaceStatement = connection.prepareStatement("INSERT INTO property " + "VALUES(?,?,?,?,?);");
 
                 for (Space space : game.getSpaces()) {
                 if (space instanceof Property) {
@@ -213,6 +213,7 @@ public class Database implements IGameDAO {
                 int player_id;
                 for (Player player : game.getPlayers()) {
                     if (player.getOwnedProperties().contains(space)) {
+
                         player_id = game.getPlayers().indexOf(player);
                         spaceStatement.setInt(2, player_id);
                     }
@@ -229,9 +230,9 @@ public class Database implements IGameDAO {
                 if (space instanceof RealEstate) {
                     RealEstate realEstate = (RealEstate) space;
                     spaceStatement.setInt(4, realEstate.getHouses());
-                    spaceStatement.setString(5, "realestate");
+                    spaceStatement.setString(3, "realestate");
                 }
-                spaceStatement.setInt(6, gameID);
+                spaceStatement.setInt(5, gameID);
             }
             connection.commit();
         } catch (SQLException e){
