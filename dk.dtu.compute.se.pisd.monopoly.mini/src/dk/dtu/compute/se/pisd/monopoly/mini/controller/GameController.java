@@ -500,7 +500,7 @@ public class  GameController {
 		List<Player> bidders = new ArrayList<Player>();
 		gui.showMessage("Now, there will be an auction of " + property.getName() + ".");
 		for (Player player : game.getPlayers()) {
-			if (!player.isBroke()) {
+			if (!player.isBroke() && player != game.getCurrentPlayer()) {
 				String selection = gui.getUserSelection(
 						"Would you " + player.getName() + " participate in the auction?",
 						"yes",
@@ -512,7 +512,7 @@ public class  GameController {
 		}
 
 		Player bidder = null;
-		int currentBid = 0;
+		int currentBid = 999;
 		while (bidders.size() > 1) {
 			int minBid = currentBid + 1;
 
