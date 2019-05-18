@@ -125,9 +125,9 @@ public class Property extends Space {
 		if (owner == null) {
 			controller.offerToBuy(this, player);
 		} else if (!owner.equals(player)) {
-			// TODO also check whether the property is mortgaged
-			// Andreas
-			if (this.isMortgaged()){
+				// TODO also check whether the property is mortgaged
+				// Andreas
+				if (this.isMortgaged()){
 				// Skriv at den er mortgaged ogff
 		} else {
 			// polymorfisk kald: del utility op og kald alle metoderne det samme, som de overwriter herfra
@@ -137,6 +137,7 @@ public class Property extends Space {
 
 			player.payMoney(this.computeRent(controller));
 			owner.receiveMoney(this.computeRent(controller));
+
 
 		}
 	}

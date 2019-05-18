@@ -52,16 +52,6 @@ public class  GameController {
 	private boolean disposed = false;
 
 	// Andreas - sat fields her så terninger kan tilgås i utilityklassen
-	private int die1;
-	private int die2;
-
-	public int getDie1() {
-		return die1;
-	}
-
-	public int getDie2() {
-		return die2;
-	}
 
 	/**
 	 * Constructor for a controller of a game.
@@ -94,8 +84,8 @@ public class  GameController {
 	public void play() throws GameEndedException {
 		List<Player> players = game.getPlayers();
 		Player c = game.getCurrentPlayer();
-		//game.getPlayers().get(1).setCurrentPosition(game.getSpaces().get(21));
-		//game.getPlayers().get(0).setCurrentPosition(game.getSpaces().get(21));
+		game.getPlayers().get(1).setCurrentPosition(game.getSpaces().get(21));
+		game.getPlayers().get(0).setCurrentPosition(game.getSpaces().get(21));
 
 
 
@@ -205,8 +195,10 @@ public class  GameController {
 			// her skal if(isprison evt først??)
 			// og her skal die1 og die2 gemmes? hvorfor gør de ikke det. lige nu er de 0 så rent bliver 0 i Soda
 			// det er fordi de kun ændres i denne metode.
-			die1 = (int) (1 + 6.0 * Math.random());
-			die2 = (int) (1 + 6.0 * Math.random());
+			int die1 = (int) (1 + 6.0 * Math.random());
+			int die2 = (int) (1 + 6.0 * Math.random());
+
+
 			castDouble = (die1 == die2);
 			gui.setDice(die1, die2);
 			if (player.isInPrison()) {
@@ -251,8 +243,8 @@ public class  GameController {
 		//Virker sgu nok, men der skal lige styr på vores database først.
 		
 		//database.saveGame(game);
-
 	}
+	
 
 	/**
 	 * This method implements the activity of moving the player to the new position,
@@ -277,8 +269,11 @@ public class  GameController {
 		// that this is delegated to the field, which implements this action
 		space.doAction(this, player);
 		// vi kan evt skrive hvad og hvem han betaler til hvis tid.
-		gui.showMessage("player " + game.getCurrentPlayer().getName() + " pays rent");
-
+		if (space instanceof Property && ((Property) space).getOwner() != game.getCurrentPlayer() &&
+				!((Property) space).isMortgaged()) {
+			gui.showMessage("player " + game.getCurrentPlayer().getName() + " pays "
+					+ ((Property) space).computeRent(this) + "$ in rent to " + ((Property) space).getOwner().getName());
+		}
 	}
 
 	/**
@@ -414,7 +409,6 @@ public class  GameController {
 			}
 			player.addOwnedProperty(property);
 			property.setOwner(player);
-			groupOwned(property,player);
 
 		} else {
 

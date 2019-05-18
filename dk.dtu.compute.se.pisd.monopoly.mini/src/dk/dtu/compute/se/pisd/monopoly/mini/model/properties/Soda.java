@@ -21,17 +21,18 @@ public class Soda extends Property {
         public int computeRent(GameController controller) {
             int count = 0;
             int rent;
+
             for (Property property : getOwner().getOwnedProperties()) {
                 if (property instanceof Soda) {
                     count++;
                 }
             }
             if (count == 2) {
-                rent = ((controller.getDie1() + controller.getDie2()) * 200);
+                rent = ((controller.getDie11() + controller.getDie22()) * 200);
                 return rent;
 
             } else {
-                rent = ((controller.getDie1() + controller.getDie2()) * 100);
+                rent = ((controller.getDie11() + controller.getDie22()) * 100);
                 return rent;
             }
         }
