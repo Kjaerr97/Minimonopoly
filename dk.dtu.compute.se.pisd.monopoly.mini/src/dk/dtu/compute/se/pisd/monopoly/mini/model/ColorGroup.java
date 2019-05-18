@@ -11,7 +11,7 @@ public enum ColorGroup {
 
     // The colour and the number of spaces with that colour is defined:
 
-    lightblue(2), salmon(3), green(3), grey(3), red(3), white(3), yellow(3), purple(2), darkgreen(2), blue(4);
+    lightblue(2), salmon(3), green(3), grey(3), red(3), white(3), yellow(3), purple(2), turquoise(2), pink(4);
 
 
     private int groupID;
@@ -32,7 +32,7 @@ public enum ColorGroup {
 
         switch (x) {
             case lightblue:
-                return new Color(0, 187, 238); //Ligtblue
+                return new Color(0, 177, 250); //Ligtblue
 
             case salmon:
                 return new Color(244, 169, 159); //Salmon
@@ -55,11 +55,11 @@ public enum ColorGroup {
             case purple:
                 return new Color(146, 0, 146); //Purple
 
-            case darkgreen:
-                return new Color(0, 60, 0); //Darkgreen = brewery
+            case turquoise:
+                return new Color(0, 250, 239); //Darkgreen = brewery
 
-            case blue:
-                return new Color(0, 0, 100); //Blue = ferry
+            case pink:
+                return new Color(255, 0, 127); //Blue = ferry
         }
 
         return null;
