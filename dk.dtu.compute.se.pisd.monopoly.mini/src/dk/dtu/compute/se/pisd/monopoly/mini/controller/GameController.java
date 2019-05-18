@@ -671,27 +671,25 @@ public class  GameController {
 			if (property instanceof RealEstate && !property.isMortgaged()) {
 				options.add((RealEstate) property);
 			}
-			Object[] option = options.toArray();
-			if (option.length == 0) {
-				gui.showMessage("You don't own any properties that can be mortgaged");
-			} else {
-				Object result = JOptionPane.showInputDialog(null,
-						"Choose a property mortgage",
-						"Mortgage", JOptionPane.QUESTION_MESSAGE, null, option, null);
-				for (int i=1; i < game.getCurrentPlayer().getOwnedProperties().size(); i++){
-					if(property == result){
-						property.isMortgaged();
-						gui.showMessage("Property is now mortgaged and you receive " + property.getCost()/2);
-						player.receiveMoney(property.getCost()/2);
+		}
+		Object[] option = options.toArray();
+		if (option.length == 0) {
+			gui.showMessage("You don't own any properties that can be mortgaged");
+		} else {
+			Object result = JOptionPane.showInputDialog(null,
+					"Choose a property to mortgage",
+					"Mortgage", JOptionPane.QUESTION_MESSAGE, null, option, 0);
+			for (Property property : player.getOwnedProperties()) {
 
-					}
-				}
-
+				if (property == result) {
+					property.isMortgaged();
+					gui.showMessage(property.getName() + " is now mortgaged and you receive " + property.getCost() / 2);
+					player.receiveMoney(property.getCost() / 2);
 				}
 			}
 
+		}
 	}
-
 
 	public Game getGame() {
 		return game;
