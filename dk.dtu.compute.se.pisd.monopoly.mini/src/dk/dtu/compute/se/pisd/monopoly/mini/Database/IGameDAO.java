@@ -1,10 +1,6 @@
 package dk.dtu.compute.se.pisd.monopoly.mini.Database;
 
 import dk.dtu.compute.se.pisd.monopoly.mini.model.Game;
-import dk.dtu.compute.se.pisd.monopoly.mini.model.Player;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public interface IGameDAO {
 
