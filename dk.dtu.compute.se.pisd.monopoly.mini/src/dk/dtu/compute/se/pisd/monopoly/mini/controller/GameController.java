@@ -94,8 +94,8 @@ public class  GameController {
 	public void play() throws GameEndedException {
 		List<Player> players = game.getPlayers();
 		Player c = game.getCurrentPlayer();
-		game.getPlayers().get(1).setCurrentPosition(game.getSpaces().get(21));
-		game.getPlayers().get(0).setCurrentPosition(game.getSpaces().get(21));
+		//game.getPlayers().get(1).setCurrentPosition(game.getSpaces().get(21));
+		//game.getPlayers().get(0).setCurrentPosition(game.getSpaces().get(21));
 
 
 
@@ -216,6 +216,8 @@ public class  GameController {
 					player.payMoney(1000);
 					player.setInPrison(false);
 				}
+
+
 			}
 
 

@@ -242,7 +242,7 @@ public class MiniMonopoly {
 		p.setHousePrice(3000);
 		game.addSpace(p);
 
-		Space toJail = new Space();
+		SpaceToJail toJail = new SpaceToJail();
 		toJail.setName("Gå i fængsel");
 		game.addSpace(toJail);
 
@@ -425,16 +425,6 @@ public class MiniMonopoly {
 
 		}
 
-/*
-			 p.setColor(colorlist.get(i)); //colorlist kommer
-			 p.setColor(randomColor); // måske virker dette? - Rasmus
-
-			Random rand = new Random();
-			float r = rand.nextFloat();
-			float g = rand.nextFloat();
-			float b = rand.nextFloat();
-			Color randomColor = new Color(r, g, b);
-			 */
 		}
 
 
@@ -485,29 +475,3 @@ public class MiniMonopoly {
 	}
 
 }
-
-
-/** For at fjerne vores non-static problem kan vi sætte nedenstående del ind i gamecontroller (hvor gui'en er) og så kalde det herinde i vores main.
-*/
-
-/*
-String result = JOptionPane.showInputDialog(null,
-				"Do you wish to load a game?, 'yes' or 'no'","Game",JOptionPane.QUESTION_MESSAGE);
-        if(result.equals("yes")){
-		int usergameID = Integer.parseInt(JOptionPane.showInputDialog(null, "What game do you want to load","GameLoader",JOptionPane.QUESTION_MESSAGE));
-
-		Game game = createGame();
-		Database gameDAO = new Database();
-		gameDAO.loadGame(game, usergameID);
-
-			game.shuffleCardDeck();
-			createPlayers(game);
-			GameController controller = new GameController(game);
-			controller.initializeGUI();
-
-		} else {
-			Game game = createGame();
-			game.shuffleCardDeck();
-			createPlayers(game);
-
- */

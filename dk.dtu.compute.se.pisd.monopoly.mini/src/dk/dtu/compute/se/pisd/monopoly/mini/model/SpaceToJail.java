@@ -1,12 +1,10 @@
-package dk.dtu.compute.se.pisd.monopoly.mini.model.cards;
+package dk.dtu.compute.se.pisd.monopoly.mini.model;
 
 import dk.dtu.compute.se.pisd.monopoly.mini.controller.GameController;
-import dk.dtu.compute.se.pisd.monopoly.mini.model.Card;
-import dk.dtu.compute.se.pisd.monopoly.mini.model.Player;
-import dk.dtu.compute.se.pisd.monopoly.mini.model.Space;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.exceptions.PlayerBrokeException;
 
-public class CardMoveJail extends Card {
+public class SpaceToJail extends Space {
+
     private Space target;
 
     public Space getTarget() {
@@ -22,7 +20,11 @@ public class CardMoveJail extends Card {
         try {
             controller.gotoJail(player);
         } finally {
+            // Make sure that the card is returned to the deck even when
+            // an Exception should occur!
             super.doAction(controller, player);
         }
+    }
 
-    }}
+
+}
