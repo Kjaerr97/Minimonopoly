@@ -22,7 +22,7 @@ public class Database implements IGameDAO {
     }
 
     /**
-     *   @author Andreas s185034, Markus s174879, Asger s180911 og Sascha s171281
+     *   @author Asger s180911 og Sascha s171281
      */
 
     @Override
@@ -98,10 +98,11 @@ public class Database implements IGameDAO {
         }
 
     /**
-     *   @author Andreas s185034, Markus s174879, Asger s180911 og Sascha s171281
+     *   @author  Asger s180911
      */
 
-        @Override
+
+    @Override
     public void deleteGame(Game game, int gameID) {
         try (Connection connection = createConnection()) {
             connection.setAutoCommit(false);
@@ -125,7 +126,7 @@ public class Database implements IGameDAO {
     }
 
     /**
-     *   @author Andreas s185034, Markus s174879, Asger s180911 og Sascha s171281
+     *   @author  Asger s180911
      */
 
     @Override
@@ -144,7 +145,6 @@ public class Database implements IGameDAO {
             I metoden nedenfor sætter vi gamekey til at være den generede key, herefter tildeler vi gamekey til gameID
             gameID bliver i setGameID() sat til at være int-værdien som returneres fra gamekey.getInt().
              */
-            createGame.executeUpdate();
             ResultSet gamekey = createGame.getGeneratedKeys();
             int gameID = 0;
             if (gamekey.next()){
@@ -155,7 +155,7 @@ public class Database implements IGameDAO {
 //Indsætter i vores player tabel
             PreparedStatement statement2 = connection.prepareStatement("INSERT INTO player VALUES (?,?,?,?,?,?,?,?)");
 
-            int playerID = 0;
+            int playerID;
             for (Player player : game.getPlayers()) {
                 playerID = game.getPlayers().indexOf(player);
 

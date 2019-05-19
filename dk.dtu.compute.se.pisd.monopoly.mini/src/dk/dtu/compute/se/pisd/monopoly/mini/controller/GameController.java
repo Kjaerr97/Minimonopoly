@@ -103,11 +103,13 @@ public class  GameController {
 	 * current player of the game; this makes it possible to resume a
 	 * game at any point.
 	 */
+	/*
+@author Asger, s180911 Andreas H
+ */
 	public void play() throws GameEndedException {
 		List<Player> players = game.getPlayers();
 		Player c = game.getCurrentPlayer();
-		game.getPlayers().get(1).setCurrentPosition(game.getSpaces().get(21));
-		game.getPlayers().get(0).setCurrentPosition(game.getSpaces().get(21));
+
 
 
 
@@ -264,7 +266,7 @@ public class  GameController {
 		} while (castDouble);
 		//Virker sgu nok, men der skal lige styr på vores database først.
 		
-		//database.saveGame(game);
+		database.saveGame(game);
 	}
 	
 
@@ -628,7 +630,9 @@ public class  GameController {
 
 		}
 	}
-
+	/*
+    @author Asger, s180911, Andreas H
+     */
 	public void tradeHouses(Player player) {
 		// hvilke huse osv. kan det gøres med mere end et hus ad gangen
 		// vi kan stadig bygge uneven antal huse. kom evt tilbage hertil
@@ -664,6 +668,9 @@ public class  GameController {
 			}
 		}
 	}
+	/*
+@author Andreas H
+ */
 	public void mortgageProperties(Player player){
 		ArrayList<RealEstate> options = new ArrayList<>();
 		for (Property property : player.getOwnedProperties()) {

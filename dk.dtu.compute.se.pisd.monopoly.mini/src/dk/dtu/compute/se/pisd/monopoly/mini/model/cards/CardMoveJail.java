@@ -5,7 +5,9 @@ import dk.dtu.compute.se.pisd.monopoly.mini.model.Card;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.Player;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.Space;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.exceptions.PlayerBrokeException;
-
+/*
+@author Asger, s180911
+ */
 public class CardMoveJail extends Card {
     private Space target;
 

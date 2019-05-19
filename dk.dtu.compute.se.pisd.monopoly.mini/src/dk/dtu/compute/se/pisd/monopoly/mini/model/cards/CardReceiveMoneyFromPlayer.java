@@ -8,7 +8,9 @@ import dk.dtu.compute.se.pisd.monopoly.mini.model.exceptions.PlayerBrokeExceptio
 
 public class CardReceiveMoneyFromPlayer extends Card {
     private int amount;
-
+    /*
+    @author Asger, s180911
+     */
     public int getAmount (){
         return amount;
     }
