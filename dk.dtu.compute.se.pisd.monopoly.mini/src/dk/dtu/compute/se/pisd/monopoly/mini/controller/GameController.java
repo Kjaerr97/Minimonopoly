@@ -103,7 +103,7 @@ public class  GameController {
 	 * game at any point.
 	 */
 	/*
-@author Asger, s180911 Andreas H
+@author Asger, s180911 Andreas H s185029
  */
 	public void play() throws GameEndedException {
 		List<Player> players = game.getPlayers();
@@ -125,7 +125,7 @@ public class  GameController {
 				try {
 					this.makeMove(player);
 				} catch (PlayerBrokeException e) {
-					// We could react to the player having gone broke
+
 				}
 			}
 
@@ -155,21 +155,17 @@ public class  GameController {
 				break;
 
 			}
-
-			// TODO offer all players the options to trade etc.
-			// Andreas - jeg giver kun currentplayer mulighed for at handle
-			// dels fordi reglerne er sådan og dels fordi det ville tage for lang tid
-			// hvis hver spiller skulle tage stilling efter hver eneste tur.
+			// current player is given the option to trade etc.
 			String selecter = gui.getUserSelection("What would you like to do?",
 					"Finish turn", "Sell/buy houses",
 					"Trade others", "Mortgage properties");
 			if (selecter.equals("Finish turn")) {
 
 			} else if (selecter.equals("Sell/buy houses")) {
-
 				this.tradeHouses(player);
 
 			} else if (selecter.equals("Trade others")) {
+				// yet to be implemented
 
 			} else if (selecter.equals("Mortgage properties")) {
 				this.mortgageProperties(player);
@@ -205,15 +201,13 @@ public class  GameController {
 	 * @param player the player making the move
 	 * @throws PlayerBrokeException if the player goes broke during the move
 	 */
-	// Andreas - ændret så terningerne kan tilgås i Soda-klassen og muligt at købe sig ud af fængsel
+
 	public void makeMove(Player player) throws PlayerBrokeException {
 
 		boolean castDouble;
 		int doublesCount = 0;
 		do {
-			// her skal if(isprison evt først??)
-			// og her skal die1 og die2 gemmes? hvorfor gør de ikke det. lige nu er de 0 så rent bliver 0 i Soda
-			// det er fordi de kun ændres i denne metode.
+
 			int die1 = (int) (1 + 6.0 * Math.random());
 			int die2 = (int) (1 + 6.0 * Math.random());
 
@@ -259,7 +253,7 @@ public class  GameController {
 				}
 			}
 		} while (castDouble);
-		//Virker sgu nok, men der skal lige styr på vores database først.
+
 
 		//database.saveGame(game);
 	}
@@ -287,7 +281,6 @@ public class  GameController {
 		// Execute the action associated with the respective space. Note
 		// that this is delegated to the field, which implements this action
 		space.doAction(this, player);
-		// vi kan evt skrive hvad og hvem han betaler til hvis tid.
 		if (space instanceof Property && ((Property) space).getOwner() != game.getCurrentPlayer() &&
 				!((Property) space).isMortgaged()) {
 			gui.showMessage("player " + game.getCurrentPlayer().getName() + " pays "

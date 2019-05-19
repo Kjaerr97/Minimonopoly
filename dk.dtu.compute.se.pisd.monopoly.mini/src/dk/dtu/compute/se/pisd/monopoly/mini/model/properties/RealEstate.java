@@ -5,11 +5,8 @@ import dk.dtu.compute.se.pisd.monopoly.mini.model.Property;
 
 /**
  * A specific property, which represents real estate on which houses
- * and hotels can be built. Note that this class does not have details
- * yet and needs to be implemented.
- * 
- * @author Ekkart Kindler, ekki@dtu.dk
- *
+ * and hotels can be built.
+ * @author Andreas H 185029
  */
 public class RealEstate extends Property {
 
@@ -45,7 +42,10 @@ public class RealEstate extends Property {
         this.housePrice = housePrice;
         notifyChange();
     }
-
+    /**
+     * Method for computing rent based on amount of houses owned
+     * @author Andreas H 185029
+     */
 @Override
     public int computeRent(GameController controller) {
         if (getHouses() == 0) {

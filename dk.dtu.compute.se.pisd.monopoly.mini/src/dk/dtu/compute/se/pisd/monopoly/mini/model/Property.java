@@ -22,10 +22,10 @@ public class Property extends Space {
 	}
 
 	private ColorGroup colorGroup;
-// Andreas. tiføjet pantsat som kan tilgås ved setteren.
 
+// boolean field with setter and getter to determine whether or not a property is mortgaged
 	private boolean isMortgaged = false;
-// find brug
+
 	public boolean isMortgaged() {
 		return isMortgaged;
 	}
@@ -141,7 +141,11 @@ public class Property extends Space {
 			}
 		}
 	}
-
+	/**
+	 * To be overwritten by subclasses of property
+	 * Returns 0 as default
+	 * @Author Andreas H s185029
+	 */
 	public int computeRent(GameController controller) {
 		return 0;
 	}
