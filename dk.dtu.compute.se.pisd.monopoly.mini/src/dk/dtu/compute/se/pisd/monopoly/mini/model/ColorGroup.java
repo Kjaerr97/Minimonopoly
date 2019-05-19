@@ -4,11 +4,11 @@ import java.awt.*;
 
 /**
  * @aurthor Sascha s171281
- * Kilde: Fluent Windows 8.1 App Development by Rebecca M. Riordan, page 699.
+ * Kilder: Fluent Windows 8.1 App Development by Rebecca M. Riordan, page 699.
+ * https://docs.oracle.com/javase/tutorial/java/javaOO/enum.html
  */
 
 public enum ColorGroup {
-
     // The colour and the number of spaces with that colour is defined:
 
     lightblue(2), salmon(3), green(3), grey(3), red(3), white(3), yellow(3), purple(2), turquoise(2), pink(4);
@@ -23,7 +23,6 @@ public enum ColorGroup {
     public int GroupNumber() {
         return this.groupNumber;
     }
-
 
 
 

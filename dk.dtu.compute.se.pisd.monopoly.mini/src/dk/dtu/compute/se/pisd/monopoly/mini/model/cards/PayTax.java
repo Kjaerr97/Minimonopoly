@@ -14,15 +14,21 @@ import dk.dtu.compute.se.pisd.monopoly.mini.model.exceptions.PlayerBrokeExceptio
  */
 public class PayTax extends Card {
 
+    /**
+     * @author Sascha s171281
+     *  Made sure that tax concerns all assets
+     * @param controller the controller that is in charge of the game
+     * @param player the involved player
+     * @throws PlayerBrokeException
+     */
+
 	@Override
 	public void doAction(GameController controller, Player player) throws PlayerBrokeException {
-		// TODO note that tax concerns all assets an not just cash
-		//      this is just a simple  way of implementing tax
+
 		try {
 			controller.paymentToBank(player, player.playerAssets() / 10);
 		} finally {
-			// Make sure that the card is returned to the deck even when
-			// an Exception should occur!
+
 			super.doAction(controller, player);
 		}
 	}

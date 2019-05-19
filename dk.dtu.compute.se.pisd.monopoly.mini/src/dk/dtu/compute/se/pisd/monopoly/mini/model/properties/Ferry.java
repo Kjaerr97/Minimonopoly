@@ -6,14 +6,11 @@ import dk.dtu.compute.se.pisd.monopoly.mini.model.Property;
 public class Ferry extends Property {
     /**
      * A specific property that cannot be upgraded with houses
-     *
      * @author Andreas H s185029
+     *  Method for computing rent of ferries based on amount of ferries owned.
      */
 
 
-    /**
-     * for computing rent of ferries based on amount of ferries owned.
-     */
 @Override
     public int computeRent(GameController controller) {
         int count = 0;

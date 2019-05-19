@@ -6,11 +6,12 @@ import dk.dtu.compute.se.pisd.monopoly.mini.model.Player;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.exceptions.GameEndedException;
 import dk.dtu.compute.se.pisd.monopoly.mini.model.exceptions.PlayerBrokeException;
 
+   /**
+    * @author Asger, s180911
+    */
+
 public class CardReceiveMoneyFromPlayer extends Card {
     private int amount;
-    /*
-    @author Asger, s180911
-     */
     public int getAmount (){
         return amount;
     }

@@ -11,9 +11,16 @@ import dk.dtu.compute.se.pisd.monopoly.mini.model.exceptions.PlayerBrokeExceptio
  */
 public class Tax extends Space {
 
+	/**
+	 * @author Sascha
+	 * Made sure that tax concerns all assets
+	 * @param controller the controller in charge of the game
+	 * @param player the involved player
+	 * @throws PlayerBrokeException
+	 */
+
 	@Override
 	public void doAction(GameController controller, Player player) throws PlayerBrokeException {
-		// TODO note that tax concerns all assets an not just cash
 		controller.paymentToBank(player, player.playerAssets() / 10);
 	}
 

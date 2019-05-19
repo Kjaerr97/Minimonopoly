@@ -6,13 +6,12 @@ import dk.dtu.compute.se.pisd.monopoly.mini.model.Property;
 /**
  * A specific property, which represents real estate on which houses
  * and hotels can be built.
- * @author Andreas H 185029
+ * @author Andreas H 185029 og Sascha s171281
  */
 public class RealEstate extends Property {
 
     private int houses;
     private int newRent;
-    private int houseRent;
     private int housePrice;
 
     public int getHouses() {
@@ -21,16 +20,6 @@ public class RealEstate extends Property {
 
     public void setHouses(int houses) {
         this.houses = houses;
-        notifyChange();
-    }
-
-
-    public int getHouseRent() {
-        return houseRent;
-    }
-
-    public void setHouseRent(int houseRent) {
-        this.houseRent = houseRent;
         notifyChange();
     }
 
@@ -46,6 +35,7 @@ public class RealEstate extends Property {
      * Method for computing rent based on amount of houses owned
      * @author Andreas H 185029
      */
+
 @Override
     public int computeRent(GameController controller) {
         if (getHouses() == 0) {
