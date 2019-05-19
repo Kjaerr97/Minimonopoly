@@ -125,7 +125,7 @@ public class  GameController {
 				try {
 					this.makeMove(player);
 				} catch (PlayerBrokeException e) {
-
+					player.setBroke(true);
 				}
 			}
 
@@ -340,7 +340,6 @@ public class  GameController {
 	 * @param amount the amount the player should have available after the act
 	 * @author Andreas H s185029
 	 */
-
 	public void obtainCash(Player player, int amount) {
 		while (player.getBalance() < amount) {
 			String selection = gui.getUserSelection("You must free at least " + amount +
