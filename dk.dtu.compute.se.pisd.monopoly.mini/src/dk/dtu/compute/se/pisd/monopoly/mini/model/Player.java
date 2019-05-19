@@ -304,7 +304,7 @@ public class Player extends Subject {
 				ownedColour++;
 			}
 		}
-		if (ownedColour == property.getColorGroup().getGroupNumber()) {
+		if (ownedColour == property.getColorGroup().GroupNumber()) {
 			for (Property property1 : ownedProperties) {
 				if (property1.getColorGroup() == property.getColorGroup()) {
 					property1.setGroupOwned(true);
