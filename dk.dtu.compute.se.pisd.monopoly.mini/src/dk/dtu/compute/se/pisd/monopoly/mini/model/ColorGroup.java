@@ -20,9 +20,11 @@ public enum ColorGroup {
         this.groupNumber = groupNumber;
     }
 
-    public int getGroupNumber() {
+    public int GroupNumber() {
         return this.groupNumber;
     }
+
+
 
 
     //The colours are grouped:
