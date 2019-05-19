@@ -72,7 +72,6 @@ public class  GameController {
 	}
 
 
-
 	// Andreas - sat fields her så terninger kan tilgås i utilityklassen
 
 	/**
@@ -109,9 +108,6 @@ public class  GameController {
 	public void play() throws GameEndedException {
 		List<Player> players = game.getPlayers();
 		Player c = game.getCurrentPlayer();
-
-
-
 
 
 		int current = 0;
@@ -180,7 +176,6 @@ public class  GameController {
 			}
 
 
-
 			current = (current + 1) % players.size();
 			game.setCurrentPlayer(players.get(current));
 			if (current == 0) {
@@ -190,7 +185,7 @@ public class  GameController {
 						"no");
 				if (selection.equals("no")) {
 					terminated = true;
-				}else if(selection.equals("yes")){
+				} else if (selection.equals("yes")) {
 					play();
 				}
 			}
@@ -265,10 +260,10 @@ public class  GameController {
 			}
 		} while (castDouble);
 		//Virker sgu nok, men der skal lige styr på vores database først.
-		
+
 		//database.saveGame(game);
 	}
-	
+
 
 	/**
 	 * This method implements the activity of moving the player to the new position,
@@ -350,6 +345,7 @@ public class  GameController {
 	 *
 	 * @param player the player
 	 * @param amount the amount the player should have available after the act
+	 * @author Andreas H s185029
 	 */
 
 	public void obtainCash(Player player, int amount) {
@@ -363,31 +359,28 @@ public class  GameController {
 			if (selection.equals("Sell houses")) {
 				this.tradeHouses(player);
 
-
-
 			} else if (selection.equals("Mortgage properties")) {
 
 				this.mortgageProperties(player);
 
 			} else if (selection.equals("Sell properties")) {
-
+				// here the tradeOthePlayers option would be called, but it's not implemented yet.
 			} else {
 				return;
-
 			}
 
 		}
 	}
 
-	
+
 	/**
 	 * This method implements the activity of offering a player to buy
 	 * a property. This is typically triggered by a player arriving on
 	 * an property that is not sold yet. If the player chooses not to
 	 * buy, the property will be set for auction.
-	 * 
+	 *
 	 * @param property the property to be sold
-	 * @param player the player the property is offered to
+	 * @param player   the player the property is offered to
 	 * @throws PlayerBrokeException when the player chooses to buy but could not afford it
 	 */
 	public void offerToBuy(Property property, Player player) throws PlayerBrokeException {
@@ -397,8 +390,8 @@ public class  GameController {
 						" for " + property.getCost() + "$?",
 				"yes",
 				"no");
-// Andreas. added mulighed for at obtaine cash hvis man vælger ja men alligevel ikke har råd. i så
-		// fald skal der jo ikke komme en playbrokeException hvis man kan sælge andre ting.
+		// Andreas s185029: Added the possibility for at player to obtain cash in case he wishes
+		// to buy a property but can't afford it yet.
 		if (choice.equals("yes") && property.getCost() > player.getBalance()) {
 			this.obtainCash(player, property.getCost());
 		}
@@ -425,15 +418,15 @@ public class  GameController {
 		}
 	}
 
-	
+
 	/**
 	 * This method implements a payment activity to another player,
 	 * which involves the player to obtain some cash on the way, in case he does
 	 * not have enough cash available to pay right away. If he cannot free
 	 * enough money in the process, the player will go bankrupt.
-	 * 
-	 * @param payer the player making the payment
-	 * @param amount the payed amount
+	 *
+	 * @param payer    the player making the payment
+	 * @param amount   the payed amount
 	 * @param receiver the beneficiary of the payment
 	 * @throws PlayerBrokeException when the payer goes broke by this payment
 	 */
@@ -441,27 +434,27 @@ public class  GameController {
 		if (payer.getBalance() < amount) {
 			obtainCash(payer, amount);
 			if (payer.getBalance() < amount) {
-				playerBrokeTo(payer,receiver);
+				playerBrokeTo(payer, receiver);
 				throw new PlayerBrokeException(payer);
-				}
-				if (amount >= 1000000000){
+			}
+			if (amount >= 1000000000) {
 
-					throw new GameEndedException();
+				throw new GameEndedException();
 
-				}
+			}
 
 		}
 
 
-		gui.showMessage("Player " + payer.getName() + " pays " +  amount + "$ to player " + receiver.getName() + ".");
+		gui.showMessage("Player " + payer.getName() + " pays " + amount + "$ to player " + receiver.getName() + ".");
 		payer.payMoney(amount);
 		receiver.receiveMoney(amount);
 	}
-	
+
 	/**
 	 * This method implements the action of a player receiving money from
 	 * the bank.
-	 * 
+	 *
 	 * @param player the player receiving the money
 	 * @param amount the amount
 	 */
@@ -473,31 +466,31 @@ public class  GameController {
 	 * This method implements the activity of a player making a payment to
 	 * the bank. Note that this might involve the player to obtain some
 	 * cash; in case he cannot free enough cash, he will go bankrupt
-	 * to the bank. 
-	 * 
+	 * to the bank.
+	 *
 	 * @param player the player making the payment
 	 * @param amount the amount
 	 * @throws PlayerBrokeException when the player goes broke by the payment
 	 */
-	public void paymentToBank(Player player, int amount) throws PlayerBrokeException{
+	public void paymentToBank(Player player, int amount) throws PlayerBrokeException {
 		if (amount > player.getBalance()) {
 			obtainCash(player, amount);
 			if (amount > player.getBalance()) {
 				playerBrokeToBank(player);
 				throw new PlayerBrokeException(player);
 			}
-			
+
 		}
-		gui.showMessage("Player " + player.getName() + " pays " +  amount + "$ to the bank.");
+		gui.showMessage("Player " + player.getName() + " pays " + amount + "$ to the bank.");
 		player.payMoney(amount);
 	}
-	
+
 	/**
 	 * This method implements the activity of auctioning a property.
 	 *
-     * @param property the property which is for auction
-     * @GruppeF made this method (class assignment 2)
-     */
+	 * @param property the property which is for auction
+	 * @GruppeF made this method (class assignment 2)
+	 */
 	public void auction(Property property) {
 		// Creates new ArrayList called bidders.
 
@@ -521,12 +514,11 @@ public class  GameController {
 			int minBid = currentBid + 1;
 
 			bidder = bidders.get(0);
-			// de får lov at byde
 
 			Player player = bidders.remove(0);
 			int newBid = gui.getUserInteger("Place bid here. It must be " + minBid + " or above",
 					1,
-					player.getBalance() );
+					player.getBalance());
 			if (newBid >= minBid) {
 				currentBid = newBid;
 
@@ -558,7 +550,7 @@ public class  GameController {
 	/**
 	 * Action handling the situation when one player is broke to another
 	 * player. All money and properties are transferred to the other player.
-	 *  
+	 *
 	 * @param brokePlayer the broke player
 	 * @param benificiary the player who receives the money and assets
 	 */
@@ -569,54 +561,54 @@ public class  GameController {
 		brokePlayer.setBroke(true);
 
 
-		for (Property property: brokePlayer.getOwnedProperties()) {
+		for (Property property : brokePlayer.getOwnedProperties()) {
 			property.setOwner(benificiary);
 			benificiary.addOwnedProperty(property);
-			if(property instanceof RealEstate) {
+			if (property instanceof RealEstate) {
 				((RealEstate) property).setHouses(0);
 			}
 
-		}	
+		}
 		brokePlayer.removeAllProperties();
-		
+
 		while (!brokePlayer.getOwnedCards().isEmpty()) {
 			game.returnCardToDeck(brokePlayer.getOwnedCards().get(0));
 		}
-		
+
 		gui.showMessage("Player " + brokePlayer.getName() + "went broke and transfered all"
 				+ "assets to " + benificiary.getName());
 	}
-	
+
 	/**
 	 * Action handling the situation when a player is broke to the bank.
-	 * 
+	 *
 	 * @param player the broke player
+	 * @author Andreas H s185029
 	 */
 	public void playerBrokeToBank(Player player) {
 
 		player.setBalance(0);
 		player.setBroke(true);
-		
-		// TODO we also need to remove the houses and the mortgage from the properties
-// skulle gerne være gjort her. Andreas
-		for (Property property: player.getOwnedProperties()) {
+
+
+		for (Property property : player.getOwnedProperties()) {
 			property.setOwner(null);
-			if(property.isMortgaged()) {
+			if (property.isMortgaged()) {
 				property.setMortgaged(false);
 			}
-			if(property instanceof RealEstate){
+			if (property instanceof RealEstate) {
 				((RealEstate) property).setHouses(0);
 			}
 		}
 		player.removeAllProperties();
-		
+
 		gui.showMessage("Player " + player.getName() + " went broke");
-		
+
 		while (!player.getOwnedCards().isEmpty()) {
 			game.returnCardToDeck(player.getOwnedCards().get(0));
 		}
 	}
-	
+
 	/**
 	 * Method for disposing of this controller and cleaning up its resources.
 	 */
@@ -630,12 +622,14 @@ public class  GameController {
 
 		}
 	}
+
 	/*
-    @author Asger, s180911, Andreas H
+	Allows the player to either buy or sell houses on a given property.
+	for now, only one house can be built per round
+    @author Asger, s180911, Andreas H s185029
      */
 	public void tradeHouses(Player player) {
-		// hvilke huse osv. kan det gøres med mere end et hus ad gangen
-		// vi kan stadig bygge uneven antal huse. kom evt tilbage hertil
+
 		ArrayList<RealEstate> options = new ArrayList<>();
 		for (Property property : player.getOwnedProperties()) {
 
@@ -656,50 +650,59 @@ public class  GameController {
 					"Buy", "Sell");
 			if (select.equals("Buy")) {
 				for (Property property : player.getOwnedProperties()) {
-						if (player.getOwnedProperties().equals(result) && property.getGroupOwned()) {
-							if (((RealEstate) property).getHouses() < 5) {
-								player.payMoney(((RealEstate) property).getHousePrice());
-								((RealEstate) property).setHouses(((RealEstate) property).getHouses() + 1);
-								gui.showMessage("A house has been added");
-							}
+					if (player.getOwnedProperties().equals(result) && property.getGroupOwned()) {
+						if (((RealEstate) property).getHouses() < 4) {
+							player.payMoney(((RealEstate) property).getHousePrice());
+							((RealEstate) property).setHouses(((RealEstate) property).getHouses() + 1);
+							player.payMoney(((RealEstate) property).getHousePrice());
+							gui.showMessage("A house has been added");
 						}
-
 					}
+				}
+			} else if (select.equals("sell")) {
+				for (Property property : player.getOwnedProperties()) {
+					if (player.getOwnedProperties().equals(result) && ((RealEstate) property).getHouses() >= 1) {
+						((RealEstate) property).setHouses(((RealEstate) property).getHouses() - 1);
+						player.receiveMoney((((RealEstate) property).getHousePrice() / 2));
+						gui.showMessage("A house has been sold");
+					}
+				}
 			}
 		}
 	}
 	/*
+	Method that gives the player the option to mortgage owned properties
+	to receive half it's cost.
 @author Andreas H
  */
-	public void mortgageProperties(Player player){
-		ArrayList<RealEstate> options = new ArrayList<>();
-		for (Property property : player.getOwnedProperties()) {
-
-			if (property instanceof RealEstate && !property.isMortgaged()) {
-				options.add((RealEstate) property);
-			}
-		}
-		Object[] option = options.toArray();
-		if (option.length == 0) {
-			gui.showMessage("You don't own any properties that can be mortgaged");
-		} else {
-			Object result = JOptionPane.showInputDialog(null,
-					"Choose a property to mortgage",
-					"Mortgage", JOptionPane.QUESTION_MESSAGE, null, option, 0);
+		public void mortgageProperties (Player player){
+			ArrayList<RealEstate> options = new ArrayList<>();
 			for (Property property : player.getOwnedProperties()) {
 
-				if (property == result) {
-					property.isMortgaged();
-					gui.showMessage(property.getName() + " is now mortgaged and you receive " + property.getCost() / 2);
-					player.receiveMoney(property.getCost() / 2);
+				if (property instanceof RealEstate && !property.isMortgaged()) {
+					options.add((RealEstate) property);
 				}
 			}
+			Object[] option = options.toArray();
+			if (option.length == 0) {
+				gui.showMessage("You don't own any properties that can be mortgaged");
+			} else {
+				Object result = JOptionPane.showInputDialog(null,
+						"Choose a property to mortgage",
+						"Mortgage", JOptionPane.QUESTION_MESSAGE, null, option, 0);
+				for (Property property : player.getOwnedProperties()) {
 
+					if (property == result) {
+						property.isMortgaged();
+						gui.showMessage(property.getName() + " is now mortgaged and you receive " + property.getCost() / 2);
+						player.receiveMoney(property.getCost() / 2);
+					}
+				}
+
+			}
 		}
-	}
-
-	public Game getGame() {
-		return game;
-	}
+		public Game getGame () {
+			return game;
+		}
 }
 

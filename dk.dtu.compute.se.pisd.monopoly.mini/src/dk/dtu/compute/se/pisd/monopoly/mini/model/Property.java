@@ -115,37 +115,31 @@ public class Property extends Space {
 	 * <code>null</code>).
 	 *
 	 * @param player the new owner of the property
+	 *
 	 */
 	public void setOwner(Player player) {
 		this.owner = player;
 		notifyChange();
 	}
-
-		public void doAction(GameController controller, Player player) throws PlayerBrokeException {
+	/**
+	 * The action taken when a player lands on a property
+	 * @Author Andreas H s185029
+	 */
+	public void doAction(GameController controller, Player player) throws PlayerBrokeException {
 		if (owner == null) {
 			controller.offerToBuy(this, player);
 		} else if (!owner.equals(player)) {
-				// TODO also check whether the property is mortgaged
-				// Andreas
-				if (this.isMortgaged()){
-				// Skriv at den er mortgaged ogff
-		} else {
-			// polymorfisk kald: del utility op og kald alle metoderne det samme, som de overwriter herfra
-			// kald det eks computeRent.
-			// se op på om computeRent kaldes polymorfisk eller der skal tre if'er til for at se
-			// hvilket objekt metoden kaldes på/ hvilken type felt spilleren er på.
-
-			player.payMoney(this.computeRent(controller));
-			owner.receiveMoney(this.computeRent(controller));
 
 
+			if (this.isMortgaged() || owner.isInPrison()) {
+				player.payMoney(0);
+				player.receiveMoney(0);
+			} else {
+
+				player.payMoney(this.computeRent(controller));
+				owner.receiveMoney(this.computeRent(controller));
+			}
 		}
-	}
-	//Andreas - metode vi overskriver i de tre child-klasser. atm er den overloaded så Soda kan
-	// have controller som parameter, så sikr at den kaldes på det rigtige objekt i doAction.
-// lige nu udskrives nok kun 0 fordi den kalder denne metode. sikr dig at den kalder underklassernes metode.
-	// det kan du teste når vi kommer dertil.
-
 	}
 
 	public int computeRent(GameController controller) {

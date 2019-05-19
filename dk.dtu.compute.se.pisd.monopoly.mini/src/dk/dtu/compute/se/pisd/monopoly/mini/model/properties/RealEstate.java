@@ -66,8 +66,6 @@ public class RealEstate extends Property {
                     newRent = getRent() * 34;
                     break;
             }
-        } else {
-            newRent = getRent() * 40;
         }
         return newRent;
     }
