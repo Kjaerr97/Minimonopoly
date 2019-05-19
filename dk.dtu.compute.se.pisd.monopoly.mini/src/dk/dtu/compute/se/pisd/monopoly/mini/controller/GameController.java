@@ -266,7 +266,7 @@ public class  GameController {
 		} while (castDouble);
 		//Virker sgu nok, men der skal lige styr på vores database først.
 		
-		database.saveGame(game);
+		//database.saveGame(game);
 	}
 	
 
