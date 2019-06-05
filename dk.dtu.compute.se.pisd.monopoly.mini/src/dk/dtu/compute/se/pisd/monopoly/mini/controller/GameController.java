@@ -342,7 +342,8 @@ public class  GameController {
 	 */
 	public void obtainCash(Player player, int amount) {
 		while (player.getBalance() < amount) {
-			String selection = gui.getUserSelection("You must free at least " + amount +
+		int newAmount = amount - player.getBalance();
+			String selection = gui.getUserSelection("You must free at least " + newAmount +
 							"$ to move on with your move. Would you like to " +
 							" sell houses, mortgage properties or sell properties?",
 					" Sell houses",
@@ -668,11 +669,12 @@ public class  GameController {
 @author Andreas H
  */
 		public void mortgageProperties (Player player){
-			ArrayList<RealEstate> options = new ArrayList<>();
+			ArrayList<String> options = new ArrayList<>();
 			for (Property property : player.getOwnedProperties()) {
 
-				if (property instanceof RealEstate && !property.isMortgaged()) {
-					options.add((RealEstate) property);
+				if (!property.isMortgaged() ) {
+					String s1 = property.getName();
+					options.add(s1);
 				}
 			}
 			Object[] option = options.toArray();
@@ -684,8 +686,8 @@ public class  GameController {
 						"Mortgage", JOptionPane.QUESTION_MESSAGE, null, option, 0);
 				for (Property property : player.getOwnedProperties()) {
 
-					if (property == result) {
-						property.isMortgaged();
+					if (property.getName().equals(result)) {
+						property.setMortgaged(true);
 						gui.showMessage(property.getName() + " is now mortgaged and you receive " + property.getCost() / 2);
 						player.receiveMoney(property.getCost() / 2);
 					}

@@ -72,7 +72,7 @@ public class MiniMonopoly {
 		f.setName("Øresund");
 		f.setCost(4000);
 		f.setRent(500);
-		f.setColorGroup(ColorGroup.pink);
+//		f.setColorGroup(ColorGroup.pink);
 		game.addSpace(f);
 
 		p = new RealEstate();
@@ -232,6 +232,7 @@ public class MiniMonopoly {
 		s.setName("Carlsberg");
 		s.setCost(3000);
 		s.setColorGroup(ColorGroup.turquoise);
+
 		game.addSpace(s);
 
 		p = new RealEstate();
@@ -239,6 +240,8 @@ public class MiniMonopoly {
 		p.setCost(5600);
 		p.setRent(550);
 		p.setColorGroup(ColorGroup.white);
+
+
 		p.setHousePrice(3000);
 		game.addSpace(p);
 

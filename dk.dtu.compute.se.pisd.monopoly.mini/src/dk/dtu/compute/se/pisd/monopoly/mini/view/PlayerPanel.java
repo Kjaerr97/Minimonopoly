@@ -68,7 +68,7 @@ public class PlayerPanel extends JFrame {
             if (space instanceof Property){
                 Property property = (Property) space;
                 if (property.getOwner() != null){
-                    if (property.getOwner() == player){
+                    if (property.getOwner() == player && !property.isMortgaged()){
                         ColorGroup colorGroup = property.getColorGroup();
                         if (!colorGroupJPanelMap.containsKey(colorGroup))
                             try{
