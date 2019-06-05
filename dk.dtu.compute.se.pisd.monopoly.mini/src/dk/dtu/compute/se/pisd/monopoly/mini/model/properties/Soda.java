@@ -7,22 +7,15 @@ import dk.dtu.compute.se.pisd.monopoly.mini.model.Property;
  * and hotels can be built. Note that this class does not have details
  * yet and needs to be implemented.
  * A specific property,
- *
- * @author Andreas H s185029
- *
+ */
+
+/**
+ * @author Andreas H s185029 og Sascha s171281
+ * method for computing rent bases on dice and amount of sodas owned
  */
 
 public class Soda extends Property {
-    /**
-     * A specific property, which represents a utility which can
-     * not be developed with houses or hotels.
-     *
-     * Andreas H s185029
-     */
 
-    /**
-     * method for computing rent bases on dice and amount of sodas owned
-     */
     @Override
     public int computeRent(GameController controller) {
         int count = 0;

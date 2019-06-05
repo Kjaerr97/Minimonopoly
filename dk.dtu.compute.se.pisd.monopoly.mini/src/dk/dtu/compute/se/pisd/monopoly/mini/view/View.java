@@ -161,7 +161,11 @@ public class View implements Observer {
 		}
 		player2PlayerPanel.get(player).update();
 	}
-	
+
+	/**
+	 * @author Markus s174879
+	 */
+
 	public void dispose() {
 		if (!disposed) {
 			disposed = true;
@@ -169,9 +173,7 @@ public class View implements Observer {
 				// unregister from the player as observer
 				player.detach(this);
 			}
-			/**
-			 * @author Markus s174879
-			 */
+
 			for (Space space : game.getSpaces()){
 				space.detach(this);
 			}

@@ -15,6 +15,11 @@ public class Property extends Space {
 	private int rent;
 	private Player owner;
 
+	/**
+	 * @author Sascha
+	 * fields for colorgroup is defined
+	 */
+
 	private boolean groupOwned = false;
 
 	public boolean isGroupOwned() {
@@ -23,31 +28,10 @@ public class Property extends Space {
 
 	private ColorGroup colorGroup;
 
-// boolean field with setter and getter to determine whether or not a property is mortgaged
-	private boolean isMortgaged = false;
-
-	public boolean isMortgaged() {
-		return isMortgaged;
-	}
-
-	public void setMortgaged(boolean mortgaged) {
-		isMortgaged = mortgaged;
-	}
-
-	/**
-	 * @Aurthor Sascha s171281
-	 * Returns
-	 */
-
 	public boolean getGroupOwned(){
 		return this.groupOwned;
 	}
 
-	/**
-	 * @Aurthor Sascha s171281
-	 * Sets
-	 * @param bool the new state
-	 */
 
 	public void setGroupOwned(boolean bool){
 		this.groupOwned = bool;
@@ -60,6 +44,23 @@ public class Property extends Space {
 	public void setColorGroup (ColorGroup colorGroup){
 		this.colorGroup = colorGroup;
 	}
+
+	/**
+	 * @author Andreas H s185029
+	 * boolean field with setter and getter to determine whether or not a property is mortgaged
+	 */
+
+	private boolean isMortgaged = false;
+
+	public boolean isMortgaged() {
+		return isMortgaged;
+	}
+
+	public void setMortgaged(boolean mortgaged) {
+		isMortgaged = mortgaged;
+	}
+
+
 
 
 	/**

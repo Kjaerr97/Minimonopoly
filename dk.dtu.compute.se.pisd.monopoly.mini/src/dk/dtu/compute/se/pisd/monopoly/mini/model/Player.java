@@ -52,6 +52,7 @@ public class Player extends Subject {
 	 * 
 	 * @return the name of the player
 	 */
+
 	public String getName() {
 		return name;
 	}
@@ -61,25 +62,18 @@ public class Player extends Subject {
 	 * 
 	 * @param name the new name of the player
 	 */
+
 	public void setName(String name) {
 		this.name = name;
 		notifyChange();
 	}
 
-	/**
-	 * Returns the colour of this player.
-	 * 
-	 * @return the colour
-	 */
+
 	public Color getColor() {
 		return color;
 	}
 
-	/**
-	 * Sets the colour of the player.
-	 * 
-	 * @param color the new colour of the player.
-	 */
+
 	public void setColor(Color color) {
 		this.color = color;
 		notifyChange();
@@ -125,7 +119,7 @@ public class Player extends Subject {
 
 	/**
 	 * @author Sascha.
-	 *
+	 * Method for player assest.
 	 * @return
 	 */
 
@@ -295,6 +289,12 @@ public class Player extends Subject {
 			notifyChange();
 		}
 	}
+
+	/**
+	 * @author Sascha s171281
+	 * Method for checking if a player owens every propety of the same color.
+	 * @param property
+	 */
 
 	public void groupOwned(Property property) {
 

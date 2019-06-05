@@ -51,6 +51,11 @@ public class  GameController {
 
 	private boolean disposed = false;
 
+	/**
+	 * @author Andreas s185029
+	 * 	Sat fields for terninger så de kan tilgås i soda
+	 */
+
 	private int die1;
 
 	private int die2;
@@ -72,7 +77,6 @@ public class  GameController {
 	}
 
 
-	// Andreas - sat fields her så terninger kan tilgås i utilityklassen
 
 	/**
 	 * Constructor for a controller of a game.
@@ -102,9 +106,11 @@ public class  GameController {
 	 * current player of the game; this makes it possible to resume a
 	 * game at any point.
 	 */
-	/*
-@author Asger, s180911 Andreas H s185029
- */
+
+	/**
+	 * @author Asger s180911, Andreas H s185029
+	 */
+
 	public void play() throws GameEndedException {
 		List<Player> players = game.getPlayers();
 		Player c = game.getCurrentPlayer();
@@ -221,7 +227,6 @@ public class  GameController {
 					player.payMoney(1000);
 					player.setInPrison(false);
 				}
-
 
 			}
 
@@ -447,10 +452,10 @@ public class  GameController {
 	/**
 	 * This method implements the action of a player receiving money from
 	 * the bank.
-	 *
 	 * @param player the player receiving the money
 	 * @param amount the amount
 	 */
+
 	public void paymentFromBank(Player player, int amount) {
 		player.receiveMoney(amount);
 	}
@@ -578,6 +583,7 @@ public class  GameController {
 	 * @param player the broke player
 	 * @author Andreas H s185029
 	 */
+
 	public void playerBrokeToBank(Player player) {
 
 		player.setBalance(0);
@@ -605,6 +611,7 @@ public class  GameController {
 	/**
 	 * Method for disposing of this controller and cleaning up its resources.
 	 */
+
 	public void dispose() {
 		if (!disposed && view != null) {
 			disposed = true;
@@ -616,11 +623,12 @@ public class  GameController {
 		}
 	}
 
-	/*
-	Allows the player to either buy or sell houses on a given property.
-	for now, only one house can be built per round
-    @author Asger, s180911, Andreas H s185029
+	/**
+	 * @author Asger, s180911, Andreas H s185029
+	 * Allows the player to either buy or sell houses on a given property.
+	 * 	for now, only one house can be built per round
      */
+
 	public void tradeHouses(Player player) {
 
 		ArrayList<RealEstate> options = new ArrayList<>();
@@ -663,11 +671,11 @@ public class  GameController {
 			}
 		}
 	}
-	/*
-	Method that gives the player the option to mortgage owned properties
-	to receive half it's cost.
-@author Andreas H
- */
+	/**
+	 * @author Andreas H s185029
+	 * Method that gives the player the option to mortgage owned properties
+	 * 	to receive half it's cost.
+	 */
 		public void mortgageProperties (Player player){
 			ArrayList<String> options = new ArrayList<>();
 			for (Property property : player.getOwnedProperties()) {
