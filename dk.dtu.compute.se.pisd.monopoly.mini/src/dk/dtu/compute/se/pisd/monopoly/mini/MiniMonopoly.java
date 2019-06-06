@@ -467,7 +467,12 @@ public class MiniMonopoly {
 			gameDAO.saveGame(game);
 
 
-			controller.play();
+
+			try {
+				controller.play();
+			} catch (GameEndedException e) {
+				e.printStackTrace();
+			}
 		}
 
 	}
