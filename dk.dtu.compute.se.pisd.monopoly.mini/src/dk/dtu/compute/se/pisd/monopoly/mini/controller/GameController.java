@@ -111,7 +111,7 @@ public class  GameController {
 	 * @author Asger s180911, Andreas H s185029
 	 */
 
-	public void play() throws GameEndedException {
+	public void play() {
 		List<Player> players = game.getPlayers();
 		Player c = game.getCurrentPlayer();
 
@@ -132,6 +132,8 @@ public class  GameController {
 					this.makeMove(player);
 				} catch (PlayerBrokeException e) {
 					player.setBroke(true);
+				} catch (GameEndedException e) {
+					e.printStackTrace();
 				}
 			}
 
@@ -149,7 +151,6 @@ public class  GameController {
 				gui.showMessage(
 						"Player " + winner.getName() +
 								" has won with " + winner.getBalance() + "$.");
-				throw new GameEndedException();
 
 			} else if (countActive < 1) {
 				// This can actually happen in very rare conditions and only
@@ -208,7 +209,7 @@ public class  GameController {
 	 * @throws PlayerBrokeException if the player goes broke during the move
 	 */
 
-	public void makeMove(Player player) throws PlayerBrokeException {
+	public void makeMove(Player player) throws PlayerBrokeException, GameEndedException {
 
 		boolean castDouble;
 		int doublesCount = 0;
