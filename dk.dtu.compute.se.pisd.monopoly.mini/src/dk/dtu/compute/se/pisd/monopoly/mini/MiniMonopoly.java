@@ -443,13 +443,13 @@ public class MiniMonopoly {
  * @author s180911 Asger, s171281 Sascha, s185034 Andreas,
  */
 		String result = JOptionPane.showInputDialog(null,
-				"Do you wish to load a game?, 'yes' or 'no'","Game",JOptionPane.QUESTION_MESSAGE);
-        if(result.equals("yes")){
-		int usergameID = Integer.parseInt(JOptionPane.showInputDialog(null, "What game do you want to load","GameLoader",JOptionPane.QUESTION_MESSAGE));
+				"Do you wish to load a game?, 'yes' or 'no'", "Game", JOptionPane.QUESTION_MESSAGE);
+		if (result.equals("yes")) {
+			int usergameID = Integer.parseInt(JOptionPane.showInputDialog(null, "What game do you want to load", "GameLoader", JOptionPane.QUESTION_MESSAGE));
 
-		Game game = createGame();
-		Database gameDAO = new Database();
-		gameDAO.loadGame(game, usergameID);
+			Game game = createGame();
+			Database gameDAO = new Database();
+			gameDAO.loadGame(game, usergameID);
 
 			game.shuffleCardDeck();
 			GameController controller = new GameController(game);
@@ -466,15 +466,14 @@ public class MiniMonopoly {
 			Database gameDAO = new Database();
 			gameDAO.saveGame(game);
 
-
-
 			try {
 				controller.play();
 			} catch (GameEndedException e) {
 				e.printStackTrace();
 			}
+
+
 		}
 
 	}
-
 }
